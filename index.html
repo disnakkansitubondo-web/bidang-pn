@@ -1049,7 +1049,7 @@
                                                 <li>Pencatatan dokumen pendukung terintegrasi Google Drive</li>
                                                 <li>Backup dan restore data dengan enkripsi</li>
                                                 <li>Manajemen data bantuan dengan pencarian dan filter</li>
-                                                <li>Statistik dan visualisasi data bantuan</li>
+                                                <li>Statistik и visualisasi data bantuan</li>
                                                 <li>Ekspor data ke berbagai format</li>
                                                 <li>Kontrol panel untuk pengaturan sistem</li>
                                             </ul>
@@ -1198,6 +1198,9 @@
     <script>
         // Inisialisasi jsPDF
         window.jsPDF = window.jspdf.jsPDF;
+
+        // Variabel global untuk chart
+        let yearChart, typeChart, trendChart;
 
         document.addEventListener('DOMContentLoaded', function() {
             // Inisialisasi data jika belum ada
@@ -1422,6 +1425,11 @@
             
             // Initialize data status
             updateDataStatus();
+
+            // Event listener untuk tab change untuk mengupdate grafik
+            document.getElementById('stats-tab').addEventListener('shown.bs.tab', function() {
+                updateStats();
+            });
         });
         
         function initTahunAnggaran() {
@@ -1445,7 +1453,7 @@
         
         function initTahunFilter() {
             const select = document.getElementById('filterTahun');
-            const data = JSON.parse(localStorage.getItem('barjasData'));
+            const data = JSON.parse(localStorage.getItem('barjasData') || '[]');
             
             // Dapatkan tahun unik dari data
             const years = [...new Set(data.map(item => item.tahunAnggaran))].sort((a, b) => b - a);
@@ -1542,6 +1550,9 @@
             showToast('Sukses', 'Data berhasil disimpan!', 'success');
             document.getElementById('bantuanForm').reset();
             
+            // Reset tahun anggaran ke tahun saat ini
+            document.getElementById('tahunAnggaran').value = new Date().getFullYear();
+            
             // Reload tabel data
             loadDataTable();
             updateStats();
@@ -1550,7 +1561,7 @@
         }
         
         function loadDataTable(page = 1, itemsPerPage = 10) {
-            const data = JSON.parse(localStorage.getItem('barjasData'));
+            const data = JSON.parse(localStorage.getItem('barjasData') || '[]');
             const tableBody = document.getElementById('dataTableBody');
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const filterTahun = document.getElementById('filterTahun').value;
@@ -1667,7 +1678,7 @@
         }
         
         function viewData(id) {
-            const data = JSON.parse(localStorage.getItem('barjasData'));
+            const data = JSON.parse(localStorage.getItem('barjasData') || '[]');
             const item = data.find(i => i.id === id);
             
             if (item) {
@@ -1768,7 +1779,7 @@
         
         function deleteData(id) {
             if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-                let data = JSON.parse(localStorage.getItem('barjasData'));
+                let data = JSON.parse(localStorage.getItem('barjasData') || '[]');
                 data = data.filter(item => item.id !== id);
                 localStorage.setItem('barjasData', JSON.stringify(data));
                 loadDataTable();
@@ -1780,7 +1791,7 @@
         }
         
         function backupData() {
-            const data = localStorage.getItem('barjasData');
+            const data = localStorage.getItem('barjasData') || '[]';
             const format = document.getElementById('backupFormat').value;
             const dateStr = new Date().toISOString().slice(0, 10);
             
@@ -1887,7 +1898,7 @@
         }
         
         function exportData() {
-            const data = JSON.parse(localStorage.getItem('barjasData'));
+            const data = JSON.parse(localStorage.getItem('barjasData') || '[]');
             if (data.length === 0) {
                 showToast('Info', 'Tidak ada data untuk diekspor.', 'info');
                 return;
@@ -1946,7 +1957,7 @@
         }
         
         function printData() {
-            const data = JSON.parse(localStorage.getItem('barjasData'));
+            const data = JSON.parse(localStorage.getItem('barjasData') || '[]');
             if (data.length === 0) {
                 showToast('Info', 'Tidak ada data untuk dicetak.', 'info');
                 return;
@@ -2024,7 +2035,7 @@
         }
         
         function updateStats() {
-            const data = JSON.parse(localStorage.getItem('barjasData'));
+            const data = JSON.parse(localStorage.getItem('barjasData') || '[]');
             
             // Update statistik box
             document.getElementById('stats-total').textContent = data.length;
@@ -2078,12 +2089,12 @@
             // Buat atau update chart tahun
             const yearCtx = document.getElementById('yearChart');
             if (yearCtx) {
-                if (window.yearChart) {
-                    window.yearChart.data.labels = yearLabels;
-                    window.yearChart.data.datasets[0].data = yearData;
-                    window.yearChart.update();
+                if (yearChart) {
+                    yearChart.data.labels = yearLabels;
+                    yearChart.data.datasets[0].data = yearData;
+                    yearChart.update();
                 } else {
-                    window.yearChart = new Chart(yearCtx, {
+                    yearChart = new Chart(yearCtx, {
                         type: 'bar',
                         data: {
                             labels: yearLabels,
@@ -2113,12 +2124,12 @@
             // Buat atau update chart jenis
             const typeCtx = document.getElementById('typeChart');
             if (typeCtx) {
-                if (window.typeChart) {
-                    window.typeChart.data.labels = typeLabels;
-                    window.typeChart.data.datasets[0].data = typeData;
-                    window.typeChart.update();
+                if (typeChart) {
+                    typeChart.data.labels = typeLabels;
+                    typeChart.data.datasets[0].data = typeData;
+                    typeChart.update();
                 } else {
-                    window.typeChart = new Chart(typeCtx, {
+                    typeChart = new Chart(typeCtx, {
                         type: 'pie',
                         data: {
                             labels: typeLabels,
@@ -2145,12 +2156,12 @@
             // Buat atau update trend chart
             const trendCtx = document.getElementById('trendChart');
             if (trendCtx) {
-                if (window.trendChart) {
-                    window.trendChart.data.labels = yearLabels;
-                    window.trendChart.data.datasets[0].data = yearData;
-                    window.trendChart.update();
+                if (trendChart) {
+                    trendChart.data.labels = yearLabels;
+                    trendChart.data.datasets[0].data = yearData;
+                    trendChart.update();
                 } else {
-                    window.trendChart = new Chart(trendCtx, {
+                    trendChart = new Chart(trendCtx, {
                         type: 'line',
                         data: {
                             labels: yearLabels,
