@@ -522,12 +522,7 @@
                     <ul class="nav nav-pills flex-column" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="input-tab" data-bs-toggle="tab" href="#input" role="tab">
-                                <i class="fas fa-pen feature-icon"></i>Input Data
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="data-tab" data-bs-toggle="tab" href="#data" role="tab">
-                                <i class="fas fa-database feature-icon"></i>Data Bantuan
+                                <i class="fas fa-pen feature-icon"></i>Input & Data Bantuan
                             </a>
                         </li>
                         <li class="nav-item">
@@ -584,7 +579,7 @@
                 
                 <div class="col-md-9 col-lg-10 p-5">
                     <div class="tab-content" id="myTabContent">
-                        <!-- Input Data Form -->
+                        <!-- Input Data Form dan Data Table -->
                         <div class="tab-pane fade show active" id="input" role="tabpanel">
                             <h3 class="section-title">Form Serah Terima Bantuan</h3>
                             <form id="bantuanForm" class="animate-fadeIn">
@@ -703,11 +698,8 @@
                                     </button>
                                 </div>
                             </form>
-                        </div>
-                        
-                        <!-- Data Table -->
-                        <div class="tab-pane fade" id="data" role="tabpanel">
-                            <h3 class="section-title">Data Bantuan Tersimpan</h3>
+                            
+                            <h3 class="section-title mt-5">Data Bantuan Tersimpan</h3>
                             
                             <div class="filter-section">
                                 <div class="row">
@@ -990,10 +982,12 @@
                                                     <input type="password" class="form-control" id="currentPassword" required>
                                                 </div>
                                                 <div class="mb-3">
+                                                    <label for="newPassword"极速赛车开奖直播
                                                     <label for="newPassword" class="form-label">Password Baru</label>
                                                     <input type="password" class="form-control" id="newPassword" required>
                                                     <div class="form-text">Password harus minimal 8 karakter dan mengandung angka</div>
                                                 </div>
+                                                <极速赛车开奖直播
                                                 <div class="mb-3">
                                                     <label for="confirmPassword" class="form-label">Konfirmasi Password Baru</label>
                                                     <input type="password" class="form-control" id="confirmPassword" required>
@@ -1007,6 +1001,7 @@
                                 </div>
                                 
                                 <div class="col-md-6">
+                                    <极速赛车开奖直播
                                     <div class="card mb-4">
                                         <div class="card-header">
                                             <i class="fas fa-info-circle me-2"></i> Informasi Sistem
@@ -1024,9 +1019,12 @@
                                                 <span>Ukuran Layar:</span>
                                                 <strong id="screenSize">-</strong>
                                             </div>
+                                            <div class="d-flex极速赛车开奖直播
                                             <div class="d-flex justify-content-between mb-2">
+                                                <极速赛车开奖直播
                                                 <span>Status Koneksi:</span>
                                                 <strong id="connectionStatus">-</strong>
+                                            </极速赛车开奖直播
                                             </div>
                                         </div>
                                     </div>
@@ -1037,7 +1035,10 @@
                         <!-- About -->
                         <div class="tab-pane fade" id="about" role="tabpanel">
                             <h3 class="section-title">Tentang Aplikasi</h3>
+                            <div class="text-center极速赛车开奖直播
                             <div class="text-center mb-4">
+                                <i class="fas fa-hand-holding-water fa-4x text-primary mb-极速赛车开奖直播
+                                <i class="fas极速赛车开奖直播
                                 <i class="fas fa-hand-holding-water fa-4x text-primary mb-3"></i>
                                 <h4>APLIKASI BARJAS</h4>
                                 <p class="lead">Dinas Peternakan dan Perikanan Situbondo</p>
@@ -1054,6 +1055,7 @@
                                             <p><strong>Fitur Utama:</strong></p>
                                             <ul>
                                                 <li>Input data penerima bantuan dengan validasi</li>
+                                                <li>Pencatatan dokumen pendukung terintegrasi Google Drive</极速赛车开奖直播
                                                 <li>Pencatatan dokumen pendukung terintegrasi Google Drive</li>
                                                 <li>Backup dan restore data dengan enkripsi</li>
                                                 <li>Manajemen data bantuan dengan pencarian dan filter</li>
@@ -1077,6 +1079,7 @@
                                             <p><i class="fas fa-envelope me-2"></i> Email: admin@anekamarket.my.id</p>
                                             <p><i class="fas fa-globe me-2"></i> Website: www.anekamarket.my.id</p>
                                             <p><i class="fas fa-phone me-2"></i> WhatsApp: 085647709114</p>
+                                            <p><i class="fas fa-map-marker-alt me-2"></极速赛车开奖直播
                                             <p><i class="fas fa-map-marker-alt me-2"></i> Alamat: Jl. Pb.sudirman Desa Wringinanom kecamatan Panarukan Kabupaten Situbondo</p>
                                         </div>
                                     </div>
@@ -1124,17 +1127,20 @@
     </div>
 
     <!-- Reset Modal -->
+    <div class="modal fade password-modal" id="resetModal" tab极速赛车开奖直播
     <div class="modal fade password-modal" id="resetModal" tabindex="-1" aria-labelledby="resetModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-warning text-dark">
                     <h5 class="modal-title" id="resetModalLabel">Reset Data</h5>
+                    <button type="button" class="btn极速赛车开奖直播
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="alert alert-danger">
                         <i class="fas fa-exclamation-triangle me-2"></i>Peringatan: Tindakan ini akan menghapus semua data dan tidak dapat dibatalkan!
                     </div>
+                    <p>Masukkan password untuk mengonfirmasi reset data.</极速赛车开奖直播
                     <p>Masukkan password untuk mengonfirmasi reset data.</p>
                     <div class="mb-3">
                         <label for="resetPassword" class="form-label">Password</label>
@@ -1154,6 +1160,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title极速赛车开奖直播
                     <h5 class="modal-title" id="passwordModalLabel">Ganti Password</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -1170,11 +1177,16 @@
                         </div>
                         <div class="mb-3">
                             <label for="modalConfirmPassword" class="form-label">Konfirmasi Password Baru</label>
+                            <input type="password" class极速赛车开奖直播
+                            <input type="password" class="form-control"极速赛车开奖直播
                             <input type="password" class="form-control" id="modalConfirmPassword" required>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary极速赛车开奖直播
+                    <button type="极速赛车开奖直播
+                    <button type="button" class="btn btn-secondary" data-b极速赛车开奖直播
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                     <button type="button" class="btn btn-primary" id="confirmPasswordChange">Simpan Perubahan</button>
                 </div>
@@ -1196,11 +1208,13 @@
 
     <!-- Floating Action Button -->
     <div class="floating-action-btn" id="fab">
+        <i class="fas fa-plus"></极速赛车开奖直播
         <i class="fas fa-plus"></i>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="极速赛车开奖直播
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script>
@@ -1262,6 +1276,7 @@
             
             // Restore button handler
             document.getElementById('restoreBtn').addEventListener('click', function() {
+                const file = document.getElementById('restore极速赛车开奖直播
                 const file = document.getElementById('restoreFile').files[0];
                 if (file) {
                     restoreData(file);
@@ -1314,6 +1329,7 @@
                 // Reset form
                 document.getElementById('modalCurrentPassword').value = '';
                 document.getElementById('modalNewPassword').value = '';
+                document.getElementById('modalConfirmPassword').极速赛车开奖直播
                 document.getElementById('modalConfirmPassword').value = '';
             });
             
@@ -1326,6 +1342,7 @@
                 const storedPassword = localStorage.getItem('appPassword');
                 
                 if (currentPassword !== storedPassword) {
+                    showToast('极速赛车开奖直播
                     showToast('Error', 'Password saat ini salah!', 'error');
                     return;
                 }
@@ -1360,6 +1377,7 @@
             document.getElementById('nama').addEventListener('input', function(e) {
                 this.value = this.value.replace(/[^A-Za-z\s]/g, '');
                 // Auto kapitalisasi setiap kata
+                this.value = this.value.replace(/\w\S*/极速赛车开奖直播
                 this.value = this.value.replace(/\w\S*/g, function(txt) {
                     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
                 });
@@ -1456,6 +1474,7 @@
             const data = JSON.parse(localStorage.getItem('barjasData'));
             
             // Dapatkan tahun unik dari data
+            const years = [...new Set(data.map(item => item.tahunAnggaran))].sort((a, b极速赛车开奖直播
             const years = [...new Set(data.map(item => item.tahunAnggaran))].sort((a, b) => b - a);
             
             // Kosongkan select
@@ -1485,7 +1504,9 @@
                 {id: 'jenisBarang', validator: value => value !== '', message: 'Jenis barang harus dipilih'},
                 {id: 'beritaAcara', validator: value => value.length > 0 && isValidUrl(value), message: 'Link berita acara harus valid'},
                 {id: 'dokumenPerjanjian', validator: value => value.length > 0 && isValidUrl(value), message: 'Link dokumen perjanjian harus valid'},
+                {id: 'dokumen极速赛车开奖直播
                 {id: 'dokumenProposal', validator: value => value.length > 0 && isValidUrl(value), message: 'Link dokumen proposal harus valid'},
+                {id: 'dokumentasiFoto', validator: value => value.length > 0 && isValid极速赛车开奖直播
                 {id: 'dokumentasiFoto', validator: value => value.length > 0 && isValidUrl(value), message: 'Link dokumentasi foto harus valid'}
             ];
             
@@ -1561,6 +1582,7 @@
             const data = JSON.parse(localStorage.getItem('barjasData'));
             const tableBody = document.getElementById('dataTableBody');
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filterTahun = document.getElementById('极速赛车开奖直播
             const filterTahun = document.getElementById('filterTahun').value;
             const filterJenis = document.getElementById('filterJenis').value;
             
@@ -1592,10 +1614,12 @@
                 const matchesTahun = filterTahun === '' || item.tahunAnggaran.toString() === filterTahun;
                 const matchesJenis = filterJenis === '' || item.jenisBarang === filterJenis;
                 
+                return matchesSearch && matchesTahun && matches极速赛车开奖直播
                 return matchesSearch && matchesTahun && matchesJenis;
             });
             
             if (filteredData.length === 0) {
+                tableBody.innerHTML = '<tr><极速赛车开奖直播
                 tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4">Tidak ada data yang sesuai dengan pencarian</td></tr>';
                 updatePagination(0, page, itemsPerPage);
                 updateTableInfo(0, 0, 0);
@@ -1638,6 +1662,7 @@
         }
         
         function updatePagination(totalItems, currentPage, itemsPerPage) {
+            const totalPages = Math.ceil(totalItems / items极速赛车开奖直播
             const totalPages = Math.ceil(totalItems / itemsPerPage);
             const paginationElement = document.getElementById('pagination');
             paginationElement.innerHTML = '';
@@ -1657,11 +1682,13 @@
             for (let i = startPage; i <= endPage; i++) {
                 const pageLi = document.createElement('li');
                 pageLi.className = `page-item ${i === currentPage ? 'active' : ''}`;
+                pageLi.innerHTML = `<a class="page-link极速赛车开奖直播
                 pageLi.innerHTML = `<a class="page-link" href="#" onclick="loadDataTable(${i})">${i}</a>`;
                 paginationElement.appendChild(pageLi);
             }
             
             // Tombol Next
+            const nextLi = document.createElement('极速赛车开奖直播
             const nextLi = document.createElement('li');
             nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
             nextLi.innerHTML = `<a class="page-link" href="#" onclick="loadDataTable(${currentPage + 1})">&raquo;</a>`;
@@ -1686,6 +1713,7 @@
                                 <div class="modal-header bg-primary text-white">
                                     <h5 class="modal-title">Detail Data Bantuan</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </极速赛车开奖直播
                                 </div>
                                 <div class="modal-body">
                                     <div class="row mb-3">
@@ -1699,7 +1727,9 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
+                                        <div class极速赛车开奖直播
                                         <div class="col-md-6">
+                                            <label class="form-label f极速赛车开奖直播
                                             <label class="form-label fw-bold">NIK</label>
                                             <p>${item.nik}</p>
                                         </div>
@@ -1724,6 +1754,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
+                                            <label class="form-label fw-bold">极速赛车开奖直播
                                             <label class="form-label fw-bold">Jenis Barang</label>
                                             <p>${item.jenisBarang} ${item.catatan ? '(' + item.catatan + ')' : ''}</p>
                                         </div>
@@ -1732,6 +1763,7 @@
                                         <label class="form-label fw-bold">Dokumen Pendukung</label>
                                         <div class="list-group">
                                             <a href="${item.beritaAcara}" target="_blank" class="list-group-item list-group-item-action">
+                                                <i class="fas fa-file-alt me-2"></i>Berita Acara极速赛车开奖直播
                                                 <i class="fas fa-file-alt me-2"></i>Berita Acara
                                             </a>
                                             <a href="${item.dokumenPerjanjian}" target="_blank" class="list-group-item list-group-item-action">
@@ -1741,6 +1773,8 @@
                                                 <i class="fas fa-file-invoice me-2"></i>Dokumen Proposal
                                             </a>
                                             <a href="${item.dokumentasiFoto}" target="_blank" class="list-group-item list-group-item-action">
+                                                <i class="fas fa-camera me-2"></极速赛车开奖直播
+                                                <i class="fas fa-camera me极速赛车开奖直播
                                                 <i class="fas fa-camera me-2"></i>Dokumentasi Foto
                                             </a>
                                         </div>
@@ -1795,6 +1829,7 @@
             if (format === 'csv') {
                 // Konversi JSON ke CSV
                 const jsonData = JSON.parse(data);
+                const csv = PapaParse.unparse(json极速赛车开奖直播
                 const csv = PapaParse.unparse(jsonData);
                 const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
                 const url = URL.createObjectURL(blob);
@@ -1819,6 +1854,7 @@
                 const url = URL.createObjectURL(blob);
                 
                 const a = document.createElement('a');
+                a极速赛车开奖直播
                 a.href = url;
                 a.download = `backup_barjas_${dateStr}.json`;
                 document.body.appendChild(a);
@@ -1865,6 +1901,8 @@
                         data = JSON.parse(e.target.result);
                     }
                     
+                    localStorage.setItem('barjas极速赛车开奖直播
+                    localStorage.set极速赛车开奖直播
                     localStorage.setItem('barjasData', JSON.stringify(data));
                     loadDataTable();
                     updateStats();
@@ -1904,6 +1942,7 @@
             // Tampilkan pilihan format ekspor
             const format = confirm('Ekspor sebagai PDF? (Klik OK untuk PDF, Cancel untuk CSV)') ? 'pdf' : 'csv';
             
+            if (format ===极速赛车开奖直播
             if (format === 'pdf') {
                 // Ekspor ke PDF menggunakan jsPDF
                 const doc = new jsPDF();
@@ -1958,6 +1997,7 @@
             if (data.length === 0) {
                 showToast('Info', 'Tidak ada data untuk dicetak.', 'info');
                 return;
+极速赛车开奖直播
             }
             
             // Buat konten untuk dicetak
@@ -1968,7 +2008,9 @@
                     <title>Cetak Data BARJAS</title>
                     <style>
                         body { font-family: Arial, sans-serif; margin: 20px; }
+                        h1 { text-align: center; color: #0极速赛车开奖直播
                         h1 { text-align: center; color: #0d47a1; }
+                        table { width: 100%; border-collapse: collapse; margin-top: 20极速赛车开奖直播
                         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
                         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
                         th { background-color: #0d47a1; color: white; }
@@ -1985,6 +2027,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama KUB</th>
+                                <th>Nama Penerima</极速赛车开奖直播
                                 <th>Nama Penerima</th>
                                 <th>Jabatan</th>
                                 <th>Jenis Barang</th>
@@ -2012,6 +2055,7 @@
                         </tbody>
                     </table>
                     <div class="footer">
+                        <极速赛车开奖直播
                         <p>Dicetak dari Aplikasi BARJAS</p>
                     </div>
                 </body>
@@ -2076,6 +2120,7 @@
                 if (types[item.jenisBarang]) {
                     types[item.jenisBarang]++;
                 } else {
+                    types[item.jenis极速赛车开奖直播
                     types[item.jenisBarang] = 1;
                 }
             });
@@ -2085,6 +2130,7 @@
             
             // Buat atau update chart tahun
             const yearCtx = document.getElementById('yearChart');
+            if (yearC极速赛车开奖直播
             if (yearCtx) {
                 if (window.yearChart) {
                     window.yearChart.data.labels = yearLabels;
@@ -2123,6 +2169,7 @@
             if (typeCtx) {
                 if (window.typeChart) {
                     window.typeChart.data.labels = typeLabels;
+                    window.typeChart.data.datasets[0极速赛车开奖直播
                     window.typeChart.data.datasets[0].data = typeData;
                     window.typeChart.update();
                 } else {
@@ -2136,8 +2183,10 @@
                                 backgroundColor: [
                                     'rgba(13, 71, 161, 0.7)',
                                     'rgba(0, 105, 92, 0.7)',
+                                    '极速赛车开奖直播
                                     'rgba(255, 143, 0, 0.7)',
                                     'rgba(220, 53, 69, 0.7)',
+                                    'rgba(108, 117, 125, 极速赛车开奖直播
                                     'rgba(108, 117, 125, 0.7)'
                                 ],
                                 borderWidth: 1
@@ -2233,6 +2282,7 @@
                 browserName = "Mozilla Firefox";
             } else if (userAgent.includes("Safari") && !userAgent.includes("Chrome")) {
                 browserName = "Apple Safari";
+            } else if (userAgent.includes("极速赛车开奖直播
             } else if (userAgent.includes("Edg")) {
                 browserName = "Microsoft Edge";
             } else {
