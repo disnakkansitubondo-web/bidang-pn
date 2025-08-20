@@ -570,6 +570,9 @@
                             <button class="btn btn-outline-primary btn-sm" id="quickBackupBtn">
                                 <i class="fas fa-download me-2"></i>Backup Cepat
                             </button>
+                            <button class="btn btn-outline-info btn-sm" id="refreshDataBtn">
+                                <i class="fas fa-sync-alt me-2"></i>Refresh Data
+                            </button>
                             <button class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#passwordModal">
                                 <i class="fas fa-key me-2"></i>Ganti Password
                             </button>
@@ -1029,7 +1032,7 @@
                                                 <input class="form-check-input" type="checkbox" id="notificationsSwitch" checked>
                                                 <label class="form-check-label" for="notificationsSwitch">Notifikasi</label>
                                             </div>
-                                            <button class="btn btn-outline-primary w-100">
+                                            <button class="btn btn-outline-primary w-100" id="saveSettingsBtn">
                                                 <i class="fas fa-save me-2"></i> Simpan Pengaturan
                                             </button>
                                         </div>
@@ -1075,14 +1078,8 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-outline-secondary" id="clearCacheBtn">
-                                                    <i class="fas fa-broom me-2"></i> Bersihkan Cache
-                                                </button>
                                                 <button class="btn btn-outline-secondary" id="exportLogsBtn">
                                                     <i class="fas fa-file-export me-2"></i> Ekspor Log Sistem
-                                                </button>
-                                                <button class="btn btn-outline-secondary" id="checkUpdatesBtn">
-                                                    <i class="fas fa-sync-alt me-2"></i> Periksa Pembaruan
                                                 </button>
                                             </div>
                                         </div>
@@ -1267,6 +1264,23 @@
                 localStorage.setItem('barjasData', JSON.stringify([]));
             }
             
+            // Inisialisasi pengaturan aplikasi
+            if (!localStorage.getItem('appSettings')) {
+                localStorage.setItem('appSettings', JSON.stringify({
+                    theme: 'default',
+                    autoBackup: 'off',
+                    notifications: true
+                }));
+            }
+            
+            // Inisialisasi password default
+            if (!localStorage.getItem('appPassword')) {
+                localStorage.setItem('appPassword', 'Bidangpn.1945');
+            }
+            
+            // Terapkan pengaturan
+            applyAppSettings();
+            
             // Inisialisasi tahun anggaran (70 tahun ke depan)
             initTahunAnggaran();
             
@@ -1300,11 +1314,20 @@
                 backupData();
             });
             
+            // Refresh data button handler
+            document.getElementById('refreshDataBtn').addEventListener('click', function() {
+                loadDataTable();
+                updateStats();
+                updateDataStatus();
+                initTahunFilter();
+                showToast('Info', 'Data berhasil disinkronisasi', 'info');
+            });
+            
             // Restore button handler
             document.getElementById('restoreBtn').addEventListener('click', function() {
                 const file = document.getElementById('restoreFile').files[0];
                 if (file) {
-                    restoreData();
+                    restoreData(file);
                 } else {
                     showToast('Peringatan', 'Pilih file backup terlebih dahulu!', 'warning');
                 }
@@ -1313,7 +1336,9 @@
             // Confirm reset handler
             document.getElementById('confirmReset').addEventListener('click', function() {
                 const password = document.getElementById('resetPassword').value;
-                if (password === 'Bidangpn.1945') {
+                const storedPassword = localStorage.getItem('appPassword');
+                
+                if (password === storedPassword) {
                     resetData();
                     $('#resetModal').modal('hide');
                     document.getElementById('resetPassword').value = '';
@@ -1322,13 +1347,14 @@
                 }
             });
             
-            // Password change handler
+            // Password change handler (modal)
             document.getElementById('confirmPasswordChange').addEventListener('click', function() {
                 const currentPassword = document.getElementById('modalCurrentPassword').value;
                 const newPassword = document.getElementById('modalNewPassword').value;
                 const confirmPassword = document.getElementById('modalConfirmPassword').value;
+                const storedPassword = localStorage.getItem('appPassword');
                 
-                if (currentPassword !== 'Bidangpn.1945') {
+                if (currentPassword !== storedPassword) {
                     showToast('Error', 'Password saat ini salah!', 'error');
                     return;
                 }
@@ -1343,7 +1369,7 @@
                     return;
                 }
                 
-                // Simpan password baru (dalam aplikasi nyata, ini akan dienkripsi)
+                // Simpan password baru
                 localStorage.setItem('appPassword', newPassword);
                 $('#passwordModal').modal('hide');
                 showToast('Sukses', 'Password berhasil diubah!', 'success');
@@ -1352,6 +1378,56 @@
                 document.getElementById('modalCurrentPassword').value = '';
                 document.getElementById('modalNewPassword').value = '';
                 document.getElementById('modalConfirmPassword').value = '';
+            });
+            
+            // Password change handler (form)
+            document.getElementById('passwordForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const currentPassword = document.getElementById('currentPassword').value;
+                const newPassword = document.getElementById('newPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const storedPassword = localStorage.getItem('appPassword');
+                
+                if (currentPassword !== storedPassword) {
+                    showToast('Error', 'Password saat ini salah!', 'error');
+                    return;
+                }
+                
+                if (newPassword.length < 8 || !/\d/.test(newPassword)) {
+                    showToast('Error', 'Password baru harus minimal 8 karakter dan mengandung angka!', 'error');
+                    return;
+                }
+                
+                if (newPassword !== confirmPassword) {
+                    showToast('Error', 'Konfirmasi password tidak cocok!', 'error');
+                    return;
+                }
+                
+                // Simpan password baru
+                localStorage.setItem('appPassword', newPassword);
+                showToast('Sukses', 'Password berhasil diubah!', 'success');
+                
+                // Reset form
+                document.getElementById('currentPassword').value = '';
+                document.getElementById('newPassword').value = '';
+                document.getElementById('confirmPassword').value = '';
+            });
+            
+            // Save settings handler
+            document.getElementById('saveSettingsBtn').addEventListener('click', function() {
+                const theme = document.getElementById('appTheme').value;
+                const autoBackup = document.getElementById('autoBackup').value;
+                const notifications = document.getElementById('notificationsSwitch').checked;
+                
+                const settings = {
+                    theme: theme,
+                    autoBackup: autoBackup,
+                    notifications: notifications
+                };
+                
+                localStorage.setItem('appSettings', JSON.stringify(settings));
+                applyAppSettings();
+                showToast('Sukses', 'Pengaturan berhasil disimpan!', 'success');
             });
             
             // Input validation handlers
@@ -1412,22 +1488,30 @@
             
             // Print functionality
             document.getElementById('printBtn').addEventListener('click', function() {
-                window.print();
+                printData();
             });
             
             // Refresh status button
             document.getElementById('refreshStatusBtn').addEventListener('click', function() {
                 updateDataStatus();
+                showToast('Info', 'Status data telah diperbarui', 'info');
             });
             
             // Refresh system info button
             document.getElementById('refreshSystemInfo').addEventListener('click', function() {
                 updateSystemInfo();
+                showToast('Info', 'Informasi sistem telah diperbarui', 'info');
+            });
+            
+            // Export logs button
+            document.getElementById('exportLogsBtn').addEventListener('click', function() {
+                exportLogs();
             });
             
             // FAB functionality
             document.getElementById('fab').addEventListener('click', function() {
                 document.getElementById('input-tab').click();
+                window.scrollTo(0, 0);
             });
             
             // Initialize data status
@@ -1437,6 +1521,9 @@
         function initTahunAnggaran() {
             const select = document.getElementById('tahunAnggaran');
             const currentYear = new Date().getFullYear();
+            
+            // Kosongkan select
+            select.innerHTML = '<option value="" selected disabled>Pilih Tahun</option>';
             
             // Tambahkan opsi tahun dari 2020 hingga 70 tahun ke depan
             for (let year = 2020; year <= currentYear + 70; year++) {
@@ -1452,7 +1539,6 @@
         
         function initTahunFilter() {
             const select = document.getElementById('filterTahun');
-            const currentYear = new Date().getFullYear();
             const data = JSON.parse(localStorage.getItem('barjasData'));
             
             // Dapatkan tahun unik dari data
@@ -1555,9 +1641,6 @@
             updateStats();
             updateDataStatus();
             initTahunFilter();
-            
-            // Switch ke tab data
-            document.getElementById('data-tab').click();
         }
         
         function loadDataTable(page = 1, itemsPerPage = 10) {
@@ -1590,9 +1673,9 @@
                     item.nama.toLowerCase().includes(searchTerm) ||
                     item.nik.includes(searchTerm) ||
                     item.jenisBarang.toLowerCase().includes(searchTerm) ||
-                    item.tahunAnggaran.includes(searchTerm);
+                    item.tahunAnggaran.toString().includes(searchTerm);
                 
-                const matchesTahun = filterTahun === '' || item.tahunAnggaran === filterTahun;
+                const matchesTahun = filterTahun === '' || item.tahunAnggaran.toString() === filterTahun;
                 const matchesJenis = filterJenis === '' || item.jenisBarang === filterJenis;
                 
                 return matchesSearch && matchesTahun && matchesJenis;
@@ -1793,6 +1876,7 @@
         function backupData() {
             const data = localStorage.getItem('barjasData');
             const format = document.getElementById('backupFormat').value;
+            const dateStr = new Date().toISOString().slice(0, 10);
             
             if (format === 'csv') {
                 // Konversi JSON ke CSV
@@ -1803,7 +1887,7 @@
                 
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `backup_barjas_${new Date().toISOString().slice(0, 10)}.csv`;
+                a.download = `backup_barjas_${dateStr}.csv`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
@@ -1814,7 +1898,7 @@
                 const worksheet = XLSX.utils.json_to_sheet(jsonData);
                 const workbook = XLSX.utils.book_new();
                 XLSX.utils.book_append_sheet(workbook, worksheet, "Data BARJAS");
-                XLSX.writeFile(workbook, `backup_barjas_${new Date().toISOString().slice(0, 10)}.xlsx`);
+                XLSX.writeFile(workbook, `backup_barjas_${dateStr}.xlsx`);
             } else {
                 // Default JSON
                 const blob = new Blob([data], { type: 'application/json' });
@@ -1822,7 +1906,7 @@
                 
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `backup_barjas_${new Date().toISOString().slice(0, 10)}.json`;
+                a.download = `backup_barjas_${dateStr}.json`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
@@ -1836,11 +1920,8 @@
             showToast('Sukses', 'Backup data berhasil!', 'success');
         }
         
-        function restoreData() {
-            const fileInput = document.getElementById('restoreFile');
-            const file = fileInput.files[0];
-            const format = file.name.endsWith('.csv') ? 'csv' : 
-                          file.name.endsWith('.xlsx') ? 'xlsx' : 'json';
+        function restoreData(file) {
+            const format = file.name.split('.').pop().toLowerCase();
             
             const reader = new FileReader();
             reader.onload = function(e) {
@@ -1859,25 +1940,23 @@
                             throw new Error('Format CSV tidak valid');
                         }
                         
-                        data = JSON.stringify(results.data);
+                        data = results.data;
                     } else if (format === 'xlsx') {
                         // Parse XLSX
                         const workbook = XLSX.read(e.target.result, { type: 'binary' });
                         const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-                        const jsonData = XLSX.utils.sheet_to_json(worksheet);
-                        data = JSON.stringify(jsonData);
+                        data = XLSX.utils.sheet_to_json(worksheet);
                     } else {
                         // Parse JSON
-                        data = e.target.result;
-                        JSON.parse(data); // Validasi JSON
+                        data = JSON.parse(e.target.result);
                     }
                     
-                    localStorage.setItem('barjasData', data);
+                    localStorage.setItem('barjasData', JSON.stringify(data));
                     loadDataTable();
                     updateStats();
                     updateDataStatus();
                     initTahunFilter();
-                    fileInput.value = '';
+                    document.getElementById('restoreFile').value = '';
                     
                     showToast('Sukses', 'Restore data berhasil!', 'success');
                 } catch (error) {
@@ -1893,14 +1972,12 @@
         }
         
         function resetData() {
-            if (confirm('Apakah Anda yakin ingin mereset semua data? Tindakan ini tidak dapat dibatalkan.')) {
-                localStorage.setItem('barjasData', JSON.stringify([]));
-                loadDataTable();
-                updateStats();
-                updateDataStatus();
-                initTahunFilter();
-                showToast('Sukses', 'Semua data telah direset!', 'success');
-            }
+            localStorage.setItem('barjasData', JSON.stringify([]));
+            loadDataTable();
+            updateStats();
+            updateDataStatus();
+            initTahunFilter();
+            showToast('Sukses', 'Semua data telah direset!', 'success');
         }
         
         function exportData() {
@@ -1923,6 +2000,18 @@
             URL.revokeObjectURL(url);
             
             showToast('Sukses', 'Data berhasil diekspor!', 'success');
+        }
+        
+        function printData() {
+            const originalContents = document.body.innerHTML;
+            const printContents = document.getElementById('data').innerHTML;
+            
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            
+            // Reload data setelah mencetak
+            loadDataTable();
         }
         
         function updateStats() {
@@ -2039,6 +2128,38 @@
                     }
                 });
             }
+            
+            // Buat atau update trend chart
+            const trendCtx = document.getElementById('trendChart').getContext('2d');
+            if (window.trendChart) {
+                window.trendChart.data.labels = yearLabels;
+                window.trendChart.data.datasets[0].data = yearData;
+                window.trendChart.update();
+            } else {
+                window.trendChart = new Chart(trendCtx, {
+                    type: 'line',
+                    data: {
+                        labels: yearLabels,
+                        datasets: [{
+                            label: 'Trend Bantuan per Tahun',
+                            data: yearData,
+                            backgroundColor: 'rgba(13, 71, 161, 0.2)',
+                            borderColor: 'rgba(13, 71, 161, 1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
         }
         
         function updateRecentData(data) {
@@ -2100,6 +2221,59 @@
             
             // Status koneksi
             document.getElementById('connectionStatus').textContent = navigator.onLine ? "Terhubung" : "Offline";
+        }
+        
+        function applyAppSettings() {
+            const settings = JSON.parse(localStorage.getItem('appSettings'));
+            
+            // Terapkan tema
+            document.getElementById('appTheme').value = settings.theme;
+            
+            // Terapkan pengaturan backup otomatis
+            document.getElementById('autoBackup').value = settings.autoBackup;
+            
+            // Terapkan pengaturan notifikasi
+            document.getElementById('notificationsSwitch').checked = settings.notifications;
+            
+            // Terapkan tema warna
+            applyTheme(settings.theme);
+        }
+        
+        function applyTheme(theme) {
+            // Hapus kelas tema sebelumnya
+            document.body.classList.remove('theme-default', 'theme-green', 'theme-purple', 'theme-dark');
+            
+            // Terapkan tema baru
+            document.body.classList.add(`theme-${theme}`);
+            
+            // Simpan tema yang dipilih
+            const settings = JSON.parse(localStorage.getItem('appSettings'));
+            settings.theme = theme;
+            localStorage.setItem('appSettings', JSON.stringify(settings));
+        }
+        
+        function exportLogs() {
+            const logs = {
+                app: 'APLIKASI BARJAS',
+                version: '2.0.1',
+                exportDate: new Date().toLocaleString('id-ID'),
+                dataCount: JSON.parse(localStorage.getItem('barjasData')).length,
+                lastBackup: localStorage.getItem('lastBackup') || 'Tidak ada'
+            };
+            
+            const logData = JSON.stringify(logs, null, 2);
+            const blob = new Blob([logData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `logs_barjas_${new Date().toISOString().slice(0, 10)}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showToast('Sukses', 'Log sistem berhasil diekspor!', 'success');
         }
         
         function showToast(title, message, type = 'info') {
