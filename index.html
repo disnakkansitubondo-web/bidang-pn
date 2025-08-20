@@ -1,1 +1,638 @@
-.
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APLIKASI BARJAS - Dinas Peternakan dan Perikanan Situbondo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #198754;
+            --accent-color: #ffc107;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+        }
+        
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .app-header {
+            background: linear-gradient(135deg, var(--primary-color), #0a58ca);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .app-logo {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .app-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .app-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .section-title {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 10px;
+            margin: 20px 0;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-success {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .form-label {
+            font-weight: 500;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding: 15px;
+            background-color: #f8f9fa;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .data-table {
+            font-size: 0.9rem;
+        }
+        
+        .feature-icon {
+            font-size: 1.2rem;
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+        
+        .password-modal .modal-content {
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .app-title {
+                font-size: 1.4rem;
+            }
+            
+            .app-logo {
+                font-size: 2rem;
+            }
+            
+            .data-table {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <div class="app-logo">
+                <i class="fas fa-hand-holding-water"></i>
+            </div>
+            <h1 class="app-title">APLIKASI BARJAS</h1>
+            <p class="app-subtitle">Dinas Peternakan dan Perikanan Situbondo</p>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 col-lg-2 p-3 bg-light">
+                    <ul class="nav nav-pills flex-column" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="input-tab" data-bs-toggle="tab" href="#input" role="tab">
+                                <i class="fas fa-pen feature-icon"></i>Input Data
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="data-tab" data-bs-toggle="tab" href="#data" role="tab">
+                                <i class="fas fa-database feature-icon"></i>Data Bantuan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="backup-tab" data-bs-toggle="tab" href="#backup" role="tab">
+                                <i class="fas fa-cloud-download-alt feature-icon"></i>Backup & Restore
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="about-tab" data-bs-toggle="tab" href="#about" role="tab">
+                                <i class="fas fa-info-circle feature-icon"></i>Tentang Aplikasi
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-9 col-lg-10 p-4">
+                    <div class="tab-content" id="myTabContent">
+                        <!-- Input Data Form -->
+                        <div class="tab-pane fade show active" id="input" role="tabpanel">
+                            <h3 class="section-title">Form Serah Terima Bantuan</h3>
+                            <form id="bantuanForm">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="namaKUB" class="form-label">Nama KUB (Kelompok Usaha Bersama)</label>
+                                        <input type="text" class="form-control" id="namaKUB" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="tahunAnggaran" class="form-label">Tahun Anggaran</label>
+                                        <select class="form-select" id="tahunAnggaran" required>
+                                            <option value="" selected disabled>Pilih Tahun</option>
+                                            <option value="2023">2023</option>
+                                            <option value="2024">2024</option>
+                                            <option value="2025">2025</option>
+                                            <option value="2026">2026</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="nik" class="form-label">NIK (KTP)</label>
+                                        <input type="text" class="form-control" id="nik" required maxlength="16">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="nama" class="form-label">Nama Lengkap</label>
+                                        <input type="text" class="form-control" id="nama" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="jabatan" class="form-label">Jabatan</label>
+                                        <select class="form-select" id="jabatan" required>
+                                            <option value="" selected disabled>Pilih Jabatan</option>
+                                            <option value="Ketua Kelompok">Ketua Kelompok</option>
+                                            <option value="Sekretaris">Sekretaris</option>
+                                            <option value="Bendahara">Bendahara</option>
+                                            <option value="Anggota">Anggota</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="whatsapp" class="form-label">Nomor WhatsApp</label>
+                                        <input type="tel" class="form-control" id="whatsapp" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="alamat" class="form-label">Alamat</label>
+                                    <textarea class="form-control" id="alamat" rows="2" required></textarea>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="jenisBarang" class="form-label">Jenis Barang Bantuan</label>
+                                        <select class="form-select" id="jenisBarang" required>
+                                            <option value="" selected disabled>Pilih Jenis Barang</option>
+                                            <option value="Jaring">Jaring</option>
+                                            <option value="Coolbox">Coolbox</option>
+                                            <option value="Perahu">Perahu</option>
+                                            <option value="Mesin">Mesin</option>
+                                            <option value="Lainnya">Lainnya (tulis di catatan)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="catatan" class="form-label">Catatan (jika jenis barang lainnya)</label>
+                                        <input type="text" class="form-control" id="catatan">
+                                    </div>
+                                </div>
+                                
+                                <h5 class="mt-4 mb-3">Dokumen Pendukung</h5>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="beritaAcara" class="form-label">Berita Acara (Link Google Drive)</label>
+                                        <input type="url" class="form-control" id="beritaAcara" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="dokumenPerjanjian" class="form-label">Dokumen Perjanjian (Link Google Drive)</label>
+                                        <input type="url" class="form-control" id="dokumenPerjanjian" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="dokumenProposal" class="form-label">Dokumen Proposal (Link Google Drive)</label>
+                                        <input type="url" class="form-control" id="dokumenProposal" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="dokumentasiFoto" class="form-label">Dokumentasi Foto (Link Google Drive)</label>
+                                        <input type="url" class="form-control" id="dokumentasiFoto" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                    <button type="reset" class="btn btn-secondary me-md-2">Reset Form</button>
+                                    <button type="submit" class="btn btn-primary">Simpan Data</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Data Table -->
+                        <div class="tab-pane fade" id="data" role="tabpanel">
+                            <h3 class="section-title">Data Bantuan Tersimpan</h3>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama KUB</th>
+                                            <th>Nama Penerima</th>
+                                            <th>Jabatan</th>
+                                            <th>Jenis Barang</th>
+                                            <th>Tahun</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="dataTableBody">
+                                        <!-- Data akan diisi oleh JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Backup & Restore -->
+                        <div class="tab-pane fade" id="backup" role="tabpanel">
+                            <h3 class="section-title">Backup & Restore Data</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card mb-4">
+                                        <div class="card-header bg-primary text-white">
+                                            <i class="fas fa-download"></i> Backup Data
+                                        </div>
+                                        <div class="card-body">
+                                            <p>Unduh data yang tersimpan dalam bentuk file JSON.</p>
+                                            <button class="btn btn-primary w-100" id="backupBtn">
+                                                <i class="fas fa-cloud-download-alt"></i> Backup Data
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card mb-4">
+                                        <div class="card-header bg-success text-white">
+                                            <i class="fas fa-upload"></i> Restore Data
+                                        </div>
+                                        <div class="card-body">
+                                            <p>Upload file JSON untuk memulihkan data.</p>
+                                            <input type="file" class="form-control mb-2" id="restoreFile" accept=".json">
+                                            <button class="btn btn-success w-100" id="restoreBtn">
+                                                <i class="fas fa-cloud-upload-alt"></i> Restore Data
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-header bg-warning text-dark">
+                                    <i class="fas fa-trash-alt"></i> Reset Data
+                                </div>
+                                <div class="card-body">
+                                    <p>Hapus semua data yang tersimpan. Tindakan ini membutuhkan password dan tidak dapat dibatalkan.</p>
+                                    <button class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#resetModal">
+                                        <i class="fas fa-trash-alt"></i> Reset Data
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- About -->
+                        <div class="tab-pane fade" id="about" role="tabpanel">
+                            <h3 class="section-title">Tentang Aplikasi</h3>
+                            <div class="text-center mb-4">
+                                <i class="fas fa-hand-holding-water fa-4x text-primary mb-3"></i>
+                                <h4>APLIKASI BARJAS</h4>
+                                <p class="lead">Dinas Peternakan dan Perikanan Situbondo</p>
+                            </div>
+                            
+                            <div class="card mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <i class="fas fa-info-circle"></i> Informasi Aplikasi
+                                </div>
+                                <div class="card-body">
+                                    <p>Aplikasi Barjas (Bantuan Barang Pinjam Pakai dan Hibah) digunakan untuk mencatat dan mengelola data serah terima bantuan dari pemerintah untuk masyarakat nelayan.</p>
+                                    <p><strong>Fitur Utama:</strong></p>
+                                    <ul>
+                                        <li>Input data penerima bantuan</li>
+                                        <li>Pencatatan dokumen pendukung</li>
+                                        <li>Backup dan restore data</li>
+                                        <li>Manajemen data bantuan</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-header bg-success text-white">
+                                    <i class="fas fa-copyright"></i> Hak Cipta
+                                </div>
+                                <div class="card-body">
+                                    <p>Aplikasi ini dibuat dan merupakan hak cipta oleh <strong>Lentera Karya Situbondo</strong> sejak 2025.</p>
+                                    <p>Dinas Peternakan dan Perikanan Kabupaten Situbondo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2025 Lentera Karya Situbondo - Dinas Peternakan dan Perikanan Situbondo
+        </div>
+    </div>
+
+    <!-- Reset Modal -->
+    <div class="modal fade password-modal" id="resetModal" tabindex="-1" aria-labelledby="resetModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h5 class="modal-title" id="resetModalLabel">Reset Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Masukkan password untuk mengonfirmasi reset data. Semua data akan dihapus dan tidak dapat dikembalikan.</p>
+                    <div class="mb-3">
+                        <label for="resetPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="resetPassword">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-warning" id="confirmReset">Reset Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Restore Modal -->
+    <div class="modal fade password-modal" id="restoreModal" tabindex="-1" aria-labelledby="restoreModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="restoreModalLabel">Restore Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Masukkan password untuk mengonfirmasi restore data. Data saat ini akan diganti dengan data dari file backup.</p>
+                    <div class="mb-3">
+                        <label for="restorePassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="restorePassword">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-success" id="confirmRestore">Restore Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi data jika belum ada
+            if (!localStorage.getItem('barjasData')) {
+                localStorage.setItem('barjasData', JSON.stringify([]));
+            }
+            
+            // Load data ke tabel
+            loadDataTable();
+            
+            // Form submission handler
+            document.getElementById('bantuanForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveData();
+            });
+            
+            // Backup button handler
+            document.getElementById('backupBtn').addEventListener('click', function() {
+                backupData();
+            });
+            
+            // Restore button handler
+            document.getElementById('restoreBtn').addEventListener('click', function() {
+                $('#restoreModal').modal('show');
+            });
+            
+            // Confirm restore handler
+            document.getElementById('confirmRestore').addEventListener('click', function() {
+                const password = document.getElementById('restorePassword').value;
+                if (password === 'Bidangpn.1945') {
+                    restoreData();
+                    $('#restoreModal').modal('hide');
+                    document.getElementById('restorePassword').value = '';
+                } else {
+                    alert('Password salah!');
+                }
+            });
+            
+            // Confirm reset handler
+            document.getElementById('confirmReset').addEventListener('click', function() {
+                const password = document.getElementById('resetPassword').value;
+                if (password === 'Bidangpn.1945') {
+                    resetData();
+                    $('#resetModal').modal('hide');
+                    document.getElementById('resetPassword').value = '';
+                } else {
+                    alert('Password salah!');
+                }
+            });
+        });
+        
+        function saveData() {
+            const formData = {
+                id: Date.now(), // ID unik berdasarkan timestamp
+                namaKUB: document.getElementById('namaKUB').value,
+                tahunAnggaran: document.getElementById('tahunAnggaran').value,
+                nik: document.getElementById('nik').value,
+                nama: document.getElementById('nama').value,
+                jabatan: document.getElementById('jabatan').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                alamat: document.getElementById('alamat').value,
+                jenisBarang: document.getElementById('jenisBarang').value,
+                catatan: document.getElementById('catatan').value,
+                beritaAcara: document.getElementById('beritaAcara').value,
+                dokumenPerjanjian: document.getElementById('dokumenPerjanjian').value,
+                dokumenProposal: document.getElementById('dokumenProposal').value,
+                dokumentasiFoto: document.getElementById('dokumentasiFoto').value,
+                tanggalInput: new Date().toLocaleString('id-ID')
+            };
+            
+            const existingData = JSON.parse(localStorage.getItem('barjasData'));
+            existingData.push(formData);
+            localStorage.setItem('barjasData', JSON.stringify(existingData));
+            
+            alert('Data berhasil disimpan!');
+            document.getElementById('bantuanForm').reset();
+            
+            // Reload tabel data
+            loadDataTable();
+            
+            // Switch ke tab data
+            document.getElementById('data-tab').click();
+        }
+        
+        function loadDataTable() {
+            const data = JSON.parse(localStorage.getItem('barjasData'));
+            const tableBody = document.getElementById('dataTableBody');
+            
+            tableBody.innerHTML = '';
+            
+            if (data.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="7" class="text-center">Tidak ada data</td></tr>';
+                return;
+            }
+            
+            data.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${item.namaKUB}</td>
+                    <td>${item.nama}</td>
+                    <td>${item.jabatan}</td>
+                    <td>${item.jenisBarang} ${item.catatan ? '(' + item.catatan + ')' : ''}</td>
+                    <td>${item.tahunAnggaran}</td>
+                    <td>
+                        <button class="btn btn-sm btn-info" onclick="viewData(${item.id})">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteData(${item.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+        
+        function viewData(id) {
+            const data = JSON.parse(localStorage.getItem('barjasData'));
+            const item = data.find(i => i.id === id);
+            
+            if (item) {
+                alert(`
+                    Detail Data Bantuan:
+                    
+                    Nama KUB: ${item.namaKUB}
+                    Tahun Anggaran: ${item.tahunAnggaran}
+                    NIK: ${item.nik}
+                    Nama: ${item.nama}
+                    Jabatan: ${item.jabatan}
+                    WhatsApp: ${item.whatsapp}
+                    Alamat: ${item.alamat}
+                    Jenis Barang: ${item.jenisBarang}
+                    Catatan: ${item.catatan || '-'}
+                    
+                    Link Berita Acara: ${item.beritaAcara}
+                    Link Dokumen Perjanjian: ${item.dokumenPerjanjian}
+                    Link Dokumen Proposal: ${item.dokumenProposal}
+                    Link Dokumentasi Foto: ${item.dokumentasiFoto}
+                    
+                    Tanggal Input: ${item.tanggalInput}
+                `);
+            }
+        }
+        
+        function deleteData(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+                let data = JSON.parse(localStorage.getItem('barjasData'));
+                data = data.filter(item => item.id !== id);
+                localStorage.setItem('barjasData', JSON.stringify(data));
+                loadDataTable();
+                alert('Data berhasil dihapus!');
+            }
+        }
+        
+        function backupData() {
+            const data = localStorage.getItem('barjasData');
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `backup_barjas_${new Date().toISOString().slice(0, 10)}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert('Backup data berhasil!');
+        }
+        
+        function restoreData() {
+            const fileInput = document.getElementById('restoreFile');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert('Pilih file backup terlebih dahulu!');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    
+                    // Validasi data
+                    if (Array.isArray(data)) {
+                        localStorage.setItem('barjasData', JSON.stringify(data));
+                        loadDataTable();
+                        alert('Restore data berhasil!');
+                        fileInput.value = '';
+                    } else {
+                        throw new Error('Format data tidak valid');
+                    }
+                } catch (error) {
+                    alert('File tidak valid: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+        }
+        
+        function resetData() {
+            if (confirm('Apakah Anda yakin ingin mereset semua data? Tindakan ini tidak dapat dibatalkan.')) {
+                localStorage.setItem('barjasData', JSON.stringify([]));
+                loadDataTable();
+                alert('Semua data telah direset!');
+            }
+        }
+    </script>
+</body>
+</html>
