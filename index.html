@@ -484,7 +484,7 @@
             background: var(--dark-blue);
         }
         
-        /* Welcome notification styles */
+        /* Welcome notification styles - IMPROVED */
         .welcome-notification {
             position: fixed;
             top: 50%;
@@ -492,15 +492,17 @@
             transform: translate(-50%, -50%) scale(0.8);
             background: linear-gradient(135deg, #0d47a1, #082e5c);
             color: white;
-            padding: 30px;
-            border-radius: 16px;
+            padding: 40px;
+            border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             z-index: 2000;
             text-align: center;
             width: 90%;
-            max-width: 500px;
+            max-width: 600px;
             opacity: 0;
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .welcome-notification.show {
@@ -509,21 +511,51 @@
         }
         
         .welcome-notification h3 {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-weight: 700;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
         .welcome-notification p {
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-            line-height: 1.5;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0.9;
         }
         
         .welcome-notification .icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 4rem;
+            margin-bottom: 25px;
             color: #ff8f00;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .welcome-notification .btn-close-welcome {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .welcome-notification .btn-close-welcome:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
+        }
+        
+        .welcome-notification .highlight {
+            color: #ff8f00;
+            font-weight: 600;
         }
         
         /* Responsive styles */
@@ -636,15 +668,19 @@
             }
             
             .welcome-notification {
-                padding: 20px;
+                padding: 25px 20px;
             }
             
             .welcome-notification h3 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
             
             .welcome-notification p {
-                font-size: 1rem;
+                font-size: 1.1rem;
+            }
+            
+            .welcome-notification .icon {
+                font-size: 3.5rem;
             }
         }
         
@@ -718,6 +754,22 @@
                 bottom: 0;
                 right: 0;
             }
+            
+            .welcome-notification {
+                padding: 20px 15px;
+            }
+            
+            .welcome-notification h3 {
+                font-size: 1.5rem;
+            }
+            
+            .welcome-notification p {
+                font-size: 1rem;
+            }
+            
+            .welcome-notification .icon {
+                font-size: 3rem;
+            }
         }
         
         @media (max-width: 400px) {
@@ -751,18 +803,35 @@
             .card-header {
                 padding: 12px 15px;
             }
+            
+            .welcome-notification h3 {
+                font-size: 1.3rem;
+            }
+            
+            .welcome-notification p {
+                font-size: 0.9rem;
+            }
+            
+            .welcome-notification .icon {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Welcome Notification -->
+    <!-- Welcome Notification - IMPROVED -->
     <div class="welcome-notification" id="welcomeNotification">
+        <button class="btn-close-welcome" id="closeWelcome">
+            <i class="fas fa-times"></i>
+        </button>
         <div class="icon">
             <i class="fas fa-hand-holding-water"></i>
         </div>
         <h3>Selamat Datang di APLIKASI BARJAS</h3>
-        <p>Terima kasih telah menggunakan aplikasi kami. Untuk keamanan data, harap mengganti password default dan lakukan backup data secara berkala.Hubungi admin untuk mendapatkan password.</p>
-        <p><strong>Dinas Peternakan dan Perikanan Situbondo</strong></p>
+        <p>Dinas Peternakan dan Perikanan Kabupaten Situbondo</p>
+        <p>Terima kasih telah menggunakan aplikasi kami. Untuk keamanan data, harap mengganti password default dan lakukan backup data secara berkala.</p>
+        <p><span class="highlight">Password default:</span> Disnakan.09082025</p>
+        <p><small>Hubungi admin untuk bantuan lebih lanjut</small></p>
     </div>
 
     <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -1610,14 +1679,14 @@
                 }
             });
             
-            // Confirm delete handler
+            // Confirm delete handler - FIXED
             document.getElementById('confirmDelete').addEventListener('click', function() {
                 const password = document.getElementById('deletePassword').value;
                 const storedPassword = localStorage.getItem('appPassword');
                 const id = parseInt(document.getElementById('deleteId').value);
                 
                 if (password === storedPassword) {
-                    deleteData(id, true);
+                    deleteData(id);
                     $('#deleteModal').modal('hide');
                     document.getElementById('deletePassword').value = '';
                 } else {
@@ -1792,6 +1861,15 @@
                     document.body.classList.remove('sidebar-open');
                     document.getElementById('sidebarOverlay').classList.remove('active');
                 }
+            });
+            
+            // Close welcome notification button
+            document.getElementById('closeWelcome').addEventListener('click', function() {
+                const welcomeNotification = document.getElementById('welcomeNotification');
+                welcomeNotification.classList.remove('show');
+                setTimeout(() => {
+                    welcomeNotification.style.display = 'none';
+                }, 500);
             });
             
             // Initialize data status
