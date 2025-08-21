@@ -484,6 +484,48 @@
             background: var(--dark-blue);
         }
         
+        /* Welcome notification styles */
+        .welcome-notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: linear-gradient(135deg, #0d47a1, #082e5c);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            z-index: 2000;
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .welcome-notification.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .welcome-notification h3 {
+            margin-bottom: 15px;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        .welcome-notification p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        
+        .welcome-notification .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ff8f00;
+        }
+        
         /* Responsive styles */
         @media (max-width: 1200px) {
             .app-title {
@@ -591,6 +633,18 @@
             .btn-group .btn {
                 padding: 8px 12px;
                 font-size: 0.8rem;
+            }
+            
+            .welcome-notification {
+                padding: 20px;
+            }
+            
+            .welcome-notification h3 {
+                font-size: 1.5rem;
+            }
+            
+            .welcome-notification p {
+                font-size: 1rem;
             }
         }
         
@@ -701,6 +755,16 @@
     </style>
 </head>
 <body>
+    <!-- Welcome Notification -->
+    <div class="welcome-notification" id="welcomeNotification">
+        <div class="icon">
+            <i class="fas fa-hand-holding-water"></i>
+        </div>
+        <h3>Selamat Datang di APLIKASI BARJAS</h3>
+        <p>Terima kasih telah menggunakan aplikasi kami. Untuk keamanan data, harap mengganti password default dan lakukan backup data secara berkala.</p>
+        <p><strong>Dinas Peternakan dan Perikanan Situbondo</strong></p>
+    </div>
+
     <button class="mobile-menu-btn" id="mobileMenuBtn">
         <i class="fas fa-bars"></i>
     </button>
@@ -787,7 +851,7 @@
                                 <div class="row mb-4">
                                     <div class="col-md-6 mb-3 mb-md-0">
                                         <label for="namaKUB" class="form-label"><i class="fas fa-users"></i>Nama KUB (Kelompok Usaha Bersama)</label>
-                                        <input type="text" class="form-control" id="namaKUB" required>
+                                        <input type="text" class="form-control" id="namaKUB" required oninput="this.value = this.value.toUpperCase()">
                                         <div class="error-message" id="namaKUB-error">Nama KUB harus diisi (minimal 3 karakter)</div>
                                     </div>
                                     <div class="col-md-6">
@@ -803,12 +867,12 @@
                                 <div class="row mb-4">
                                     <div class="col-md-6 mb-3 mb-md-0">
                                         <label for="nik" class="form-label"><i class="fas fa-id-card"></i>NIK (KTP) <span class="text-muted">(16 digit)</span></label>
-                                        <input type="text" class="form-control" id="nik" required maxlength="16" pattern="[0-9]{10,16}">
-                                        <div class="error-message" id="nik-error">NIK harus berupa angka (10-16 digit)</div>
+                                        <input type="text" class="form-control" id="nik" required maxlength="16" pattern="[0-9]{16}" oninput="this.value = this.value.replace(/\D/g, '')">
+                                        <div class="error-message" id="nik-error">NIK harus berupa angka (16 digit)</div>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="nama" class="form-label"><i class="fas fa-user"></i>Nama Lengkap</label>
-                                        <input type="text" class="form-control" id="nama" required pattern="[A-Za-z\s]+">
+                                        <input type="text" class="form-control" id="nama" required pattern="[A-Za-z\s]+" oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, ''); this.value = this.value.toUpperCase()">
                                         <div class="error-message" id="nama-error">Nama harus diisi dan hanya boleh berisi huruf</div>
                                     </div>
                                 </div>
@@ -837,8 +901,29 @@
                                 
                                 <div class="mb-4">
                                     <label for="alamat" class="form-label"><i class="fas fa-map-marker-alt"></i>Alamat</label>
+                                    <div class="mb-3">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="alamatOption" id="alamatManual" value="manual" checked>
+                                            <label class="form-check-label" for="alamatManual">Manual</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="alamatOption" id="alamatGPS" value="gps">
+                                            <label class="form-check-label" for="alamatGPS">Gunakan GPS</label>
+                                        </div>
+                                    </div>
                                     <textarea class="form-control" id="alamat" rows="2" required></textarea>
                                     <div class="error-message" id="alamat-error">Alamat harus diisi (minimal 10 karakter)</div>
+                                    <div class="mt-2">
+                                        <button type="button" class="btn btn-outline-primary btn-sm" id="getLocationBtn" style="display: none;">
+                                            <i class="fas fa-location-arrow me-1"></i>Dapatkan Lokasi
+                                        </button>
+                                        <small class="text-muted" id="locationStatus"></small>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="keteranganTambahan" class="form-label"><i class="fas fa-sticky-note"></i>Keterangan Tambahan</label>
+                                    <textarea class="form-control" id="keteranganTambahan" rows="2"></textarea>
                                 </div>
                                 
                                 <div class="row mb-4">
@@ -1254,7 +1339,7 @@
                                                 <li>Pencatatan dokumen pendukung terintegrasi Google Drive</li>
                                                 <li>Backup dan restore data dengan enkripsi</li>
                                                 <li>Manajemen data bantuan dengan pencarian dan filter</li>
-                                                <li>Statistik dan visualisasi data bantuan</li>
+                                                <li>Statistik and visualisasi data bantuan</li>
                                                 <li>Ekspor data ke berbagai format</li>
                                                 <li>Kontrol panel untuk pengaturan sistem</li>
                                             </ul>
@@ -1379,6 +1464,33 @@
         </div>
     </div>
 
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade password-modal" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="deleteModalLabel">Hapus Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle me-2"></i>Peringatan: Tindakan ini akan menghapus data dan tidak dapat dibatalkan!
+                    </div>
+                    <p>Masukkan password untuk mengonfirmasi penghapusan data.</p>
+                    <div class="mb-3">
+                        <label for="deletePassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="deletePassword">
+                    </div>
+                    <input type="hidden" id="deleteId">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">Hapus Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Toast Notification -->
     <div class="notification-toast toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
@@ -1408,6 +1520,9 @@
         let yearChart, typeChart, trendChart;
 
         document.addEventListener('DOMContentLoaded', function() {
+            // Tampilkan notifikasi selamat datang
+            showWelcomeNotification();
+            
             // Inisialisasi data jika belum ada
             if (!localStorage.getItem('barjasData')) {
                 localStorage.setItem('barjasData', JSON.stringify([]));
@@ -1495,6 +1610,21 @@
                 }
             });
             
+            // Confirm delete handler
+            document.getElementById('confirmDelete').addEventListener('click', function() {
+                const password = document.getElementById('deletePassword').value;
+                const storedPassword = localStorage.getItem('appPassword');
+                const id = parseInt(document.getElementById('deleteId').value);
+                
+                if (password === storedPassword) {
+                    deleteData(id, true);
+                    $('#deleteModal').modal('hide');
+                    document.getElementById('deletePassword').value = '';
+                } else {
+                    showToast('Error', 'Password salah!', 'error');
+                }
+            });
+            
             // Password change handler (modal)
             document.getElementById('confirmPasswordChange').addEventListener('click', function() {
                 const currentPassword = document.getElementById('modalCurrentPassword').value;
@@ -1564,8 +1694,8 @@
             // Input validation handlers
             document.getElementById('nik').addEventListener('input', function(e) {
                 this.value = this.value.replace(/\D/g, '');
-                validateField(this, 'nik', 'NIK harus berupa angka (10-16 digit)', 
-                    value => value.length >= 10 && value.length <= 16);
+                validateField(this, 'nik', 'NIK harus berupa angka (16 digit)', 
+                    value => value.length === 16);
             });
             
             document.getElementById('nama').addEventListener('input', function(e) {
@@ -1582,6 +1712,25 @@
                 this.value = this.value.replace(/\D/g, '');
                 validateField(this, 'whatsapp', 'Nomor WhatsApp harus valid (9-13 digit)', 
                     value => value.length >= 9 && value.length <= 13);
+            });
+            
+            // Alamat option handler
+            document.querySelectorAll('input[name="alamatOption"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.value === 'gps') {
+                        document.getElementById('getLocationBtn').style.display = 'inline-block';
+                        document.getElementById('alamat').setAttribute('readonly', true);
+                    } else {
+                        document.getElementById('getLocationBtn').style.display = 'none';
+                        document.getElementById('alamat').removeAttribute('readonly');
+                        document.getElementById('locationStatus').textContent = '';
+                    }
+                });
+            });
+            
+            // Get location button handler
+            document.getElementById('getLocationBtn').addEventListener('click', function() {
+                getLocation();
             });
             
             // Search functionality
@@ -1664,6 +1813,20 @@
             });
         });
         
+        function showWelcomeNotification() {
+            const welcomeNotification = document.getElementById('welcomeNotification');
+            welcomeNotification.classList.add('show');
+            
+            // Sembunyikan notifikasi setelah 8 detik
+            setTimeout(() => {
+                welcomeNotification.classList.remove('show');
+                // Setelah animasi selesai, hapus elemen dari DOM
+                setTimeout(() => {
+                    welcomeNotification.style.display = 'none';
+                }, 500);
+            }, 8000);
+        }
+        
         function initTahunAnggaran() {
             const select = document.getElementById('tahunAnggaran');
             const currentYear = new Date().getFullYear();
@@ -1702,6 +1865,52 @@
             });
         }
         
+        function getLocation() {
+            if (!navigator.geolocation) {
+                document.getElementById('locationStatus').textContent = 'Geolocation tidak didukung oleh browser ini';
+                return;
+            }
+            
+            document.getElementById('locationStatus').textContent = 'Mendapatkan lokasi...';
+            
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    
+                    // Gunakan Nominatim API untuk reverse geocoding
+                    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const address = data.display_name;
+                            document.getElementById('alamat').value = address;
+                            document.getElementById('locationStatus').textContent = 'Lokasi berhasil didapatkan';
+                        })
+                        .catch(error => {
+                            document.getElementById('locationStatus').textContent = 'Gagal mendapatkan alamat: ' + error.message;
+                        });
+                },
+                function(error) {
+                    let errorMessage;
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            errorMessage = "Pengguna menolak permintaan geolokasi.";
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            errorMessage = "Informasi lokasi tidak tersedia.";
+                            break;
+                        case error.TIMEOUT:
+                            errorMessage = "Permintaan untuk mendapatkan lokasi pengguna waktu habis.";
+                            break;
+                        case error.UNKNOWN_ERROR:
+                            errorMessage = "Terjadi kesalahan yang tidak diketahui.";
+                            break;
+                    }
+                    document.getElementById('locationStatus').textContent = errorMessage;
+                }
+            );
+        }
+        
         function validateForm() {
             let isValid = true;
             
@@ -1709,7 +1918,7 @@
             const fields = [
                 {id: 'namaKUB', validator: value => value.length >= 3, message: 'Nama KUB harus diisi (minimal 3 karakter)'},
                 {id: 'tahunAnggaran', validator: value => value !== '', message: 'Tahun anggaran harus dipilih'},
-                {id: 'nik', validator: value => value.length >= 10 && value.length <= 16, message: 'NIK harus berupa angka (10-16 digit)'},
+                {id: 'nik', validator: value => value.length === 16, message: 'NIK harus berupa angka (16 digit)'},
                 {id: 'nama', validator: value => value.length >= 3, message: 'Nama harus diisi (minimal 3 karakter)'},
                 {id: 'jabatan', validator: value => value !== '', message: 'Jabatan harus dipilih'},
                 {id: 'whatsapp', validator: value => value.length >= 9 && value.length <= 13, message: 'Nomor WhatsApp harus valid (9-13 digit)'},
@@ -1766,6 +1975,7 @@
                 jabatan: document.getElementById('jabatan').value,
                 whatsapp: document.getElementById('whatsapp').value.trim(),
                 alamat: document.getElementById('alamat').value.trim(),
+                keteranganTambahan: document.getElementById('keteranganTambahan').value.trim(),
                 jenisBarang: document.getElementById('jenisBarang').value,
                 catatan: document.getElementById('catatan').value.trim(),
                 beritaAcara: document.getElementById('beritaAcara').value.trim(),
@@ -1784,6 +1994,12 @@
             
             // Reset tahun anggaran ke tahun saat ini
             document.getElementById('tahunAnggaran').value = new Date().getFullYear();
+            
+            // Reset alamat option ke manual
+            document.getElementById('alamatManual').checked = true;
+            document.getElementById('getLocationBtn').style.display = 'none';
+            document.getElementById('alamat').removeAttribute('readonly');
+            document.getElementById('locationStatus').textContent = '';
             
             // Reload tabel data
             loadDataTable();
@@ -1860,7 +2076,7 @@
                         <button class="btn btn-sm btn-warning" onclick="editData(${item.id})" title="Edit Data">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <button class="btn btn-sm btn-danger" onclick="deleteData(${item.id})" title="Hapus Data">
+                        <button class="btn btn-sm btn-danger" onclick="showDeleteModal(${item.id})" title="Hapus Data">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
@@ -1957,6 +2173,12 @@
                                         <label class="form-label fw-bold">Alamat</label>
                                         <p>${item.alamat}</p>
                                     </div>
+                                    ${item.keteranganTambahan ? `
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Keterangan Tambahan</label>
+                                        <p>${item.keteranganTambahan}</p>
+                                    </div>
+                                    ` : ''}
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <label class="form-label fw-bold">Jenis Barang</label>
@@ -2017,12 +2239,19 @@
                 document.getElementById('jabatan').value = item.jabatan;
                 document.getElementById('whatsapp').value = item.whatsapp;
                 document.getElementById('alamat').value = item.alamat;
+                document.getElementById('keteranganTambahan').value = item.keteranganTambahan || '';
                 document.getElementById('jenisBarang').value = item.jenisBarang;
                 document.getElementById('catatan').value = item.catatan || '';
                 document.getElementById('beritaAcara').value = item.beritaAcara;
                 document.getElementById('dokumenPerjanjian').value = item.dokumenPerjanjian;
                 document.getElementById('dokumenProposal').value = item.dokumenProposal;
                 document.getElementById('dokumentasiFoto').value = item.dokumentasiFoto;
+                
+                // Reset alamat option ke manual
+                document.getElementById('alamatManual').checked = true;
+                document.getElementById('getLocationBtn').style.display = 'none';
+                document.getElementById('alamat').removeAttribute('readonly');
+                document.getElementById('locationStatus').textContent = '';
                 
                 // Hapus data lama
                 deleteData(id, false);
@@ -2034,19 +2263,22 @@
             }
         }
         
+        function showDeleteModal(id) {
+            document.getElementById('deleteId').value = id;
+            $('#deleteModal').modal('show');
+        }
+        
         function deleteData(id, showConfirmation = true) {
-            if (!showConfirmation || confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-                let data = JSON.parse(localStorage.getItem('barjasData') || '[]');
-                data = data.filter(item => item.id !== id);
-                localStorage.setItem('barjasData', JSON.stringify(data));
-                loadDataTable();
-                updateStats();
-                updateDataStatus();
-                initTahunFilter();
-                
-                if (showConfirmation) {
-                    showToast('Sukses', 'Data berhasil dihapus!', 'success');
-                }
+            let data = JSON.parse(localStorage.getItem('barjasData') || '[]');
+            data = data.filter(item => item.id !== id);
+            localStorage.setItem('barjasData', JSON.stringify(data));
+            loadDataTable();
+            updateStats();
+            updateDataStatus();
+            initTahunFilter();
+            
+            if (showConfirmation) {
+                showToast('Sukses', 'Data berhasil dihapus!', 'success');
             }
         }
         
@@ -2165,7 +2397,7 @@
             }
             
             // Tampilkan pilihan format ekspor
-            const format = confirm('Ekspor sebagai PDF? (Klik OK untuk PDF, Cancel untuk CSV)') ? 'pdf' : 'csv';
+            const format = confirm('Ekspor sebagai PDF? (Klik OK untuk PDF, Cancel untuk Excel)') ? 'pdf' : 'excel';
             
             if (format === 'pdf') {
                 // Ekspor ke PDF menggunakan jsPDF
@@ -2199,18 +2431,11 @@
                 // Simpan PDF
                 doc.save(`data_barjas_${new Date().toISOString().slice(0, 10)}.pdf`);
             } else {
-                // Ekspor ke CSV
-                const csv = PapaParse.unparse(data);
-                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-                const url = URL.createObjectURL(blob);
-                
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `data_barjas_${new Date().toISOString().slice(0, 10)}.csv`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
+                // Ekspor ke Excel
+                const worksheet = XLSX.utils.json_to_sheet(data);
+                const workbook = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(workbook, worksheet, "Data BARJAS");
+                XLSX.writeFile(workbook, `data_barjas_${new Date().toISOString().slice(0, 10)}.xlsx`);
             }
             
             showToast('Sukses', 'Data berhasil diekspor!', 'success');
@@ -2429,7 +2654,7 @@
                                 label: 'Trend Bantuan per Tahun',
                                 data: yearData,
                                 backgroundColor: 'rgba(13, 71, 161, 0.2)',
-                                                            borderColor: 'rgba(13, 71, 161, 1)',
+                                borderColor: 'rgba(13, 71, 161, 1)',
                                 borderWidth: 2,
                                 fill: true,
                                 tension: 0.4
