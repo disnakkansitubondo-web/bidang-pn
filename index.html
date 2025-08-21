@@ -1049,7 +1049,7 @@
                                                 <li>Pencatatan dokumen pendukung terintegrasi Google Drive</li>
                                                 <li>Backup dan restore data dengan enkripsi</li>
                                                 <li>Manajemen data bantuan dengan pencarian dan filter</li>
-                                                <li>Statistik и visualisasi data bantuan</li>
+                                                <li>Statistik dan visualisasi data bantuan</li>
                                                 <li>Ekspor data ke berbagai format</li>
                                                 <li>Kontrol panel untuk pengaturan sistem</li>
                                             </ul>
@@ -1773,12 +1773,37 @@
         }
         
         function editData(id) {
-            // Implementasi edit data
-            showToast('Info', 'Fitur edit data akan segera tersedia di versi berikutnya.', 'info');
+            const data = JSON.parse(localStorage.getItem('barjasData') || '[]');
+            const item = data.find(i => i.id === id);
+            
+            if (item) {
+                // Isi form dengan data yang akan diedit
+                document.getElementById('namaKUB').value = item.namaKUB;
+                document.getElementById('tahunAnggaran').value = item.tahunAnggaran;
+                document.getElementById('nik').value = item.nik;
+                document.getElementById('nama').value = item.nama;
+                document.getElementById('jabatan').value = item.jabatan;
+                document.getElementById('whatsapp').value = item.whatsapp;
+                document.getElementById('alamat').value = item.alamat;
+                document.getElementById('jenisBarang').value = item.jenisBarang;
+                document.getElementById('catatan').value = item.catatan || '';
+                document.getElementById('beritaAcara').value = item.beritaAcara;
+                document.getElementById('dokumenPerjanjian').value = item.dokumenPerjanjian;
+                document.getElementById('dokumenProposal').value = item.dokumenProposal;
+                document.getElementById('dokumentasiFoto').value = item.dokumentasiFoto;
+                
+                // Hapus data lama
+                deleteData(id, false);
+                
+                // Scroll ke atas form
+                window.scrollTo(0, 0);
+                
+                showToast('Info', 'Data siap untuk diedit. Silakan perbarui dan simpan.', 'info');
+            }
         }
         
-        function deleteData(id) {
-            if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+        function deleteData(id, showConfirmation = true) {
+            if (!showConfirmation || confirm('Apakah Anda yakin ingin menghapus data ini?')) {
                 let data = JSON.parse(localStorage.getItem('barjasData') || '[]');
                 data = data.filter(item => item.id !== id);
                 localStorage.setItem('barjasData', JSON.stringify(data));
@@ -1786,7 +1811,10 @@
                 updateStats();
                 updateDataStatus();
                 initTahunFilter();
-                showToast('Sukses', 'Data berhasil dihapus!', 'success');
+                
+                if (showConfirmation) {
+                    showToast('Sukses', 'Data berhasil dihapus!', 'success');
+                }
             }
         }
         
