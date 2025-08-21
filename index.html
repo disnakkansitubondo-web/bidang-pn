@@ -28,7 +28,7 @@
             background: linear-gradient(135deg, #f5f9ff 0%, #e8f5e9 100%);
             font-family: 'Poppins', 'Segoe UI', sans-serif;
             min-height: 100vh;
-            padding: 20px 0;
+            padding: 10px 0;
         }
         
         .app-container {
@@ -36,14 +36,14 @@
             margin: 0 auto;
             background: white;
             box-shadow: var(--shadow-lg);
-            border-radius: 18px;
+            border-radius: 12px;
             overflow: hidden;
         }
         
         .app-header {
             background: var(--gradient-primary);
             color: white;
-            padding: 30px;
+            padding: 20px 15px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -61,14 +61,14 @@
         }
         
         .app-logo {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
             position: relative;
             z-index: 1;
         }
         
         .app-title {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             font-weight: 800;
             margin: 0;
             position: relative;
@@ -77,44 +77,46 @@
         }
         
         .app-subtitle {
-            font-size: 1.2rem;
+            font-size: 1rem;
             opacity: 0.95;
             position: relative;
             z-index: 1;
             font-weight: 300;
             letter-spacing: 0.5px;
+            margin-bottom: 5px;
         }
         
         .nav-pills .nav-link {
-            border-radius: 10px;
-            margin-bottom: 10px;
-            padding: 14px 18px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            padding: 12px 15px;
             font-weight: 500;
             color: #444;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
+            font-size: 0.9rem;
         }
         
         .nav-pills .nav-link:hover {
             background-color: #f0f7ff;
-            transform: translateX(5px);
+            transform: translateX(3px);
         }
         
         .nav-pills .nav-link.active {
             background: var(--gradient-primary);
             font-weight: 600;
             box-shadow: var(--shadow-md);
-            transform: translateX(5px);
+            transform: translateX(3px);
         }
         
         .section-title {
-            border-left: 6px solid var(--primary-color);
-            padding-left: 18px;
-            margin: 30px 0;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+            margin: 20px 0;
             font-weight: 700;
             color: var(--dark-blue);
-            font-size: 1.7rem;
+            font-size: 1.4rem;
             position: relative;
         }
         
@@ -122,21 +124,22 @@
             content: "";
             position: absolute;
             bottom: -5px;
-            left: 18px;
-            width: 50px;
-            height: 3px;
+            left: 12px;
+            width: 40px;
+            height: 2px;
             background: var(--gradient-primary);
-            border-radius: 3px;
+            border-radius: 2px;
         }
         
         .btn-primary {
             background: var(--gradient-primary);
             border: none;
-            padding: 12px 24px;
+            padding: 10px 20px;
             font-weight: 600;
             box-shadow: var(--shadow-md);
-            border-radius: 10px;
+            border-radius: 8px;
             transition: all 0.3s;
+            font-size: 0.9rem;
         }
         
         .btn-primary:hover {
@@ -147,11 +150,12 @@
         .btn-success {
             background: var(--gradient-secondary);
             border: none;
-            padding: 12px 24px;
+            padding: 10px 20px;
             font-weight: 600;
             box-shadow: var(--shadow-md);
-            border-radius: 10px;
+            border-radius: 8px;
             transition: all 0.3s;
+            font-size: 0.9rem;
         }
         
         .btn-success:hover {
@@ -162,11 +166,12 @@
         .btn-warning {
             background: var(--gradient-accent);
             border: none;
-            padding: 12px 24px;
+            padding: 10px 20px;
             font-weight: 600;
             box-shadow: var(--shadow-md);
-            border-radius: 10px;
+            border-radius: 8px;
             transition: all 0.3s;
+            font-size: 0.9rem;
         }
         
         .btn-warning:hover {
@@ -177,45 +182,47 @@
         .form-label {
             font-weight: 600;
             color: #444;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
+            font-size: 0.9rem;
         }
         
         .form-label i {
-            margin-right: 8px;
+            margin-right: 6px;
             color: var(--primary-color);
         }
         
         .form-control, .form-select {
-            border-radius: 10px;
-            padding: 14px 18px;
+            border-radius: 8px;
+            padding: 12px 15px;
             border: 1px solid #ddd;
             transition: all 0.3s;
             box-shadow: var(--shadow-sm);
+            font-size: 0.9rem;
         }
         
         .form-control:focus, .form-select:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 4px rgba(13, 71, 161, 0.2);
+            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
             transform: translateY(-2px);
         }
         
         .copyright {
             text-align: center;
-            padding: 25px;
+            padding: 20px;
             background-color: var(--light-blue);
             color: var(--dark-blue);
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 500;
         }
         
         .data-table {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             border-collapse: separate;
             border-spacing: 0;
             box-shadow: var(--shadow-sm);
-            border-radius: 12px;
+            border-radius: 8px;
             overflow: hidden;
         }
         
@@ -223,9 +230,10 @@
             background: var(--gradient-primary);
             color: white;
             font-weight: 600;
-            padding: 18px 15px;
+            padding: 12px 10px;
             text-align: center;
             position: relative;
+            font-size: 0.85rem;
         }
         
         .data-table th::after {
@@ -239,9 +247,10 @@
         }
         
         .data-table td {
-            padding: 15px;
+            padding: 10px 8px;
             vertical-align: middle;
             border-bottom: 1px solid #eee;
+            font-size: 0.85rem;
         }
         
         .data-table tr:nth-child(even) {
@@ -250,53 +259,54 @@
         
         .data-table tr:hover {
             background-color: #edf5ff;
-            transform: scale(1.01);
-            transition: transform 0.2s;
         }
         
         .feature-icon {
-            font-size: 1.3rem;
-            margin-right: 12px;
-            width: 30px;
+            font-size: 1.1rem;
+            margin-right: 8px;
+            width: 24px;
             text-align: center;
         }
         
         .password-modal .modal-content {
-            border-radius: 18px;
+            border-radius: 12px;
             box-shadow: var(--shadow-lg);
             border: none;
         }
         
         .card {
-            border-radius: 15px;
+            border-radius: 10px;
             border: none;
             box-shadow: var(--shadow-md);
             transition: all 0.3s ease;
             overflow: hidden;
+            margin-bottom: 15px;
         }
         
         .card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
         }
         
         .card-header {
-            border-radius: 15px 15px 0 0 !important;
+            border-radius: 10px 10px 0 0 !important;
             font-weight: 600;
-            padding: 18px 25px;
+            padding: 15px 20px;
             background: var(--gradient-primary);
             color: white;
+            font-size: 0.95rem;
         }
         
         .stats-box {
             text-align: center;
-            padding: 25px;
-            border-radius: 15px;
+            padding: 20px 15px;
+            border-radius: 10px;
             background: white;
             box-shadow: var(--shadow-md);
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
+            margin-bottom: 15px;
         }
         
         .stats-box::before {
@@ -305,86 +315,87 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
+            height: 4px;
             background: var(--gradient-primary);
         }
         
         .stats-box:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
         }
         
         .stats-number {
-            font-size: 2.8rem;
+            font-size: 1.8rem;
             font-weight: 800;
             color: var(--primary-color);
-            margin: 15px 0;
+            margin: 10px 0;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         
         .stats-label {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             color: #666;
             font-weight: 500;
         }
         
         .notification-toast {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
+            bottom: 20px;
+            right: 20px;
             z-index: 1050;
-            min-width: 320px;
-            border-radius: 12px;
+            min-width: 280px;
+            border-radius: 8px;
             overflow: hidden;
             box-shadow: var(--shadow-lg);
+            max-width: calc(100vw - 40px);
         }
         
         .input-error {
             border-color: #dc3545;
-            box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.2);
+            box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2);
         }
         
         .error-message {
             color: #dc3545;
-            font-size: 0.9rem;
-            margin-top: 8px;
+            font-size: 0.8rem;
+            margin-top: 5px;
             display: none;
             font-weight: 500;
         }
         
         .watermark {
             position: absolute;
-            bottom: 15px;
-            right: 20px;
+            bottom: 10px;
+            right: 15px;
             opacity: 0.8;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: white;
             font-weight: 300;
         }
         
         .control-panel {
             background: #f8f9fa;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
             box-shadow: var(--shadow-sm);
         }
         
         .control-title {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--primary-color);
             font-weight: 600;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--light-blue);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--light-blue);
         }
         
         .floating-action-btn {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: var(--gradient-primary);
             color: white;
@@ -403,76 +414,45 @@
         
         .filter-section {
             background: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 25px;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
             box-shadow: var(--shadow-sm);
         }
         
         .badge-custom {
             background: var(--gradient-primary);
             color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 6px 12px;
+            border-radius: 16px;
             font-weight: 600;
+            font-size: 0.8rem;
         }
         
-        @media (max-width: 1200px) {
-            .app-title {
-                font-size: 2.2rem;
-            }
-            
-            .app-logo {
-                font-size: 3rem;
-            }
-            
-            .stats-number {
-                font-size: 2.3rem;
-            }
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1050;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            box-shadow: var(--shadow-lg);
         }
         
-        @media (max-width: 992px) {
-            .app-title {
-                font-size: 1.9rem;
-            }
-            
-            .app-logo {
-                font-size: 2.7rem;
-            }
-            
-            .stats-number {
-                font-size: 2rem;
-            }
-            
-            .section-title {
-                font-size: 1.5rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .app-title {
-                font-size: 1.7rem;
-            }
-            
-            .app-logo {
-                font-size: 2.3rem;
-            }
-            
-            .section-title {
-                font-size: 1.4rem;
-            }
-            
-            .stats-box {
-                padding: 20px;
-                margin-bottom: 20px;
-            }
-            
-            .floating-action-btn {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-            }
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1040;
         }
         
         /* Animations */
@@ -487,25 +467,246 @@
         
         /* Custom scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         
         ::-webkit-scrollbar-track {
             background: #f1f1f1;
-            border-radius: 10px;
+            border-radius: 8px;
         }
         
         ::-webkit-scrollbar-thumb {
             background: var(--primary-color);
-            border-radius: 10px;
+            border-radius: 8px;
         }
         
         ::-webkit-scrollbar-thumb:hover {
             background: var(--dark-blue);
         }
+        
+        /* Responsive styles */
+        @media (max-width: 1200px) {
+            .app-title {
+                font-size: 1.6rem;
+            }
+            
+            .app-logo {
+                font-size: 2.2rem;
+            }
+            
+            .stats-number {
+                font-size: 1.6rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .app-title {
+                font-size: 1.4rem;
+            }
+            
+            .app-logo {
+                font-size: 2rem;
+            }
+            
+            .stats-number {
+                font-size: 1.4rem;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
+            
+            .col-md-3.col-lg-2.p-4.bg-light {
+                position: fixed;
+                top: 0;
+                left: -300px;
+                width: 280px;
+                height: 100vh;
+                z-index: 1050;
+                overflow-y: auto;
+                transition: left 0.3s ease;
+                padding: 20px 15px !important;
+            }
+            
+            .sidebar-open .col-md-3.col-lg-2.p-4.bg-light {
+                left: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .sidebar-overlay.active {
+                display: block;
+            }
+            
+            .col-md-9.col-lg-10.p-5 {
+                padding: 15px !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .app-title {
+                font-size: 1.3rem;
+            }
+            
+            .app-logo {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.1rem;
+            }
+            
+            .stats-box {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .floating-action-btn {
+                bottom: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+            }
+            
+            .col-md-9.col-lg-10.p-5 {
+                padding: 10px !important;
+            }
+            
+            .app-header {
+                padding: 15px 10px;
+            }
+            
+            .data-table {
+                font-size: 0.8rem;
+            }
+            
+            .data-table th, .data-table td {
+                padding: 8px 5px;
+            }
+            
+            .btn-group .btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .app-title {
+                font-size: 1.2rem;
+            }
+            
+            .app-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .app-logo {
+                font-size: 1.6rem;
+            }
+            
+            .section-title {
+                font-size: 1rem;
+                margin: 15px 0;
+            }
+            
+            .stats-number {
+                font-size: 1.4rem;
+            }
+            
+            .stats-label {
+                font-size: 0.8rem;
+            }
+            
+            .form-control, .form-select {
+                padding: 10px 12px;
+            }
+            
+            .btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+            
+            .filter-section .row > div {
+                margin-bottom: 10px;
+            }
+            
+            .d-flex.justify-content-between.align-items-center {
+                flex-direction: column;
+                align-items: flex-start !important;
+            }
+            
+            .d-flex.justify-content-between.align-items-center .btn-group {
+                margin-top: 10px;
+                width: 100%;
+            }
+            
+            .d-flex.justify-content-between.align-items-center .btn-group .btn {
+                flex: 1;
+            }
+            
+            .pagination {
+                flex-wrap: wrap;
+                margin-top: 10px;
+            }
+            
+            .table-responsive {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .watermark {
+                position: relative;
+                text-align: center;
+                margin-top: 10px;
+                bottom: 0;
+                right: 0;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .app-title {
+                font-size: 1.1rem;
+            }
+            
+            .app-logo {
+                font-size: 1.4rem;
+            }
+            
+            .nav-pills .nav-link {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .feature-icon {
+                font-size: 1rem;
+                margin-right: 6px;
+                width: 20px;
+            }
+            
+            .stats-box {
+                padding: 12px 10px;
+            }
+            
+            .stats-number {
+                font-size: 1.2rem;
+            }
+            
+            .card-header {
+                padding: 12px 15px;
+            }
+        }
     </style>
 </head>
 <body>
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
     <div class="app-container">
         <div class="app-header">
             <div class="app-logo">
@@ -584,7 +785,7 @@
                             <h3 class="section-title">Form Serah Terima Bantuan</h3>
                             <form id="bantuanForm" class="animate-fadeIn">
                                 <div class="row mb-4">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3 mb-md-0">
                                         <label for="namaKUB" class="form-label"><i class="fas fa-users"></i>Nama KUB (Kelompok Usaha Bersama)</label>
                                         <input type="text" class="form-control" id="namaKUB" required>
                                         <div class="error-message" id="namaKUB-error">Nama KUB harus diisi (minimal 3 karakter)</div>
@@ -600,7 +801,7 @@
                                 </div>
                                 
                                 <div class="row mb-4">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3 mb-md-0">
                                         <label for="nik" class="form-label"><i class="fas fa-id-card"></i>NIK (KTP) <span class="text-muted">(10-16 digit)</span></label>
                                         <input type="text" class="form-control" id="nik" required maxlength="16" pattern="[0-9]{10,16}">
                                         <div class="error-message" id="nik-error">NIK harus berupa angka (10-16 digit)</div>
@@ -613,7 +814,7 @@
                                 </div>
                                 
                                 <div class="row mb-4">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3 mb-md-0">
                                         <label for="jabatan" class="form-label"><i class="fas fa-briefcase"></i>Jabatan</label>
                                         <select class="form-select" id="jabatan" required>
                                             <option value="" selected disabled>Pilih Jabatan</option>
@@ -641,7 +842,7 @@
                                 </div>
                                 
                                 <div class="row mb-4">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3 mb-md-0">
                                         <label for="jenisBarang" class="form-label"><i class="fas fa-box"></i>Jenis Barang Bantuan</label>
                                         <select class="form-select" id="jenisBarang" required>
                                             <option value="" selected disabled>Pilih Jenis Barang</option>
@@ -664,7 +865,7 @@
                                 </h5>
                                 
                                 <div class="row mb-4">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3 mb-md-0">
                                         <label for="beritaAcara" class="form-label"><i class="fas fa-file-contract"></i>Berita Acara (Link Google Drive)</label>
                                         <input type="url" class="form-control" id="beritaAcara" required placeholder="https://drive.google.com/...">
                                         <div class="error-message" id="beritaAcara-error">Link berita acara harus valid</div>
@@ -677,7 +878,7 @@
                                 </div>
                                 
                                 <div class="row mb-4">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3 mb-md-0">
                                         <label for="dokumenProposal" class="form-label"><i class="fas fa-file-invoice"></i>Dokumen Proposal (Link Google Drive)</label>
                                         <input type="url" class="form-control" id="dokumenProposal" required placeholder="https://drive.google.com/...">
                                         <div class="error-message" id="dokumenProposal-error">Link dokumen proposal harus valid</div>
@@ -690,7 +891,7 @@
                                 </div>
                                 
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                                    <button type="reset" class="btn btn-secondary me-md-3">
+                                    <button type="reset" class="btn btn-secondary me-md-3 mb-2 mb-md-0">
                                         <i class="fas fa-undo me-2"></i>Reset Form
                                     </button>
                                     <button type="submit" class="btn btn-primary">
@@ -703,19 +904,19 @@
                             
                             <div class="filter-section">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 mb-2 mb-md-0">
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fas fa-search"></i></span>
                                             <input type="text" class="form-control" placeholder="Cari data..." id="searchInput">
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-3 mb-2 mb-md-0">
                                         <select class="form-select" id="filterTahun">
                                             <option value="">Semua Tahun</option>
                                             <!-- Tahun akan diisi oleh JavaScript -->
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-3 mb-2 mb-md-0">
                                         <select class="form-select" id="filterJenis">
                                             <option value="">Semua Jenis</option>
                                             <option value="Jaring">Jaring</option>
@@ -733,8 +934,8 @@
                                 </div>
                             </div>
                             
-                            <div class="d-flex justify-content-between align-items-center mb-4">
-                                <div class="d-flex align-items-center">
+                            <div class="d-flex justify-content-between align-items-center mb-4 flex-column flex-md-row">
+                                <div class="d-flex align-items-center mb-2 mb-md-0">
                                     <span class="me-2">Tampilkan</span>
                                     <select class="form-select form-select-sm w-auto" id="itemsPerPage">
                                         <option value="10">10</option>
@@ -744,7 +945,7 @@
                                     </select>
                                     <span class="ms-2">entri</span>
                                 </div>
-                                <div class="btn-group">
+                                <div class="btn-group w-100 w-md-auto">
                                     <button class="btn btn-outline-primary" id="exportBtn">
                                         <i class="fas fa-file-export me-2"></i>Ekspor
                                     </button>
@@ -773,8 +974,8 @@
                                 </table>
                             </div>
                             
-                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                <div class="text-muted" id="tableInfo">Menampilkan 0 dari 0 data</div>
+                            <div class="d-flex justify-content-between align-items-center mt-4 flex-column flex-md-row">
+                                <div class="text-muted mb-2 mb-md-0" id="tableInfo">Menampilkan 0 dari 0 data</div>
                                 <nav>
                                     <ul class="pagination justify-content-end" id="pagination">
                                         <!-- Pagination akan diisi oleh JavaScript -->
@@ -788,28 +989,28 @@
                             <h3 class="section-title">Statistik Bantuan</h3>
                             
                             <div class="row mb-5">
-                                <div class="col-md-3">
+                                <div class="col-6 col-md-3 mb-3">
                                     <div class="stats-box">
                                         <i class="fas fa-users fa-2x text-primary"></i>
                                         <div class="stats-number" id="stats-total">0</div>
                                         <div class="stats-label">Total Penerima</div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-6 col-md-3 mb-3">
                                     <div class="stats-box">
                                         <i class="fas fa-box-open fa-2x text-success"></i>
                                         <div class="stats-number" id="stats-barang">0</div>
                                         <div class="stats-label">Jenis Barang</div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-6 col-md-3 mb-3">
                                     <div class="stats-box">
                                         <i class="fas fa-calendar-alt fa-2x text-warning"></i>
                                         <div class="stats-number" id="stats-tahun">0</div>
                                         <div class="stats-label">Tahun Aktif</div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-6 col-md-3 mb-3">
                                     <div class="stats-box">
                                         <i class="fas fa-layer-group fa-2x text-info"></i>
                                         <div class="stats-number" id="stats-kub">0</div>
@@ -883,8 +1084,8 @@
                         <div class="tab-pane fade" id="backup" role="tabpanel">
                             <h3 class="section-title">Backup & Restore Data</h3>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="card mb-4">
+                                <div class="col-md-6 mb-4">
+                                    <div class="card h-100">
                                         <div class="card-header">
                                             <i class="fas fa-download me-2"></i> Backup Data
                                         </div>
@@ -904,8 +1105,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="card mb-4">
+                                <div class="col-md-6 mb-4">
+                                    <div class="card h-100">
                                         <div class="card-header">
                                             <i class="fas fa-upload me-2"></i> Restore Data
                                         </div>
@@ -924,8 +1125,8 @@
                             </div>
                             
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="card mb-4">
+                                <div class="col-md-6 mb-4">
+                                    <div class="card h-100">
                                         <div class="card-header">
                                             <i class="fas fa-database me-2"></i> Status Data
                                         </div>
@@ -949,8 +1150,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="card">
+                                <div class="col-md-6 mb-4">
+                                    <div class="card h-100">
                                         <div class="card-header">
                                             <i class="fas fa-trash-alt me-2"></i> Reset Data
                                         </div>
@@ -970,8 +1171,8 @@
                             <h3 class="section-title">Kontrol Panel</h3>
                             
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="card mb-4">
+                                <div class="col-md-6 mb-4">
+                                    <div class="card h-100">
                                         <div class="card-header">
                                             <i class="fas fa-key me-2"></i> Ganti Password
                                         </div>
@@ -998,8 +1199,8 @@
                                     </div>
                                 </div>
                                 
-                                <div class="col-md-6">
-                                    <div class="card mb-4">
+                                <div class="col-md-6 mb-4">
+                                    <div class="card h-100">
                                         <div class="card-header">
                                             <i class="fas fa-info-circle me-2"></i> Informasi Sistem
                                         </div>
@@ -1228,6 +1429,17 @@
             // Update info sistem
             updateSystemInfo();
             
+            // Mobile menu handler
+            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+                document.body.classList.toggle('sidebar-open');
+                document.getElementById('sidebarOverlay').classList.toggle('active');
+            });
+            
+            document.getElementById('sidebarOverlay').addEventListener('click', function() {
+                document.body.classList.remove('sidebar-open');
+                this.classList.remove('active');
+            });
+            
             // Form submission handler
             document.getElementById('bantuanForm').addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -1421,6 +1633,12 @@
                 
                 // Scroll ke atas
                 window.scrollTo(0, 0);
+                
+                // Tutup sidebar jika terbuka di mobile
+                if (window.innerWidth < 992) {
+                    document.body.classList.remove('sidebar-open');
+                    document.getElementById('sidebarOverlay').classList.remove('active');
+                }
             });
             
             // Initialize data status
@@ -1429,6 +1647,16 @@
             // Event listener untuk tab change untuk mengupdate grafik
             document.getElementById('stats-tab').addEventListener('shown.bs.tab', function() {
                 updateStats();
+            });
+            
+            // Tutup sidebar saat memilih menu di perangkat mobile
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth < 992) {
+                        document.body.classList.remove('sidebar-open');
+                        document.getElementById('sidebarOverlay').classList.remove('active');
+                    }
+                });
             });
         });
         
@@ -2197,7 +2425,7 @@
                                 label: 'Trend Bantuan per Tahun',
                                 data: yearData,
                                 backgroundColor: 'rgba(13, 71, 161, 0.2)',
-                                borderColor: 'rgba(13, 71, 161, 1)',
+                                                            borderColor: 'rgba(13, 71, 161, 1)',
                                 borderWidth: 2,
                                 fill: true,
                                 tension: 0.4
@@ -2207,7 +2435,10 @@
                             responsive: true,
                             scales: {
                                 y: {
-                                    beginAtZero: true
+                                    beginAtZero: true,
+                                    ticks: {
+                                        stepSize: 1
+                                    }
                                 }
                             }
                         }
@@ -2220,23 +2451,27 @@
             const recentDataBody = document.getElementById('recentDataBody');
             if (!recentDataBody) return;
             
+            // Ambil 5 data terbaru
+            const recentData = [...data].sort((a, b) => b.id - a.id).slice(0, 5);
+            
             recentDataBody.innerHTML = '';
             
-            // Ambil 5 data terbaru
-            const recentData = data.slice(-5).reverse();
-            
             if (recentData.length === 0) {
-                recentDataBody.innerHTML = '<tr><td colspan="4" class="text-center">Tidak ada data</td></tr>';
+                recentDataBody.innerHTML = '<tr><td colspan="4" class="text-center py-3">Tidak ada data</td></tr>';
                 return;
             }
             
             recentData.forEach(item => {
                 const row = document.createElement('tr');
+                // Format tanggal untuk tampilan yang lebih singkat
+                const date = new Date(item.id);
+                const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+                
                 row.innerHTML = `
                     <td>${item.nama}</td>
                     <td>${item.namaKUB}</td>
                     <td>${item.jenisBarang}</td>
-                    <td>${item.tanggalInput.split(' ')[0]}</td>
+                    <td>${formattedDate}</td>
                 `;
                 recentDataBody.appendChild(row);
             });
@@ -2272,11 +2507,23 @@
             
             document.getElementById('browserInfo').textContent = browserName;
             
-            // Info ukuran layar
-            document.getElementById('screenSize').textContent = `${window.innerWidth} x ${window.innerHeight} px`;
+            // Ukuran layar
+            const width = window.screen.width;
+            const height = window.screen.height;
+            document.getElementById('screenSize').textContent = `${width} x ${height} px`;
             
             // Status koneksi
-            document.getElementById('connectionStatus').textContent = navigator.onLine ? "Terhubung" : "Offline";
+            const isOnline = navigator.onLine ? 'Online' : 'Offline';
+            document.getElementById('connectionStatus').textContent = isOnline;
+            
+            // Update status koneksi secara real-time
+            window.addEventListener('online', () => {
+                document.getElementById('connectionStatus').textContent = 'Online';
+            });
+            
+            window.addEventListener('offline', () => {
+                document.getElementById('connectionStatus').textContent = 'Offline';
+            });
         }
         
         function showToast(title, message, type = 'info') {
@@ -2285,26 +2532,32 @@
             const toastMessage = document.getElementById('toast-message');
             
             // Set warna berdasarkan jenis pesan
-            toastElement.classList.remove('bg-primary', 'bg-success', 'bg-warning', 'bg-danger');
             switch(type) {
                 case 'success':
-                    toastElement.classList.add('bg-success');
-                    break;
-                case 'warning':
-                    toastElement.classList.add('bg-warning');
+                    toastElement.classList.add('bg-success', 'text-white');
                     break;
                 case 'error':
-                    toastElement.classList.add('bg-danger');
+                    toastElement.classList.add('bg-danger', 'text-white');
+                    break;
+                case 'warning':
+                    toastElement.classList.add('bg-warning', 'text-dark');
                     break;
                 default:
-                    toastElement.classList.add('bg-primary');
+                    toastElement.classList.add('bg-info', 'text-white');
             }
             
+            // Set konten
             toastTitle.textContent = title;
             toastMessage.textContent = message;
             
+            // Tampilkan toast
             const toast = new bootstrap.Toast(toastElement);
             toast.show();
+            
+            // Hapus kelas warna setelah toast disembunyikan
+            toastElement.addEventListener('hidden.bs.toast', function() {
+                this.classList.remove('bg-success', 'bg-danger', 'bg-warning', 'bg-info', 'text-white', 'text-dark');
+            });
         }
     </script>
 </body>
