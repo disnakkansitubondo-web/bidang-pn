@@ -29,6 +29,7 @@
             font-family: 'Poppins', 'Segoe UI', sans-serif;
             min-height: 100vh;
             padding: 10px 0;
+            overflow-x: hidden;
         }
         
         .app-container {
@@ -38,6 +39,8 @@
             box-shadow: var(--shadow-lg);
             border-radius: 12px;
             overflow: hidden;
+            position: relative;
+            z-index: 10;
         }
         
         .app-header {
@@ -484,25 +487,38 @@
             background: var(--dark-blue);
         }
         
-        /* Welcome notification styles - IMPROVED */
+        /* Welcome notification styles - IMPROVED PREMIUM */
         .welcome-notification {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0.8);
-            background: linear-gradient(135deg, #0d47a1, #082e5c);
+            background: linear-gradient(135deg, #0d47a1 0%, #082e5c 100%);
             color: white;
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
             z-index: 2000;
             text-align: center;
             width: 90%;
-            max-width: 600px;
+            max-width: 650px;
             opacity: 0;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            overflow: hidden;
+        }
+        
+        .welcome-notification::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 65%);
+            pointer-events: none;
+            animation: rotateGradient 15s linear infinite;
         }
         
         .welcome-notification.show {
@@ -514,7 +530,9 @@
             margin-bottom: 20px;
             font-weight: 700;
             font-size: 2.2rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
         }
         
         .welcome-notification p {
@@ -522,13 +540,18 @@
             font-size: 1.2rem;
             line-height: 1.6;
             opacity: 0.9;
+            position: relative;
+            z-index: 2;
         }
         
         .welcome-notification .icon {
             font-size: 4rem;
             margin-bottom: 25px;
             color: #ff8f00;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+            animation: pulse 2s infinite;
         }
         
         .welcome-notification .btn-close-welcome {
@@ -538,14 +561,15 @@
             background: rgba(255,255,255,0.2);
             border: none;
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s;
+            z-index: 3;
         }
         
         .welcome-notification .btn-close-welcome:hover {
@@ -556,6 +580,28 @@
         .welcome-notification .highlight {
             color: #ff8f00;
             font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .welcome-notification .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes rotateGradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         /* Particle Background */
@@ -832,11 +878,12 @@
     <!-- Particle Background -->
     <div id="particles-js"></div>
 
-    <!-- Welcome Notification - IMPROVED -->
+    <!-- Welcome Notification - IMPROVED PREMIUM -->
     <div class="welcome-notification" id="welcomeNotification">
         <button class="btn-close-welcome" id="closeWelcome">
             <i class="fas fa-times"></i>
         </button>
+        <div class="particles-container" id="welcomeParticles"></div>
         <div class="icon">
             <i class="fas fa-hand-holding-water"></i>
         </div>
@@ -1639,6 +1686,37 @@
                 retina_detect: true
             });
 
+            // Inisialisasi partikel untuk welcome notification
+            particlesJS('welcomeParticles', {
+                particles: {
+                    number: { value: 30, density: { enable: true, value_area: 400 } },
+                    color: { value: "#ffffff" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.3, random: true },
+                    size: { value: 2, random: true },
+                    line_linked: {
+                        enable: false
+                    },
+                    move: {
+                        enable: true,
+                        speed: 1,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "bubble" },
+                        resize: true
+                    }
+                },
+                retina_detect: true
+            });
+
             // Tampilkan notifikasi selamat datang
             showWelcomeNotification();
             
@@ -1943,7 +2021,10 @@
         
         function showWelcomeNotification() {
             const welcomeNotification = document.getElementById('welcomeNotification');
-            welcomeNotification.classList.add('show');
+            welcomeNotification.style.display = 'block';
+            setTimeout(() => {
+                welcomeNotification.classList.add('show');
+            }, 100);
             
             // Sembunyikan notifikasi setelah 8 detik
             setTimeout(() => {
@@ -2024,7 +2105,7 @@
                         case error.PERMISSION_DENIED:
                             errorMessage = "Pengguna menolak permintaan geolokasi.";
                             break;
-                        case error.POSITION_UNAVAILABLE:
+                        case error.POSITION_UAVAILABLE:
                             errorMessage = "Informasi lokasi tidak tersedia.";
                             break;
                         case error.TIMEOUT:
