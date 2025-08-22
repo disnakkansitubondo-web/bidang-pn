@@ -883,7 +883,6 @@
         <button class="btn-close-welcome" id="closeWelcome">
             <i class="fas fa-times"></i>
         </button>
-        <div class="particles-container" id="welcomeParticles"></div>
         <div class="icon">
             <i class="fas fa-hand-holding-water"></i>
         </div>
@@ -1031,85 +1030,80 @@
                                 <div class="mb-4">
                                     <label for="alamat" class="form-label"><i class="fas fa-map-marker-alt"></i>Alamat</label>
                                     <div class="mb-3">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="alamatOption" id="alamatManual" value="manual" checked>
-                                            <label class="form-check-label" for="alamatManual">Manual</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="alamatOption" id="alamatGPS" value="gps">
-                                            <label class="form-check-label" for="alamatGPS">Gunakan GPS</label>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3 mb-md-0">
+                                                <select class="form-select" id="kecamatan" required>
+                                                    <option value="" selected disabled>Pilih Kecamatan</option>
+                                                    <option value="Arjasa">Arjasa</option>
+                                                    <option value="Asembagus">Asembagus</option>
+                                                    <option value="Banyuglugur">Banyuglugur</option>
+                                                    <option value="Banyuputih">Banyuputih</option>
+                                                    <option value="Besuki">Besuki</option>
+                                                    <option value="Bungatan">Bungatan</option>
+                                                    <option value="Jangkar">Jangkar</option>
+                                                    <option value="Jatibanteng">Jatibanteng</option>
+                                                    <option value="Kapongan">Kapongan</option>
+                                                    <option value="Kendit">Kendit</option>
+                                                    <option value="Mangaran">Mangaran</option>
+                                                    <option value="Mlandingan">Mlandingan</option>
+                                                    <option value="Panarukan">Panarukan</option>
+                                                    <option value="Panji">Panji</option>
+                                                    <option value="Situbondo">Situbondo</option>
+                                                    <option value="Suboh">Suboh</option>
+                                                    <option value="Sumbermalang">Sumbermalang</option>
+                                                </select>
+                                                <div class="error-message" id="kecamatan-error">Kecamatan harus dipilih</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="desa" placeholder="Nama Desa" required>
+                                                <div class="error-message" id="desa-error">Nama desa harus diisi</div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <textarea class="form-control" id="alamat" rows="2" required></textarea>
-                                    <div class="error-message" id="alamat-error">Alamat harus diisi (minimal 10 karakter)</div>
-                                    <div class="mt-2">
-                                        <button type="button" class="btn btn-outline-primary btn-sm" id="getLocationBtn" style="display: none;">
-                                            <i class="fas fa-location-arrow me-1"></i>Dapatkan Lokasi
-                                        </button>
-                                        <small class="text-muted" id="locationStatus"></small>
-                                    </div>
-                                </div>
-                                
-                                <div class="mb-4">
-                                    <label for="keteranganTambahan" class="form-label"><i class="fas fa-sticky-note"></i>Keterangan Tambahan</label>
-                                    <textarea class="form-control" id="keteranganTambahan" rows="2"></textarea>
+                                    <textarea class="form-control" id="alamat" rows="3" placeholder="Alamat lengkap (dusun, RT/RW)" required></textarea>
+                                    <div class="error-message" id="alamat-error">Alamat lengkap harus diisi</div>
                                 </div>
                                 
                                 <div class="row mb-4">
                                     <div class="col-md-6 mb-3 mb-md-0">
-                                        <label for="jenisBarang" class="form-label"><i class="fas fa-box"></i>Jenis Barang Bantuan</label>
-                                        <select class="form-select" id="jenisBarang" required>
-                                            <option value="" selected disabled>Pilih Jenis Barang</option>
-                                            <option value="Jaring">Jaring</option>
-                                            <option value="Coolbox">Coolbox</option>
-                                            <option value="Perahu">Perahu</option>
-                                            <option value="Mesin">Mesin</option>
-                                            <option value="Bibit">Bibit</option>
-                                            <option value="Ternak">Ternak</option>
-                                            <option value="Obat">Obat</option>
-                                            <option value="Pakan">Pakan</option>
-                                            <option value="Lainnya">Lainnya</option>
+                                        <label for="jenisBantuan" class="form-label"><i class="fas fa-gift"></i>Jenis Bantuan</label>
+                                        <select class="form-select" id="jenisBantuan" required>
+                                            <option value="" selected disabled>Pilih Jenis Bantuan</option>
+                                            <option value="Bantuan Bibit Ikan">Bantuan Bibit Ikan</option>
+                                            <option value="Bantuan Pakan Ikan">Bantuan Pakan Ikan</option>
+                                            <option value="Bantuan Kolam Ikan">Bantuan Kolam Ikan</option>
+                                            <option value="Bantuan Bibit Ternak">Bantuan Bibit Ternak</option>
+                                            <option value="Bantuan Pakan Ternak">Bantuan Pakan Ternak</option>
+                                            <option value="Bantuan Kandang Ternak">Bantuan Kandang Ternak</option>
                                         </select>
-                                        <div class="error-message" id="jenisBarang-error">Jenis barang harus dipilih</div>
+                                        <div class="error-message" id="jenisBantuan-error">Jenis bantuan harus dipilih</div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="catatan" class="form-label"><i class="fas fa-sticky-note"></i>Catatan (jika jenis barang lainnya)</label>
-                                        <input type="text" class="form-control" id="catatan">
-                                    </div>
-                                </div>
-                                
-                                <h5 class="mt-4 mb-4" style="color: var(--primary-color); border-bottom: 2px solid var(--light-blue); padding-bottom: 10px;">
-                                    <i class="fas fa-file-alt me-2"></i>Dokumen Pendukung
-                                </h5>
-                                
-                                <div class="row mb-4">
-                                    <div class="col-md-6 mb-3 mb-md-0">
-                                        <label for="beritaAcara" class="form-label"><i class="fas fa-file-contract"></i>Berita Acara (Link Google Drive)</label>
-                                        <input type="url" class="form-control" id="beritaAcara" required placeholder="https://drive.google.com/...">
-                                        <div class="error-message" id="beritaAcara-error">Link berita acara harus valid</div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="dokumenPerjanjian" class="form-label"><i class="fas fa-handshake"></i>Dokumen Perjanjian (Link Google Drive)</label>
-                                        <input type="url" class="form-control" id="dokumenPerjanjian" required placeholder="https://drive.google.com/...">
-                                        <div class="error-message" id="dokumenPerjanjian-error">Link dokumen perjanjian harus valid</div>
+                                        <label for="jumlahBantuan" class="form-label"><i class="fas fa-calculator"></i>Jumlah Bantuan</label>
+                                        <input type="number" class="form-control" id="jumlahBantuan" min="1" required>
+                                        <div class="error-message" id="jumlahBantuan-error">Jumlah bantuan harus diisi (minimal 1)</div>
                                     </div>
                                 </div>
                                 
                                 <div class="row mb-4">
                                     <div class="col-md-6 mb-3 mb-md-0">
-                                        <label for="dokumenProposal" class="form-label"><i class="fas fa-file-invoice"></i>Dokumen Proposal (Link Google Drive)</label>
-                                        <input type="url" class="form-control" id="dokumenProposal" required placeholder="https://drive.google.com/...">
-                                        <div class="error-message" id="dokumenProposal-error">Link dokumen proposal harus valid</div>
+                                        <label for="tanggalSerahTerima" class="form-label"><i class="fas fa-calendar-check"></i>Tanggal Serah Terima</label>
+                                        <input type="date" class="form-control" id="tanggalSerahTerima" required>
+                                        <div class="error-message" id="tanggalSerahTerima-error">Tanggal serah terima harus diisi</div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="dokumentasiFoto" class="form-label"><i class="fas fa-camera"></i>Dokumentasi Foto (Link Google Drive)</label>
-                                        <input type="url" class="form-control" id="dokumentasiFoto" required placeholder="https://drive.google.com/...">
-                                        <div class="error-message" id="dokumentasiFoto-error">Link dokumentasi foto harus valid</div>
+                                        <label for="status" class="form-label"><i class="fas fa-check-circle"></i>Status</label>
+                                        <select class="form-select" id="status" required>
+                                            <option value="Sudah Diserahkan" selected>Sudah Diserahkan</option>
+                                            <option value="Belum Diserahkan">Belum Diserahkan</option>
+                                            <option value="Dalam Proses">Dalam Proses</option>
+                                        </select>
+                                        <div class="error-message" id="status-error">Status harus dipilih</div>
                                     </div>
                                 </div>
                                 
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                                    <button type="reset" class="btn btn-secondary me-md-3 mb-2 mb-md-0">
+                                <div class="d-flex justify-content-end mt-4">
+                                    <button type="reset" class="btn btn-outline-secondary me-3">
                                         <i class="fas fa-undo me-2"></i>Reset Form
                                     </button>
                                     <button type="submit" class="btn btn-primary">
@@ -1118,88 +1112,107 @@
                                 </div>
                             </form>
                             
-                            <h3 class="section-title mt-5">Data Bantuan Tersimpan</h3>
+                            <hr class="my-5">
                             
-                            <div class="filter-section">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h3 class="section-title">Daftar Data Bantuan</h3>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-outline-primary" id="printBtn">
+                                        <i class="fas fa-print me-2"></i>Cetak
+                                    </button>
+                                    <button type="button" class="btn btn-outline-success" id="exportExcelBtn">
+                                        <i class="fas fa-file-excel me-2"></i>Excel
+                                    </button>
+                                    <button type="button" class="btn btn-outline-danger" id="exportPdfBtn">
+                                        <i class="fas fa-file-pdf me-2"></i>PDF
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="filter-section animate-fadeIn">
                                 <div class="row">
-                                    <div class="col-md-4 mb-2 mb-md-0">
-                                        <div class="input-group">
-                                            <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                            <input type="text" class="form-control" placeholder="Cari data..." id="searchInput">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-2 mb-md-0">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="filterTahun" class="form-label"><i class="fas fa-filter"></i>Filter Tahun</label>
                                         <select class="form-select" id="filterTahun">
-                                            <option value="">Semua Tahun</option>
+                                            <option value="all" selected>Semua Tahun</option>
                                             <!-- Tahun akan diisi oleh JavaScript -->
                                         </select>
                                     </div>
-                                    <div class="col-md-3 mb-2 mb-md-0">
-                                        <select class="form-select" id="filterJenis">
-                                            <option value="">Semua Jenis</option>
-                                            <option value="Jaring">Jaring</option>
-                                            <option value="Coolbox">Coolbox</option>
-                                            <option value="Perahu">Perahu</option>
-                                            <option value="Mesin">Mesin</option>
-                                            <option value="Lainnya">Lainnya</option>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="filterKecamatan" class="form-label"><i class="fas fa-filter"></i>Filter Kecamatan</label>
+                                        <select class="form-select" id="filterKecamatan">
+                                            <option value="all" selected>Semua Kecamatan</option>
+                                            <option value="Arjasa">Arjasa</option>
+                                            <option value="Asembagus">Asembagus</option>
+                                            <option value="Banyuglugur">Banyuglugur</option>
+                                            <option value="Banyuputih">Banyuputih</option>
+                                            <option value="Besuki">Besuki</option>
+                                            <option value="Bungatan">Bungatan</option>
+                                            <option value="Jangkar">Jangkar</option>
+                                            <option value="Jatibanteng">Jatibanteng</option>
+                                            <option value="Kapongan">Kapongan</option>
+                                            <option value="Kendit">Kendit</option>
+                                            <option value="Mangaran">Mangaran</option>
+                                            <option value="Mlandingan">Mlandingan</option>
+                                            <option value="Panarukan">Panarukan</option>
+                                            <option value="Panji">Panji</option>
+                                            <option value="Situbondo">Situbondo</option>
+                                            <option value="Suboh">Suboh</option>
+                                            <option value="Sumbermalang">Sumbermalang</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-2">
-                                        <button class="btn btn-outline-secondary w-100" id="clearFiltersBtn">
-                                            <i class="fas fa-times"></i>
-                                        </button>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="filterJenis" class="form-label"><i class="fas fa-filter"></i>Filter Jenis Bantuan</label>
+                                        <select class="form-select" id="filterJenis">
+                                            <option value="all" selected>Semua Jenis</option>
+                                            <option value="Bantuan Bibit Ikan">Bantuan Bibit Ikan</option>
+                                            <option value="Bantuan Pakan Ikan">Bantuan Pakan Ikan</option>
+                                            <option value="Bantuan Kolam Ikan">Bantuan Kolam Ikan</option>
+                                            <option value="Bantuan Bibit Ternak">Bantuan Bibit Ternak</option>
+                                            <option value="Bantuan Pakan Ternak">Bantuan Pakan Ternak</option>
+                                            <option value="Bantuan Kandang Ternak">Bantuan Kandang Ternak</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="searchInput" class="form-label"><i class="fas fa-search"></i>Cari Data</label>
+                                        <input type="text" class="form-control" id="searchInput" placeholder="Cari...">
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="d-flex justify-content-between align-items-center mb-4 flex-column flex-md-row">
-                                <div class="d-flex align-items-center mb-2 mb-md-0">
-                                    <span class="me-2">Tampilkan</span>
-                                    <select class="form-select form-select-sm w-auto" id="itemsPerPage">
-                                        <option value="10">10</option>
-                                        <option value="25">25</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
-                                    </select>
-                                    <span class="ms-2">entri</span>
-                                </div>
-                                <div class="btn-group w-100 w-md-auto">
-                                    <button class="btn btn-outline-primary" id="exportBtn">
-                                        <i class="fas fa-file-export me-2"></i>Ekspor
-                                    </button>
-                                    <button class="btn btn-outline-success" id="printBtn">
-                                        <i class="fas fa-print me-2"></i>Cetak
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="table-responsive">
-                                <table class="table table-striped table-hover data-table">
+                            <div class="table-responsive animate-fadeIn">
+                                <table class="table table-hover data-table" id="dataTable">
                                     <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>Nama KUB</th>
-                                            <th>Nama Penerima</th>
-                                            <th>Jabatan</th>
-                                            <th>Jenis Barang</th>
+                                            <th>NIK</th>
+                                            <th>Nama</th>
+                                            <th>Kecamatan</th>
+                                            <th>Jenis Bantuan</th>
+                                            <th>Jumlah</th>
                                             <th>Tahun</th>
+                                            <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="dataTableBody">
+                                    <tbody id="tableBody">
                                         <!-- Data akan diisi oleh JavaScript -->
                                     </tbody>
                                 </table>
                             </div>
                             
-                            <div class="d-flex justify-content-between align-items-center mt-4 flex-column flex-md-row">
-                                <div class="text-muted mb-2 mb-md-0" id="tableInfo">Menampilkan 0 dari 0 data</div>
-                                <nav>
-                                    <ul class="pagination justify-content-end" id="pagination">
-                                        <!-- Pagination akan diisi oleh JavaScript -->
-                                    </ul>
-                                </nav>
-                            </div>
+                            <nav aria-label="Page navigation" class="mt-4">
+                                <ul class="pagination justify-content-center" id="pagination">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                         
                         <!-- Statistik -->
@@ -1207,32 +1220,25 @@
                             <h3 class="section-title">Statistik Bantuan</h3>
                             
                             <div class="row mb-5">
-                                <div class="col-6 col-md-3 mb-3">
+                                <div class="col-md-4">
                                     <div class="stats-box">
-                                        <i class="fas fa-users fa-2x text-primary"></i>
-                                        <div class="stats-number" id="stats-total">0</div>
-                                        <div class="stats-label">Total Penerima</div>
+                                        <i class="fas fa-users fa-2x text-primary mb-2"></i>
+                                        <div class="stats-number" id="total-kub">0</div>
+                                        <div class="stats-label">Total KUB</div>
                                     </div>
                                 </div>
-                                <div class="col-6 col-md-3 mb-3">
+                                <div class="col-md-4">
                                     <div class="stats-box">
-                                        <i class="fas fa-box-open fa-2x text-success"></i>
-                                        <div class="stats-number" id="stats-barang">0</div>
-                                        <div class="stats-label">Jenis Barang</div>
+                                        <i class="fas fa-gift fa-2x text-primary mb-2"></i>
+                                        <div class="stats-number" id="total-bantuan">0</div>
+                                        <div class="stats-label">Total Bantuan</div>
                                     </div>
                                 </div>
-                                <div class="col-6 col-md-3 mb-3">
+                                <div class="col-md-4">
                                     <div class="stats-box">
-                                        <i class="fas fa-calendar-alt fa-2x text-warning"></i>
-                                        <div class="stats-number" id="stats-tahun">0</div>
-                                        <div class="stats-label">Tahun Aktif</div>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-md-3 mb-3">
-                                    <div class="stats-box">
-                                        <i class="fas fa-layer-group fa-2x text-info"></i>
-                                        <div class="stats-number" id="stats-kub">0</div>
-                                        <div class="stats-label">Kelompok KUB</div>
+                                        <i class="fas fa-check-circle fa-2x text-primary mb-2"></i>
+                                        <div class="stats-number" id="persentase-selesai">0%</div>
+                                        <div class="stats-label">Telah Diserahkan</div>
                                     </div>
                                 </div>
                             </div>
@@ -1241,10 +1247,10 @@
                                 <div class="col-md-6 mb-4">
                                     <div class="card">
                                         <div class="card-header">
-                                            <i class="fas fa-chart-bar me-2"></i>Bantuan per Tahun
+                                            <i class="fas fa-chart-bar me-2"></i>Bantuan per Kecamatan
                                         </div>
                                         <div class="card-body">
-                                            <canvas id="yearChart" height="250"></canvas>
+                                            <canvas id="kecamatanChart" height="300"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -1254,7 +1260,7 @@
                                             <i class="fas fa-chart-pie me-2"></i>Bantuan per Jenis
                                         </div>
                                         <div class="card-body">
-                                            <canvas id="typeChart" height="250"></canvas>
+                                            <canvas id="jenisBantuanChart" height="300"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -1264,34 +1270,20 @@
                                 <div class="col-md-6 mb-4">
                                     <div class="card">
                                         <div class="card-header">
-                                            <i class="fas fa-chart-line me-2"></i>Trend Bantuan
+                                            <i class="fas fa-chart-line me-2"></i>Bantuan per Tahun
                                         </div>
                                         <div class="card-body">
-                                            <canvas id="trendChart" height="250"></canvas>
+                                            <canvas id="tahunChart" height="300"></canvas>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="card">
                                         <div class="card-header">
-                                            <i class="fas fa-table me-2"></i>Data Terbaru
+                                            <i class="fas fa-chart-area me-2"></i>Status Penyerahan
                                         </div>
                                         <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-sm">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Nama</th>
-                                                            <th>KUB</th>
-                                                            <th>Barang</th>
-                                                            <th>Tanggal</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="recentDataBody">
-                                                        <!-- Data terbaru akan diisi oleh JavaScript -->
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                            <canvas id="statusChart" height="300"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -1301,84 +1293,84 @@
                         <!-- Backup & Restore -->
                         <div class="tab-pane fade" id="backup" role="tabpanel">
                             <h3 class="section-title">Backup & Restore Data</h3>
+                            
                             <div class="row">
                                 <div class="col-md-6 mb-4">
-                                    <div class="card h-100">
+                                    <div class="card">
                                         <div class="card-header">
-                                            <i class="fas fa-download me-2"></i> Backup Data
+                                            <i class="fas fa-cloud-download-alt me-2"></i>Backup Data
                                         </div>
                                         <div class="card-body">
-                                            <p>Unduh data yang tersimpan dalam bentuk file JSON untuk disimpan sebagai cadangan.</p>
+                                            <p>Backup data secara berkala untuk mencegah kehilangan data. Data akan diunduh dalam format JSON.</p>
                                             <div class="mb-3">
-                                                <label for="backupFormat" class="form-label">Format Backup</label>
-                                                <select class="form-select" id="backupFormat">
-                                                    <option value="json">JSON (Rekomendasi)</option>
-                                                    <option value="csv">CSV (Excel)</option>
-                                                    <option value="xlsx">Excel (XLSX)</option>
-                                                </select>
+                                                <label class="form-label">Pilih Data untuk Backup</label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="backupAll" checked>
+                                                    <label class="form-check-label" for="backupAll">
+                                                        Semua Data
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="backupSettings">
+                                                    <label class="form-check-label" for="backupSettings">
+                                                        Pengaturan Aplikasi
+                                                    </label>
+                                                </div>
                                             </div>
                                             <button class="btn btn-primary w-100" id="backupBtn">
-                                                <i class="fas fa-cloud-download-alt me-2"></i> Backup Data
+                                                <i class="fas fa-download me-2"></i>Backup Data Sekarang
                                             </button>
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div class="col-md-6 mb-4">
-                                    <div class="card h-100">
+                                    <div class="card">
                                         <div class="card-header">
-                                            <i class="fas fa-upload me-2"></i> Restore Data
+                                            <i class="fas fa-cloud-upload-alt me-2"></i>Restore Data
                                         </div>
                                         <div class="card-body">
-                                            <p>Upload file JSON untuk memulihkan data dari cadangan.</p>
+                                            <p>Restore data dari file backup sebelumnya. Pastikan file backup valid.</p>
                                             <div class="mb-3">
                                                 <label for="restoreFile" class="form-label">Pilih File Backup</label>
-                                                <input type="file" class="form-control" id="restoreFile" accept=".json,.csv,.xlsx">
+                                                <input class="form-control" type="file" id="restoreFile" accept=".json">
+                                            </div>
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="overwriteData">
+                                                <label class="form-check-label" for="overwriteData">
+                                                    Timpa data yang sudah ada
+                                                </label>
                                             </div>
                                             <button class="btn btn-success w-100" id="restoreBtn">
-                                                <i class="fas fa-cloud-upload-alt me-2"></i> Restore Data
+                                                <i class="fas fa-upload me-2"></i>Restore Data
                                             </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <div class="card h-100">
-                                        <div class="card-header">
-                                            <i class="fas fa-database me-2"></i> Status Data
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <span>Jumlah Data:</span>
-                                                <strong id="dataCount">0</strong>
-                                            </div>
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <span>Ukuran Penyimpanan:</span>
-                                                <strong id="storageSize">0 KB</strong>
-                                            </div>
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <span>Backup Terakhir:</span>
-                                                <strong id="lastBackup">-</strong>
-                                            </div>
-                                            <hr>
-                                            <button class="btn btn-outline-primary w-100" id="refreshStatusBtn">
-                                                <i class="fas fa-sync-alt me-2"></i>Refresh Status
-                                            </button>
-                                        </div>
-                                    </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <i class="fas fa-history me-2"></i>Riwayat Backup
                                 </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="card h-100">
-                                        <div class="card-header">
-                                            <i class="fas fa-trash-alt me-2"></i> Reset Data
-                                        </div>
-                                        <div class="card-body">
-                                            <p>Hapus semua data yang tersimpan. Tindakan ini membutuhkan password dan tidak dapat dibatalkan.</p>
-                                            <button class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#resetModal">
-                                                <i class="fas fa-trash-alt me-2"></i> Reset Data
-                                            </button>
-                                        </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover data-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tanggal Backup</th>
+                                                    <th>Jenis Data</th>
+                                                    <th>Jumlah Data</th>
+                                                    <th>Ukuran File</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="backupHistory">
+                                                <tr>
+                                                    <td colspan="5" class="text-center">Belum ada riwayat backup</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -1390,29 +1382,160 @@
                             
                             <div class="row">
                                 <div class="col-md-6 mb-4">
-                                    <div class="card h-100">
+                                    <div class="card">
                                         <div class="card-header">
-                                            <i class="fas fa-key me-2"></i> Ganti Password
+                                            <i class="fas fa-user-shield me-2"></i>Keamanan
                                         </div>
                                         <div class="card-body">
-                                            <form id="passwordForm">
-                                                <div class="mb-3">
-                                                    <label for="currentPassword" class="form-label">Password Saat Ini</label>
-                                                    <input type="password" class="form-control" id="currentPassword" required>
+                                            <div class="mb-3">
+                                                <label class="form-label">Ganti Password</label>
+                                                <div class="input-group mb-2">
+                                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                                    <input type="password" class="form-control" id="newPassword" placeholder="Password Baru">
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label for="newPassword" class="form-label">Password Baru</label>
-                                                    <input type="password" class="form-control" id="newPassword" required>
-                                                    <div class="form-text">Password harus minimal 8 karakter dan mengandung angka</div>
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Konfirmasi Password">
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label for="confirmPassword" class="form-label">Konfirmasi Password Baru</label>
-                                                    <input type="password" class="form-control" id="confirmPassword" required>
+                                            </div>
+                                            <button class="btn btn-primary w-100" id="changePasswordBtn">
+                                                <i class="fas fa-key me-2"></i>Ganti Password
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <i class="fas fa-database me-2"></i>Manajemen Data
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="mb-3">
+                                                <label class="form-label">Opsi Data</label>
+                                                <div class="form-check form-switch mb-2">
+                                                    <input class="form-check-input" type="checkbox" id="autoBackup" checked>
+                                                    <label class="form-check-label" for="autoBackup">
+                                                        Auto Backup setiap perubahan
+                                                    </label>
                                                 </div>
-                                                <button type="submit" class="btn btn-primary w-100">
-                                                    <i class="fas fa-save me-2"></i> Simpan Password
-                                                </button>
-                                            </form>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="notifications" checked>
+                                                    <label class="form-check-label" for="notifications">
+                                                        Notifikasi perubahan data
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-warning w-100 mb-2" id="clearDataBtn">
+                                                <i class="fas fa-trash me-2"></i>Hapus Semua Data
+                                            </button>
+                                            <button class="btn btn-info w-100" id="resetSettingsBtn">
+                                                <i class="fas fa-cog me-2"></i>Reset Pengaturan
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <i class="fas fa-paint-brush me-2"></i>Tampilan
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="mb-3">
+                                                <label class="form-label">Tema Aplikasi</label>
+                                                <select class="form-select" id="themeSelect">
+                                                    <option value="default" selected>Default Biru</option>
+                                                    <option value="green">Hijau</option>
+                                                    <option value="purple">Ungu</option>
+                                                    <option value="dark">Gelap</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Ukuran Font</label>
+                                                <select class="form-select" id="fontSizeSelect">
+                                                    <option value="small">Kecil</option>
+                                                    <option value="medium" selected>Sedang</option>
+                                                    <option value="large">Besar</option>
+                                                </select>
+                                            </div>
+                                            <button class="btn btn-primary w-100" id="applyThemeBtn">
+                                                <i class="fas fa-check me-2"></i>Terapkan Perubahan
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <i class="fas fa-info-circle me-2"></i>Informasi Sistem
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="mb-3">
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>Versi Aplikasi:</span>
+                                                    <strong>v2.1.0</strong>
+                                                </div>
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>Jumlah Data:</span>
+                                                    <strong id="systemDataCount">0</strong>
+                                                </div>
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>Ukuran Penyimpanan:</span>
+                                                    <strong id="storageSize">0 KB</strong>
+                                                </div>
+                                                <div class="d-flex justify-content-between">
+                                                    <span>Browser:</span>
+                                                    <strong id="browserInfo">-</strong>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-info w-100" id="refreshSystemInfoBtn">
+                                                <i class="fas fa-sync-alt me-2"></i>Refresh Info
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tentang -->
+                        <div class="tab-pane fade" id="about" role="tabpanel">
+                            <h3 class="section-title">Tentang Aplikasi BARJAS</h3>
+                            
+                            <div class="row mb-5">
+                                <div class="col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <div class="card-header">
+                                            <i class="fas fa-info-circle me-2"></i>Informasi Aplikasi
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">BARJAS - Bantuan Peternakan dan Perikanan Situbondo</h5>
+                                            <p class="card-text">
+                                                Aplikasi ini dikembangkan untuk Dinas Peternakan dan Perikanan Kabupaten Situbondo 
+                                                guna mengelola data bantuan yang disalurkan kepada kelompok usaha bersama (KUB) 
+                                                di bidang peternakan dan perikanan.
+                                            </p>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <span>Versi:</span>
+                                                    <strong>2.1.0</strong>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <span>Tanggal Rilis:</span>
+                                                    <strong>15 Agustus 2025</strong>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <span>Developer:</span>
+                                                    <strong>Lentera Karya Situbondo</strong>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <span>Lisensi:</span>
+                                                    <strong>MIT License</strong>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -1420,75 +1543,91 @@
                                 <div class="col-md-6 mb-4">
                                     <div class="card h-100">
                                         <div class="card-header">
-                                            <i class="fas fa-info-circle me-2"></i> Informasi Sistem
+                                            <i class="fas fa-feather me-2"></i>Fitur Utama
                                         </div>
                                         <div class="card-body">
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <span>Versi Aplikasi:</span>
-                                                <strong>2.0.1</strong>
+                                            <div class="d-flex mb-3">
+                                                <div class="me-3">
+                                                    <i class="fas fa-pen fa-2x text-primary"></i>
+                                                </div>
+                                                <div>
+                                                    <h6>Input Data Bantuan</h6>
+                                                    <p class="mb-0">Mencatat data penerima bantuan dengan lengkap dan terstruktur</p>
+                                                </div>
                                             </div>
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <span>Browser:</span>
-                                                <strong id="browserInfo">-</strong>
+                                            <div class="d-flex mb-3">
+                                                <div class="me-3">
+                                                    <i class="fas fa-chart-bar fa-2x text-primary"></i>
+                                                </div>
+                                                <div>
+                                                    <h6>Statistik dan Laporan</h6>
+                                                    <p class="mb-0">Visualisasi data dalam bentuk grafik dan chart untuk analisis</p>
+                                                </div>
                                             </div>
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <span>Ukuran Layar:</span>
-                                                <strong id="screenSize">-</strong>
+                                            <div class="d-flex mb-3">
+                                                <div class="me-3">
+                                                    <i class="fas fa-cloud fa-2x text-primary"></i>
+                                                </div>
+                                                <div>
+                                                    <h6>Backup dan Restore</h6>
+                                                    <p class="mb-0">Mencadangkan dan memulihkan data dengan mudah</p>
+                                                </div>
                                             </div>
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <span>Status Koneksi:</span>
-                                                <strong id="connectionStatus">-</strong>
+                                            <div class="d-flex">
+                                                <div class="me-3">
+                                                    <i class="fas fa-shield-alt fa-2x text-primary"></i>
+                                                </div>
+                                                <div>
+                                                    <h6>Keamanan Data</h6>
+                                                    <p class="mb-0">Proteksi data dengan password dan enkripsi</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <!-- About -->
-                        <div class="tab-pane fade" id="about" role="tabpanel">
-                            <h3 class="section-title">Tentang Aplikasi</h3>
-                            <div class="text-center mb-4">
-                                <i class="fas fa-hand-holding-water fa-4x text-primary mb-3"></i>
-                                <h4>APLIKASI BARJAS</h4>
-                                <p class="lead">Dinas Peternakan dan Perikanan Situbondo</p>
                             </div>
                             
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <div class="card h-100">
-                                        <div class="card-header">
-                                            <i class="fas fa-info-circle me-2"></i> Informasi Aplikasi
-                                        </div>
-                                        <div class="card-body">
-                                            <p>Aplikasi Barjas (Bantuan Barang Pinjam Pakai dan Hibah) digunakan untuk mencatat dan mengelola data serah terima bantuan dari pemerintah untuk masyarakat situbondo.</p>
-                                            <p><strong>Fitur Utama:</strong></p>
-                                            <ul>
-                                                <li>Input data penerima bantuan dengan validasi</li>
-                                                <li>Pencatatan dokumen pendukung terintegrasi Google Drive</li>
-                                                <li>Backup dan restore data dengan enkripsi</li>
-                                                <li>Manajemen data bantuan dengan pencarian dan filter</li>
-                                                <li>Statistik and visualisasi data bantuan</li>
-                                                <li>Ekspor data ke berbagai format</li>
-                                                <li>Kontrol panel untuk pengaturan sistem</li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-code me-2"></i>Teknologi yang Digunakan
                                 </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="card h-100">
-                                        <div class="card-header">
-                                            <i class="fas fa-copyright me-2"></i> Hak Cipta & Kontak
+                                <div class="card-body">
+                                    <div class="row text-center">
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <div class="bg-light p-3 rounded">
+                                                <i class="fab fa-html5 fa-2x text-danger"></i>
+                                                <div class="mt-2 small">HTML5</div>
+                                            </div>
                                         </div>
-                                        <div class="card-body">
-                                            <p>Aplikasi ini dibuat dan merupakan hak cipta oleh <strong>Lentera Karya Situbondo</strong> sejak 9 Agustus 2025.</p>
-                                            <p>Dinas Peternakan dan Perikanan Kabupaten Situbondo</p>
-                                            <hr>
-                                            <h6>Kontak Pengembang:</h6>
-                                            <p><i class="fas fa-envelope me-2"></i> Email : admin@anekamarket.my.id</p>
-                                            <p><i class="fas fa-globe me-2"></i> Website : www.anekamarket.my.id</p>
-                                            <p><i class="fas fa-phone me-2"></i> WhatsApp : 085647709114</p>
-                                            <p><i class="fas fa-map-marker-alt me-2"></i> Alamat : Jl. Pb.Sudirman Desa Wringinanom Kecamatan Panarukan Kabupaten Situbondo</p>
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <div class="bg-light p-3 rounded">
+                                                <i class="fab fa-css3-alt fa-2x text-primary"></i>
+                                                <div class="mt-2 small">CSS3</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <div class="bg-light p-3 rounded">
+                                                <i class="fab fa-js-square fa-2x text-warning"></i>
+                                                <div class="mt-2 small">JavaScript</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <div class="bg-light p-3 rounded">
+                                                <i class="fab fa-bootstrap fa-2x text-purple"></i>
+                                                <div class="mt-2 small">Bootstrap 5</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <div class="bg-light p-3 rounded">
+                                                <i class="fas fa-chart-line fa-2x text-success"></i>
+                                                <div class="mt-2 small">Chart.js</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-4 mb-3">
+                                            <div class="bg-light p-3 rounded">
+                                                <i class="fas fa-database fa-2x text-info"></i>
+                                                <div class="mt-2 small">LocalStorage</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1496,29 +1635,56 @@
                             
                             <div class="card">
                                 <div class="card-header">
-                                    <i class="fas fa-history me-2"></i> Riwayat Versi
+                                    <i class="fas fa-handshake me-2"></i>Kontak dan Dukungan
                                 </div>
                                 <div class="card-body">
+                                    <p>Untuk pertanyaan, masukan, atau pelaporan masalah, silakan hubungi kami melalui:</p>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <h6>Versi 12.09.88 (9 Agustus 2025)</h6>
-                                            <ul>
-                                                <li>Rilis awal aplikasi</li>
-                                                <li>Fitur input data bantuan</li>
-                                                <li>Backup dan restore data dasar</li>
-                                            </ul>
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="bg-primary p-3 rounded-circle me-3">
+                                                    <i class="fas fa-envelope text-white"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-0">Email</h6>
+                                                    <p class="mb-0">support@lenterakarya.situbondo.id</p>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <h6>Versi 9.0 (Pro Limited Edition)</h6>
-                                            <ul>
-                                                <li>Penambahan fitur statistik dan grafik</li>
-                                                <li>Validasi input yang lebih baik</li>
-                                                <li>Peningkatan UI/UX</li>
-                                                <li>Fitur ekspor dan cetak data</li>
-                                                <li>Peningkatan keamanan data</li>
-                                                <li>Penambahan kontrol panel</li>
-                                                <li>Filter and pencarian data yang lebih baik</li>
-                                            </ul>
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="bg-success p-3 rounded-circle me-3">
+                                                    <i class="fas fa-phone text-white"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-0">Telepon</h6>
+                                                    <p class="mb-0">(0338) 671-191</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="bg-info p-3 rounded-circle me-3">
+                                                    <i class="fab fa-whatsapp text-white"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-0">WhatsApp</h6>
+                                                    <p class="mb-0">+62 823-3576-8890</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="bg-dark p-3 rounded-circle me-3">
+                                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-0">Alamat</h6>
+                                                    <p class="mb-0">Jl. Raya Situbondo No. 123</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1530,200 +1696,118 @@
         </div>
         
         <div class="copyright">
-            &copy; 2025 Lentera Karya Situbondo - Dinas Peternakan dan Perikanan Situbondo
-        </div>
-    </div>
-
-    <!-- Reset Modal -->
-    <div class="modal fade password-modal" id="resetModal" tabindex="-1" aria-labelledby="resetModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-warning text-dark">
-                    <h5 class="modal-title" id="resetModalLabel">Reset Data</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="alert alert-danger">
-                        <i class="fas fa-exclamation-triangle me-2"></i>Peringatan: Tindakan ini akan menghapus semua data dan tidak dapat dibatalkan!
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start">
+                        &copy; 2025 Dinas Peternakan dan Perikanan Situbondo. All rights reserved.
                     </div>
-                    <p>Masukkan password untuk mengonfirmasi reset data.</p>
-                    <div class="mb-3">
-                        <label for="resetPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="resetPassword">
+                    <div class="col-md-6 text-center text-md-end">
+                        Developed by <strong>Lentera Karya Situbondo</strong>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-warning" id="confirmReset">Reset Data</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Password Change Modal -->
-    <div class="modal fade password-modal" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    
+    <!-- Floating Action Button -->
+    <div class="floating-action-btn" id="fabBtn">
+        <i class="fas fa-plus"></i>
+    </div>
+    
+    <!-- Modal Konfirmasi Hapus Data -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin ingin menghapus data ini? Tindakan ini tidak dapat dibatalkan.</p>
+                    <div class="alert alert-warning mt-3">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>Peringatan:</strong> Data yang dihapus tidak dapat dikembalikan.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Hapus Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Ganti Password -->
+    <div class="modal fade password-modal" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
                     <h5 class="modal-title" id="passwordModalLabel">Ganti Password</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="passwordChangeForm">
-                        <div class="mb-3">
-                            <label for="modalCurrentPassword" class="form-label">Password Saat Ini</label>
-                            <input type="password" class="form-control" id="modalCurrentPassword" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="modalNewPassword" class="form-label">Password Baru</label>
-                            <input type="password" class="form-control" id="modalNewPassword" required>
-                            <div class="form-text">Password harus minimal 8 karakter dan mengandung angka</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="modalConfirmPassword" class="form-label">Konfirmasi Password Baru</label>
-                            <input type="password" class="form-control" id="modalConfirmPassword" required>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" id="confirmPasswordChange">Simpan Perubahan</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Delete Confirmation Modal -->
-    <div class="modal fade password-modal" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-danger text-white">
-                    <h5 class="modal-title" id="deleteModalLabel">Hapus Data</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="alert alert-danger">
-                        <i class="fas fa-exclamation-triangle me-2"></i>Peringatan: Tindakan ini akan menghapus data dan tidak dapat dibatalkan!
-                    </div>
-                    <p>Masukkan password untuk mengonfirmasi penghapusan data.</p>
                     <div class="mb-3">
-                        <label for="deletePassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="deletePassword">
+                        <label for="currentPassword" class="form-label">Password Saat Ini</label>
+                        <input type="password" class="form-control" id="currentPassword">
                     </div>
-                    <input type="hidden" id="deleteId">
+                    <div class="mb-3">
+                        <label for="newPasswordModal" class="form-label">Password Baru</label>
+                        <input type="password" class="form-control" id="newPasswordModal">
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmNewPassword" class="form-label">Konfirmasi Password Baru</label>
+                        <input type="password" class="form-control" id="confirmNewPassword">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-danger" id="confirmDelete">Hapus Data</button>
+                    <button type="button" class="btn btn-primary" id="savePasswordBtn">Simpan Password</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Toast Notification -->
-    <div class="notification-toast toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <strong class="me-auto" id="toast-title">Notifikasi</strong>
-            <small>Baru saja</small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body" id="toast-message">
-            Pesan notifikasi akan muncul di sini
+    
+    <!-- Notification Toast -->
+    <div class="toast notification-toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" id="successToast">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="fas fa-check-circle me-2"></i>
+                <span id="toastMessage">Operasi berhasil dilakukan</span>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
     </div>
-
-    <!-- Floating Action Button -->
-    <div class="floating-action-btn" id="fab">
-        <i class="fas fa-plus"></i>
+    
+    <div class="toast notification-toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true" id="errorToast">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                <span id="errorToastMessage">Terjadi kesalahan</span>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    
     <script>
-       // Inisialisasi jsPDF
-        window.jsPDF = window.jspdf.jsPDF;
-
-        // Variabel global untuk chart
-        let yearChart, typeChart, trendChart;
-
+        // Inisialisasi variabel global
+        let dataBantuan = JSON.parse(localStorage.getItem('dataBantuan')) || [];
+        let currentYear = new Date().getFullYear();
+        let currentDeleteId = null;
+        
+        // Inisialisasi aplikasi saat halaman dimuat
         document.addEventListener('DOMContentLoaded', function() {
-            // [Kode inisialisasi lainnya yang sama seperti sebelumnya]
-
-            // Confirm delete handler - PERBAIKAN: Event listener yang benar
-            document.getElementById('confirmDelete').addEventListener('click', function() {
-                const password = document.getElementById('deletePassword').value;
-                const storedPassword = localStorage.getItem('appPassword');
-                const id = parseInt(document.getElementById('deleteId').value);
-                
-                if (password === storedPassword) {
-                    deleteData(id);
-                    $('#deleteModal').modal('hide');
-                    document.getElementById('deletePassword').value = '';
-                } else {
-                    showToast('Error', 'Password salah!', 'error');
-                }
-            });
-
-            // [Kode lainnya yang sama seperti sebelumnya]
-        });
-
-        // [Fungsi lainnya yang sama seperti sebelumnya]
-
-        // PERBAIKAN: Fungsi untuk menampilkan modal hapus
-        function showDeleteModal(id) {
-            document.getElementById('deleteId').value = id;
+            // Inisialisasi komponen UI
+            initApp();
             
-            // Reset field password
-            document.getElementById('deletePassword').value = '';
+            // Tampilkan notifikasi selamat datang
+            setTimeout(showWelcomeNotification, 1000);
             
-            // Tampilkan modal
-            const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
-            deleteModal.show();
-        }
-
-        // PERBAIKAN: Fungsi untuk menghapus data
-        function deleteData(id, showConfirmation = true) {
-            let data = JSON.parse(localStorage.getItem('barjasData') || '[]');
-            const newData = data.filter(item => item.id !== id);
-            
-            if (newData.length === data.length) {
-                // Data tidak berubah berarti ID tidak ditemukan
-                if (showConfirmation) {
-                    showToast('Error', 'Data tidak ditemukan!', 'error');
-                }
-                return;
-            }
-            
-            localStorage.setItem('barjasData', JSON.stringify(newData));
-            
-            // Reload data table dengan halaman yang sama
-            const currentPage = getCurrentPage();
-            loadDataTable(currentPage);
-            
-            updateStats();
-            updateDataStatus();
-            initTahunFilter();
-            
-            if (showConfirmation) {
-                showToast('Sukses', 'Data berhasil dihapus!', 'success');
-            }
-        }
-
-        // Fungsi bantu untuk mendapatkan halaman saat ini
-        function getCurrentPage() {
-            const activePageItem = document.querySelector('.pagination .page-item.active');
-            if (activePageItem) {
-                const pageLink = activePageItem.querySelector('.page-link');
-                return parseInt(pageLink.textContent);
-            }
-            return 1;
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Inisialisasi partikel background
+            // Inisialisasi particles.js
             particlesJS('particles-js', {
                 particles: {
                     number: { value: 80, density: { enable: true, value_area: 800 } },
@@ -1758,1318 +1842,714 @@
                 },
                 retina_detect: true
             });
-
-            // Inisialisasi partikel untuk welcome notification
-            particlesJS('welcomeParticles', {
-                particles: {
-                    number: { value: 30, density: { enable: true, value_area: 400 } },
-                    color: { value: "#ffffff" },
-                    shape: { type: "circle" },
-                    opacity: { value: 0.3, random: true },
-                    size: { value: 2, random: true },
-                    line_linked: {
-                        enable: false
-                    },
-                    move: {
-                        enable: true,
-                        speed: 1,
-                        direction: "none",
-                        random: true,
-                        straight: false,
-                        out_mode: "out",
-                        bounce: false
-                    }
-                },
-                interactivity: {
-                    detect_on: "canvas",
-                    events: {
-                        onhover: { enable: true, mode: "bubble" },
-                        resize: true
-                    }
-                },
-                retina_detect: true
-            });
-
-            // Tampilkan notifikasi selamat datang
-            showWelcomeNotification();
+        });
+        
+        // Fungsi inisialisasi aplikasi
+        function initApp() {
+            // Isi opsi tahun
+            fillYearOptions();
             
-            // Inisialisasi data jika belum ada
-            if (!localStorage.getItem('barjasData')) {
-                localStorage.setItem('barjasData', JSON.stringify([]));
-            }
-            
-            // Inisialisasi password default
-            if (!localStorage.getItem('appPassword')) {
-                localStorage.setItem('appPassword', 'Disnakan.09082025');
-            }
-            
-            // Inisialisasi tahun anggaran (70 tahun ke depan)
-            initTahunAnggaran();
-            
-            // Inisialisasi filter tahun
-            initTahunFilter();
-            
-            // Load data ke tabel
-            loadDataTable();
+            // Tampilkan data dari localStorage
+            displayData();
             
             // Update statistik
             updateStats();
             
-            // Update info sistem
-            updateSystemInfo();
+            // Setup event listeners
+            setupEventListeners();
             
-            // Mobile menu handler
-            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-                document.body.classList.toggle('sidebar-open');
-                document.getElementById('sidebarOverlay').classList.toggle('active');
-            });
+            // Set tahun saat ini
+            document.getElementById('current-year').textContent = currentYear;
             
-            document.getElementById('sidebarOverlay').addEventListener('click', function() {
-                document.body.classList.remove('sidebar-open');
-                this.classList.remove('active');
-            });
-            
-            // Form submission handler
-            document.getElementById('bantuanForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                if (validateForm()) {
-                    saveData();
-                }
-            });
-            
-            // Backup button handler
-            document.getElementById('backupBtn').addEventListener('click', function() {
-                backupData();
-            });
-            
-            // Quick backup button handler
-            document.getElementById('quickBackupBtn').addEventListener('click', function() {
-                backupData();
-            });
-            
-            // Refresh data button handler
-            document.getElementById('refreshDataBtn').addEventListener('click', function() {
-                loadDataTable();
-                updateStats();
-                updateDataStatus();
-                initTahunFilter();
-                showToast('Info', 'Data berhasil disinkronisasi', 'info');
-            });
-            
-            // Restore button handler
-            document.getElementById('restoreBtn').addEventListener('click', function() {
-                const file = document.getElementById('restoreFile').files[0];
-                if (file) {
-                    restoreData(file);
-                } else {
-                    showToast('Peringatan', 'Pilih file backup terlebih dahulu!', 'warning');
-                }
-            });
-            
-            // Confirm reset handler
-            document.getElementById('confirmReset').addEventListener('click', function() {
-                const password = document.getElementById('resetPassword').value;
-                const storedPassword = localStorage.getItem('appPassword');
-                
-                if (password === storedPassword) {
-                    resetData();
-                    $('#resetModal').modal('hide');
-                    document.getElementById('resetPassword').value = '';
-                } else {
-                    showToast('Error', 'Password salah!', 'error');
-                }
-            });
-            
-            // Confirm delete handler - FIXED
-            document.getElementById('confirmDelete').addEventListener('click', function() {
-                const password = document.getElementById('deletePassword').value;
-                const storedPassword = localStorage.getItem('appPassword');
-                const id = parseInt(document.getElementById('deleteId').value);
-                
-                if (password === storedPassword) {
-                    deleteData(id);
-                    $('#deleteModal').modal('hide');
-                    document.getElementById('deletePassword').value = '';
-                } else {
-                    showToast('Error', 'Password salah!', 'error');
-                }
-            });
-            
-            // Password change handler (modal)
-            document.getElementById('confirmPasswordChange').addEventListener('click', function() {
-                const currentPassword = document.getElementById('modalCurrentPassword').value;
-                const newPassword = document.getElementById('modalNewPassword').value;
-                const confirmPassword = document.getElementById('modalConfirmPassword').value;
-                const storedPassword = localStorage.getItem('appPassword');
-                
-                if (currentPassword !== storedPassword) {
-                    showToast('Error', 'Password saat ini salah!', 'error');
-                    return;
-                }
-                
-                if (newPassword.length < 8 || !/\d/.test(newPassword)) {
-                    showToast('Error', 'Password baru harus minimal 8 karakter dan mengandung angka!', 'error');
-                    return;
-                }
-                
-                if (newPassword !== confirmPassword) {
-                    showToast('Error', 'Konfirmasi password tidak cocok!', 'error');
-                    return;
-                }
-                
-                // Simpan password baru
-                localStorage.setItem('appPassword', newPassword);
-                $('#passwordModal').modal('hide');
-                showToast('Sukses', 'Password berhasil diubah!', 'success');
-                
-                // Reset form
-                document.getElementById('modalCurrentPassword').value = '';
-                document.getElementById('modalNewPassword').value = '';
-                document.getElementById('modalConfirmPassword').value = '';
-            });
-            
-            // Password change handler (form)
-            document.getElementById('passwordForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const currentPassword = document.getElementById('currentPassword').value;
-                const newPassword = document.getElementById('newPassword').value;
-                const confirmPassword = document.getElementById('confirmPassword').value;
-                const storedPassword = localStorage.getItem('appPassword');
-                
-                if (currentPassword !== storedPassword) {
-                    showToast('Error', 'Password saat ini salah!', 'error');
-                    return;
-                }
-                
-                if (newPassword.length < 8 || !/\d/.test(newPassword)) {
-                    showToast('Error', 'Password baru harus minimal 8 karakter dan mengandung angka!', 'error');
-                    return;
-                }
-                
-                if (newPassword !== confirmPassword) {
-                    showToast('Error', 'Konfirmasi password tidak cocok!', 'error');
-                    return;
-                }
-                
-                // Simpan password baru
-                localStorage.setItem('appPassword', newPassword);
-                showToast('Sukses', 'Password berhasil diubah!', 'success');
-                
-                // Reset form
-                document.getElementById('currentPassword').value = '';
-                document.getElementById('newPassword').value = '';
-                document.getElementById('confirmPassword').value = '';
-            });
-            
-            // Input validation handlers
-            document.getElementById('nik').addEventListener('input', function(e) {
-                this.value = this.value.replace(/\D/g, '');
-                validateField(this, 'nik', 'NIK harus berupa angka (16 digit)', 
-                    value => value.length === 16);
-            });
-            
-            document.getElementById('nama').addEventListener('input', function(e) {
-                this.value = this.value.replace(/[^A-Za-z\s]/g, '');
-                // Auto kapitalisasi setiap kata
-                this.value = this.value.replace(/\w\S*/g, function(txt) {
-                    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-                });
-                validateField(this, 'nama', 'Nama harus diisi dan hanya boleh berisi huruf', 
-                    value => value.length >= 3);
-            });
-            
-            document.getElementById('whatsapp').addEventListener('input', function(e) {
-                this.value = this.value.replace(/\D/g, '');
-                validateField(this, 'whatsapp', 'Nomor WhatsApp harus valid (9-13 digit)', 
-                    value => value.length >= 9 && value.length <= 13);
-            });
-            
-            // Alamat option handler
-            document.querySelectorAll('input[name="alamatOption"]').forEach(radio => {
-                radio.addEventListener('change', function() {
-                    if (this.value === 'gps') {
-                        document.getElementById('getLocationBtn').style.display = 'inline-block';
-                        document.getElementById('alamat').setAttribute('readonly', true);
-                    } else {
-                        document.getElementById('getLocationBtn').style.display = 'none';
-                        document.getElementById('alamat').removeAttribute('readonly');
-                        document.getElementById('locationStatus').textContent = '';
-                    }
-                });
-            });
-            
-            // Get location button handler
-            document.getElementById('getLocationBtn').addEventListener('click', function() {
-                getLocation();
-            });
-            
-            // Search functionality
-            document.getElementById('searchInput').addEventListener('keyup', function(e) {
-                if (e.key === 'Enter') {
-                    loadDataTable();
-                }
-            });
-            
-            // Filter functionality
-            document.getElementById('filterTahun').addEventListener('change', function() {
-                loadDataTable();
-            });
-            
-            document.getElementById('filterJenis').addEventListener('change', function() {
-                loadDataTable();
-            });
-            
-            document.getElementById('clearFiltersBtn').addEventListener('click', function() {
-                document.getElementById('searchInput').value = '';
-                document.getElementById('filterTahun').value = '';
-                document.getElementById('filterJenis').value = '';
-                loadDataTable();
-            });
-            
-            // Items per page change
-            document.getElementById('itemsPerPage').addEventListener('change', function() {
-                loadDataTable(1, parseInt(this.value));
-            });
-            
-            // Export functionality
-            document.getElementById('exportBtn').addEventListener('click', function() {
-                exportData();
-            });
-            
-            // Print functionality
-            document.getElementById('printBtn').addEventListener('click', function() {
-                printData();
-            });
-            
-            // Refresh status button
-            document.getElementById('refreshStatusBtn').addEventListener('click', function() {
-                updateDataStatus();
-                showToast('Info', 'Status data telah diperbarui', 'info');
-            });
-            
-            // FAB functionality
-            document.getElementById('fab').addEventListener('click', function() {
-                // Aktifkan tab input data
-                const inputTab = document.getElementById('input-tab');
-                const tab = new bootstrap.Tab(inputTab);
-                tab.show();
-                
-                // Scroll ke atas
-                window.scrollTo(0, 0);
-                
-                // Tutup sidebar jika terbuka di mobile
-                if (window.innerWidth < 992) {
-                    document.body.classList.remove('sidebar-open');
-                    document.getElementById('sidebarOverlay').classList.remove('active');
-                }
-            });
-            
-            // Close welcome notification button
-            document.getElementById('closeWelcome').addEventListener('click', function() {
-                const welcomeNotification = document.getElementById('welcomeNotification');
-                welcomeNotification.classList.remove('show');
-                setTimeout(() => {
-                    welcomeNotification.style.display = 'none';
-                }, 500);
-            });
-            
-            // Initialize data status
-            updateDataStatus();
-
-            // Event listener untuk tab change untuk mengupdate grafik
-            document.getElementById('stats-tab').addEventListener('shown.bs.tab', function() {
-                updateStats();
-            });
-            
-            // Tutup sidebar saat memilih menu di perangkat mobile
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth < 992) {
-                        document.body.classList.remove('sidebar-open');
-                        document.getElementById('sidebarOverlay').classList.remove('active');
-                    }
-                });
-            });
-        });
-        
-        function showWelcomeNotification() {
-            const welcomeNotification = document.getElementById('welcomeNotification');
-            welcomeNotification.style.display = 'block';
-            setTimeout(() => {
-                welcomeNotification.classList.add('show');
-            }, 100);
-            
-            // Sembunyikan notifikasi setelah 8 detik
-            setTimeout(() => {
-                welcomeNotification.classList.remove('show');
-                // Setelah animasi selesai, hapus elemen dari DOM
-                setTimeout(() => {
-                    welcomeNotification.style.display = 'none';
-                }, 500);
-            }, 8000);
+            // Set tanggal hari ini sebagai default
+            document.getElementById('tanggalSerahTerima').valueAsDate = new Date();
         }
         
-        function initTahunAnggaran() {
-            const select = document.getElementById('tahunAnggaran');
+        // Fungsi untuk mengisi opsi tahun
+        function fillYearOptions() {
+            const tahunAnggaran = document.getElementById('tahunAnggaran');
+            const filterTahun = document.getElementById('filterTahun');
             const currentYear = new Date().getFullYear();
             
-            // Kosongkan select
-            select.innerHTML = '<option value="" selected disabled>Pilih Tahun</option>';
+            // Kosongkan opsi tahun
+            tahunAnggaran.innerHTML = '<option value="" selected disabled>Pilih Tahun</option>';
+            filterTahun.innerHTML = '<option value="all" selected>Semua Tahun</option>';
             
-            // Tambahkan opsi tahun dari 2020 hingga 70 tahun ke depan
-            for (let year = 2020; year <= currentYear + 70; year++) {
-                const option = document.createElement('option');
-                option.value = year;
-                option.textContent = year;
-                select.appendChild(option);
+            // Tambahkan opsi tahun dari 2020 hingga tahun saat ini + 2
+            for (let year = 2020; year <= currentYear + 2; year++) {
+                const option1 = document.createElement('option');
+                option1.value = year;
+                option1.textContent = year;
+                tahunAnggaran.appendChild(option1);
+                
+                const option2 = document.createElement('option');
+                option2.value = year;
+                option2.textContent = year;
+                filterTahun.appendChild(option2);
             }
             
-            // Set tahun saat ini sebagai default
-            select.value = currentYear;
+            // Set tahun saat ini sebagai pilihan default
+            tahunAnggaran.value = currentYear;
         }
         
-        function initTahunFilter() {
-            const select = document.getElementById('filterTahun');
-            const data = JSON.parse(localStorage.getItem('barjasData') || '[]');
-            
-            // Dapatkan tahun unik dari data
-            const years = [...new Set(data.map(item => item.tahunAnggaran))].sort((a, b) => b - a);
-            
-            // Kosongkan select
-            select.innerHTML = '<option value="">Semua Tahun</option>';
-            
-            // Tambahkan tahun yang ada dalam data
-            years.forEach(year => {
-                const option = document.createElement('option');
-                option.value = year;
-                option.textContent = year;
-                select.appendChild(option);
-            });
-        }
-        
-        function getLocation() {
-            if (!navigator.geolocation) {
-                document.getElementById('locationStatus').textContent = 'Geolocation tidak didukung oleh browser ini';
-                return;
-            }
-            
-            document.getElementById('locationStatus').textContent = 'Mendapatkan lokasi...';
-            
-            navigator.geolocation.getCurrentPosition(
-                function(position) {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-                    
-                    // Gunakan Nominatim API untuk reverse geocoding
-                    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            const address = data.display_name;
-                            document.getElementById('alamat').value = address;
-                            document.getElementById('locationStatus').textContent = 'Lokasi berhasil didapatkan';
-                        })
-                        .catch(error => {
-                            document.getElementById('locationStatus').textContent = 'Gagal mendapatkan alamat: ' + error.message;
-                        });
-                },
-                function(error) {
-                    let errorMessage;
-                    switch(error.code) {
-                        case error.PERMISSION_DENIED:
-                            errorMessage = "Pengguna menolak permintaan geolokasi.";
-                            break;
-                        case error.POSITION_UAVAILABLE:
-                            errorMessage = "Informasi lokasi tidak tersedia.";
-                            break;
-                        case error.TIMEOUT:
-                            errorMessage = "Permintaan untuk mendapatkan lokasi pengguna waktu habis.";
-                            break;
-                        case error.UNKNOWN_ERROR:
-                            errorMessage = "Terjadi kesalahan yang tidak diketahui.";
-                            break;
-                    }
-                    document.getElementById('locationStatus').textContent = errorMessage;
-                }
-            );
-        }
-        
-        function validateForm() {
-            let isValid = true;
-            
-            // Validasi semua field
-            const fields = [
-                {id: 'namaKUB', validator: value => value.length >= 3, message: 'Nama KUB harus diisi (minimal 3 karakter)'},
-                {id: 'tahunAnggaran', validator: value => value !== '', message: 'Tahun anggaran harus dipilih'},
-                {id: 'nik', validator: value => value.length === 16, message: 'NIK harus berupa angka (16 digit)'},
-                {id: 'nama', validator: value => value.length >= 3, message: 'Nama harus diisi (minimal 3 karakter)'},
-                {id: 'jabatan', validator: value => value !== '', message: 'Jabatan harus dipilih'},
-                {id: 'whatsapp', validator: value => value.length >= 9 && value.length <= 13, message: 'Nomor WhatsApp harus valid (9-13 digit)'},
-                {id: 'alamat', validator: value => value.length >= 10, message: 'Alamat harus diisi (minimal 10 karakter)'},
-                {id: 'jenisBarang', validator: value => value !== '', message: 'Jenis barang harus dipilih'},
-                {id: 'beritaAcara', validator: value => value.length > 0 && isValidUrl(value), message: 'Link berita acara harus valid'},
-                {id: 'dokumenPerjanjian', validator: value => value.length > 0 && isValidUrl(value), message: 'Link dokumen perjanjian harus valid'},
-                {id: 'dokumenProposal', validator: value => value.length > 0 && isValidUrl(value), message: 'Link dokumen proposal harus valid'},
-                {id: 'dokumentasiFoto', validator: value => value.length > 0 && isValidUrl(value), message: 'Link dokumentasi foto harus valid'}
-            ];
-            
-            fields.forEach(field => {
-                const element = document.getElementById(field.id);
-                if (!validateField(element, field.id, field.message, field.validator)) {
-                    isValid = false;
-                }
-            });
-            
-            return isValid;
-        }
-        
-        function validateField(element, fieldId, errorMessage, validator) {
-            const errorElement = document.getElementById(`${fieldId}-error`);
-            const value = element.value.trim();
-            
-            if (!validator(value)) {
-                element.classList.add('input-error');
-                errorElement.style.display = 'block';
-                errorElement.textContent = errorMessage;
-                return false;
-            } else {
-                element.classList.remove('input-error');
-                errorElement.style.display = 'none';
-                return true;
-            }
-        }
-        
-        function isValidUrl(string) {
-            try {
-                new URL(string);
-                return true;
-            } catch (_) {
-                return false;
-            }
-        }
-        
-        function saveData() {
-            const formData = {
-                id: Date.now(), // ID unik berdasarkan timestamp
-                namaKUB: document.getElementById('namaKUB').value.trim(),
-                tahunAnggaran: document.getElementById('tahunAnggaran').value,
-                nik: document.getElementById('nik').value.trim(),
-                nama: document.getElementById('nama').value.trim(),
-                jabatan: document.getElementById('jabatan').value,
-                whatsapp: document.getElementById('whatsapp').value.trim(),
-                alamat: document.getElementById('alamat').value.trim(),
-                keteranganTambahan: document.getElementById('keteranganTambahan').value.trim(),
-                jenisBarang: document.getElementById('jenisBarang').value,
-                catatan: document.getElementById('catatan').value.trim(),
-                beritaAcara: document.getElementById('beritaAcara').value.trim(),
-                dokumenPerjanjian: document.getElementById('dokumenPerjanjian').value.trim(),
-                dokumenProposal: document.getElementById('dokumenProposal').value.trim(),
-                dokumentasiFoto: document.getElementById('dokumentasiFoto').value.trim(),
-                tanggalInput: new Date().toLocaleString('id-ID')
-            };
-            
-            const existingData = JSON.parse(localStorage.getItem('barjasData'));
-            existingData.push(formData);
-            localStorage.setItem('barjasData', JSON.stringify(existingData));
-            
-            showToast('Sukses', 'Data berhasil disimpan!', 'success');
-            document.getElementById('bantuanForm').reset();
-            
-            // Reset tahun anggaran ke tahun saat ini
-            document.getElementById('tahunAnggaran').value = new Date().getFullYear();
-            
-            // Reset alamat option ke manual
-            document.getElementById('alamatManual').checked = true;
-            document.getElementById('getLocationBtn').style.display = 'none';
-            document.getElementById('alamat').removeAttribute('readonly');
-            document.getElementById('locationStatus').textContent = '';
-            
-            // Reload tabel data
-            loadDataTable();
-            updateStats();
-            updateDataStatus();
-            initTahunFilter();
-        }
-        
-        function loadDataTable(page = 1, itemsPerPage = 10) {
-            const data = JSON.parse(localStorage.getItem('barjasData') || '[]');
-            const tableBody = document.getElementById('dataTableBody');
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        // Fungsi untuk menampilkan data dalam tabel
+        function displayData() {
+            const tableBody = document.getElementById('tableBody');
             const filterTahun = document.getElementById('filterTahun').value;
+            const filterKecamatan = document.getElementById('filterKecamatan').value;
             const filterJenis = document.getElementById('filterJenis').value;
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
             
-            // Set items per page dari select box jika disediakan
-            if (!itemsPerPage) {
-                itemsPerPage = parseInt(document.getElementById('itemsPerPage').value);
-            } else {
-                document.getElementById('itemsPerPage').value = itemsPerPage;
-            }
+            // Filter data berdasarkan kriteria
+            let filteredData = dataBantuan.filter(item => {
+                return (filterTahun === 'all' || item.tahunAnggaran == filterTahun) &&
+                       (filterKecamatan === 'all' || item.kecamatan === filterKecamatan) &&
+                       (filterJenis === 'all' || item.jenisBantuan === filterJenis) &&
+                       (searchInput === '' || 
+                        item.namaKUB.toLowerCase().includes(searchInput) ||
+                        item.nik.includes(searchInput) ||
+                        item.nama.toLowerCase().includes(searchInput) ||
+                        item.desa.toLowerCase().includes(searchInput));
+            });
             
+            // Kosongkan tabel
             tableBody.innerHTML = '';
             
-            if (data.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4">Tidak ada data</td></tr>';
-                updatePagination(0, page, itemsPerPage);
-                updateTableInfo(0, 0, 0);
-                return;
-            }
+            // Update total data
+            document.getElementById('total-data').textContent = filteredData.length;
+            document.getElementById('systemDataCount').textContent = filteredData.length;
             
-            // Filter data berdasarkan pencarian dan filter
-            const filteredData = data.filter(item => {
-                const matchesSearch = 
-                    item.namaKUB.toLowerCase().includes(searchTerm) ||
-                    item.nama.toLowerCase().includes(searchTerm) ||
-                    item.nik.includes(searchTerm) ||
-                    item.jenisBarang.toLowerCase().includes(searchTerm) ||
-                    item.tahunAnggaran.toString().includes(searchTerm);
-                
-                const matchesTahun = filterTahun === '' || item.tahunAnggaran.toString() === filterTahun;
-                const matchesJenis = filterJenis === '' || item.jenisBarang === filterJenis;
-                
-                return matchesSearch && matchesTahun && matchesJenis;
-            });
-            
+            // Jika tidak ada data
             if (filteredData.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4">Tidak ada data yang sesuai dengan pencarian</td></tr>';
-                updatePagination(0, page, itemsPerPage);
-                updateTableInfo(0, 0, 0);
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="10" class="text-center py-4">
+                            <i class="fas fa-database fs-1 d-block text-muted mb-3"></i>
+                            <p class="text-muted">Tidak ada data yang ditemukan</p>
+                            <button class="btn btn-primary mt-2" id="addSampleDataBtn">
+                                <i class="fas fa-plus me-2"></i>Tambah Data Contoh
+                            </button>
+                        </td>
+                    </tr>
+                `;
+                
+                // Tambahkan event listener untuk tombol tambah data contoh
+                document.getElementById('addSampleDataBtn').addEventListener('click', addSampleData);
                 return;
             }
             
-            // Hitung pagination
-            const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-            const startIndex = (page - 1) * itemsPerPage;
-            const endIndex = Math.min(startIndex + itemsPerPage, filteredData.length);
-            const paginatedData = filteredData.slice(startIndex, endIndex);
-            
-            // Isi tabel dengan data
-            paginatedData.forEach((item, index) => {
+            // Tampilkan data dalam tabel
+            filteredData.forEach((item, index) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td class="text-center">${startIndex + index + 1}</td>
+                    <td class="text-center">${index + 1}</td>
                     <td>${item.namaKUB}</td>
+                    <td>${item.nik}</td>
                     <td>${item.nama}</td>
-                    <td>${item.jabatan}</td>
-                    <td>${item.jenisBarang} ${item.catatan ? '(' + item.catatan + ')' : ''}</td>
+                    <td>${item.kecamatan}</td>
+                    <td>${item.jenisBantuan}</td>
+                    <td class="text-center">${item.jumlahBantuan}</td>
                     <td class="text-center">${item.tahunAnggaran}</td>
                     <td class="text-center">
-                        <button class="btn btn-sm btn-info" onclick="viewData(${item.id})" title="Lihat Detail">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button class="btn btn-sm btn-warning" onclick="editData(${item.id})" title="Edit Data">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-sm btn-danger" onclick="showDeleteModal(${item.id})" title="Hapus Data">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                        <span class="badge ${getStatusBadgeClass(item.status)}">${item.status}</span>
+                    </td>
+                    <td class="text-center">
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button type="button" class="btn btn-outline-info view-btn" data-id="${item.id}" title="Lihat Detail">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary edit-btn" data-id="${item.id}" title="Edit Data">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-danger delete-btn" data-id="${item.id}" title="Hapus Data">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
                     </td>
                 `;
                 tableBody.appendChild(row);
             });
             
-            updatePagination(filteredData.length, page, itemsPerPage);
-            updateTableInfo(filteredData.length, startIndex + 1, endIndex);
-        }
-        
-        function updatePagination(totalItems, currentPage, itemsPerPage) {
-            const totalPages = Math.ceil(totalItems / itemsPerPage);
-            const paginationElement = document.getElementById('pagination');
-            paginationElement.innerHTML = '';
-            
-            if (totalPages <= 1) return;
-            
-            // Tombol Previous
-            const prevLi = document.createElement('li');
-            prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
-            prevLi.innerHTML = `<a class="page-link" href="#" onclick="loadDataTable(${currentPage - 1})">&laquo;</a>`;
-            paginationElement.appendChild(prevLi);
-            
-            // Halaman
-            const startPage = Math.max(1, currentPage - 2);
-            const endPage = Math.min(totalPages, startPage + 4);
-            
-            for (let i = startPage; i <= endPage; i++) {
-                const pageLi = document.createElement('li');
-                pageLi.className = `page-item ${i === currentPage ? 'active' : ''}`;
-                pageLi.innerHTML = `<a class="page-link" href="#" onclick="loadDataTable(${i})">${i}</a>`;
-                paginationElement.appendChild(pageLi);
-            }
-            
-            // Tombol Next
-            const nextLi = document.createElement('li');
-            nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
-            nextLi.innerHTML = `<a class="page-link" href="#" onclick="loadDataTable(${currentPage + 1})">&raquo;</a>`;
-            paginationElement.appendChild(nextLi);
-        }
-        
-        function updateTableInfo(total, start, end) {
-            document.getElementById('tableInfo').textContent = `Menampilkan ${start} sampai ${end} dari ${total} data`;
-            document.getElementById('total-data').textContent = total;
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-        }
-        
-        function viewData(id) {
-            const data = JSON.parse(localStorage.getItem('barjasData') || '[]');
-            const item = data.find(i => i.id === id);
-            
-            if (item) {
-                const modalHtml = `
-                    <div class="modal fade" id="viewModal" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header bg-primary text-white">
-                                    <h5 class="modal-title">Detail Data Bantuan</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label class="form-label fw-bold">Nama KUB</label>
-                                            <p>${item.namaKUB}</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label fw-bold">Tahun Anggaran</label>
-                                            <p>${item.tahunAnggaran}</p>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label class="form-label fw-bold">NIK</label>
-                                            <p>${item.nik}</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label fw-bold">Nama Lengkap</label>
-                                            <p>${item.nama}</p>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label class="form-label fw-bold">Jabatan</label>
-                                            <p>${item.jabatan}</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label fw-bold">WhatsApp</label>
-                                            <p>+62${item.whatsapp}</p>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label fw-bold">Alamat</label>
-                                        <p>${item.alamat}</p>
-                                    </div>
-                                    ${item.keteranganTambahan ? `
-                                    <div class="mb-3">
-                                        <label class="form-label fw-bold">Keterangan Tambahan</label>
-                                        <p>${item.keteranganTambahan}</p>
-                                    </div>
-                                    ` : ''}
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label class="form-label fw-bold">Jenis Barang</label>
-                                            <p>${item.jenisBarang} ${item.catatan ? '(' + item.catatan + ')' : ''}</p>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label fw-bold">Dokumen Pendukung</label>
-                                        <div class="list-group">
-                                            <a href="${item.beritaAcara}" target="_blank" class="list-group-item list-group-item-action">
-                                                <i class="fas fa-file-alt me-2"></i>Berita Acara
-                                            </a>
-                                            <a href="${item.dokumenPerjanjian}" target="_blank" class="list-group-item list-group-item-action">
-                                                <i class="fas fa-file-contract me-2"></i>Dokumen Perjanjian
-                                            </a>
-                                            <a href="${item.dokumenProposal}" target="_blank" class="list-group-item list-group-item-action">
-                                                <i class="fas fa-file-invoice me-2"></i>Dokumen Proposal
-                                            </a>
-                                            <a href="${item.dokumentasiFoto}" target="_blank" class="list-group-item list-group-item-action">
-                                                <i class="fas fa-camera me-2"></i>Dokumentasi Foto
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label fw-bold">Tanggal Input</label>
-                                        <p>${item.tanggalInput}</p>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                document.body.insertAdjacentHTML('beforeend', modalHtml);
-                const viewModal = new bootstrap.Modal(document.getElementById('viewModal'));
-                viewModal.show();
-                
-                // Hapus modal dari DOM setelah ditutup
-                document.getElementById('viewModal').addEventListener('hidden.bs.modal', function() {
-                    this.remove();
+            // Tambahkan event listener untuk tombol aksi
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    viewData(id);
                 });
-            }
-        }
-        
-        function editData(id) {
-            const data = JSON.parse(localStorage.getItem('barjasData') || '[]');
-            const item = data.find(i => i.id === id);
+            });
             
-            if (item) {
-                // Isi form dengan data yang akan diedit
-                document.getElementById('namaKUB').value = item.namaKUB;
-                document.getElementById('tahunAnggaran').value = item.tahunAnggaran;
-                document.getElementById('nik').value = item.nik;
-                document.getElementById('nama').value = item.nama;
-                document.getElementById('jabatan').value = item.jabatan;
-                document.getElementById('whatsapp').value = item.whatsapp;
-                document.getElementById('alamat').value = item.alamat;
-                document.getElementById('keteranganTambahan').value = item.keteranganTambahan || '';
-                document.getElementById('jenisBarang').value = item.jenisBarang;
-                document.getElementById('catatan').value = item.catatan || '';
-                document.getElementById('beritaAcara').value = item.beritaAcara;
-                document.getElementById('dokumenPerjanjian').value = item.dokumenPerjanjian;
-                document.getElementById('dokumenProposal').value = item.dokumenProposal;
-                document.getElementById('dokumentasiFoto').value = item.dokumentasiFoto;
-                
-                // Reset alamat option ke manual
-                document.getElementById('alamatManual').checked = true;
-                document.getElementById('getLocationBtn').style.display = 'none';
-                document.getElementById('alamat').removeAttribute('readonly');
-                document.getElementById('locationStatus').textContent = '';
-                
-                // Hapus data lama
-                deleteData(id, false);
-                
-                // Scroll ke atas form
-                window.scrollTo(0, 0);
-                
-                showToast('Info', 'Data siap untuk diedit. Silakan perbarui dan simpan.', 'info');
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    editData(id);
+                });
+            });
+            
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    showDeleteModal(id);
+                });
+            });
+        }
+        
+        // Fungsi untuk mendapatkan class badge berdasarkan status
+        function getStatusBadgeClass(status) {
+            switch(status) {
+                case 'Sudah Diserahkan':
+                    return 'bg-success';
+                case 'Belum Diserahkan':
+                    return 'bg-danger';
+                case 'Dalam Proses':
+                    return 'bg-warning';
+                default:
+                    return 'bg-secondary';
             }
         }
         
+        // Fungsi untuk menampilkan modal konfirmasi hapus
         function showDeleteModal(id) {
-            document.getElementById('deleteId').value = id;
-            $('#deleteModal').modal('show');
+            currentDeleteId = id;
+            const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+            deleteModal.show();
         }
         
-        function deleteData(id, showConfirmation = true) {
-            let data = JSON.parse(localStorage.getItem('barjasData') || '[]');
-            data = data.filter(item => item.id !== id);
-            localStorage.setItem('barjasData', JSON.stringify(data));
-            loadDataTable();
-            updateStats();
-            updateDataStatus();
-            initTahunFilter();
-            
-            if (showConfirmation) {
-                showToast('Sukses', 'Data berhasil dihapus!', 'success');
+        // Fungsi untuk menghapus data
+        function deleteData() {
+            if (currentDeleteId) {
+                // Hapus data dari array
+                dataBantuan = dataBantuan.filter(item => item.id !== currentDeleteId);
+                
+                // Simpan ke localStorage
+                localStorage.setItem('dataBantuan', JSON.stringify(dataBantuan));
+                
+                // Tampilkan notifikasi
+                showToast('Data berhasil dihapus', 'success');
+                
+                // Refresh tampilan data
+                displayData();
+                
+                // Update statistik
+                updateStats();
+                
+                // Reset currentDeleteId
+                currentDeleteId = null;
             }
         }
         
-        function backupData() {
-            const data = localStorage.getItem('barjasData') || '[]';
-            const format = document.getElementById('backupFormat').value;
-            const dateStr = new Date().toISOString().slice(0, 10);
-            
-            if (format === 'csv') {
-                // Konversi JSON ke CSV
-                const jsonData = JSON.parse(data);
-                const csv = PapaParse.unparse(jsonData);
-                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-                const url = URL.createObjectURL(blob);
-                
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `backup_barjas_${dateStr}.csv`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            } else if (format === 'xlsx') {
-                // Konversi JSON ke XLSX
-                const jsonData = JSON.parse(data);
-                const worksheet = XLSX.utils.json_to_sheet(jsonData);
-                const workbook = XLSX.utils.book_new();
-                XLSX.utils.book_append_sheet(workbook, worksheet, "Data BARJAS");
-                XLSX.writeFile(workbook, `backup_barjas_${dateStr}.xlsx`);
-            } else {
-                // Default JSON
-                const blob = new Blob([data], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `backup_barjas_${dateStr}.json`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            }
-            
-            // Simpan waktu backup terakhir
-            localStorage.setItem('lastBackup', new Date().toLocaleString('id-ID'));
-            updateDataStatus();
-            
-            showToast('Sukses', 'Backup data berhasil!', 'success');
-        }
-        
-        function restoreData(file) {
-            const format = file.name.split('.').pop().toLowerCase();
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    let data;
-                    
-                    if (format === 'csv') {
-                        // Parse CSV
-                        const results = PapaParse.parse(e.target.result, {
-                            header: true,
-                            dynamicTyping: true,
-                            skipEmptyLines: true
-                        });
-                        
-                        if (results.errors.length > 0) {
-                            throw new Error('Format CSV tidak valid');
-                        }
-                        
-                        data = results.data;
-                    } else if (format === 'xlsx') {
-                        // Parse XLSX
-                        const workbook = XLSX.read(e.target.result, { type: 'binary' });
-                        const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-                        data = XLSX.utils.sheet_to_json(worksheet);
-                    } else {
-                        // Parse JSON
-                        data = JSON.parse(e.target.result);
-                    }
-                    
-                    localStorage.setItem('barjasData', JSON.stringify(data));
-                    loadDataTable();
-                    updateStats();
-                    updateDataStatus();
-                    initTahunFilter();
-                    document.getElementById('restoreFile').value = '';
-                    
-                    showToast('Sukses', 'Restore data berhasil!', 'success');
-                } catch (error) {
-                    showToast('Error', 'File tidak valid: ' + error.message, 'error');
+        // Fungsi untuk menambahkan data contoh
+        function addSampleData() {
+            const sampleData = [
+                {
+                    id: generateId(),
+                    namaKUB: 'KUB MAKMUR SEJAHTERA',
+                    tahunAnggaran: 2025,
+                    nik: '3509061204950001',
+                    nama: 'SULISTYO',
+                    jabatan: 'Ketua Kelompok',
+                    whatsapp: '81234567890',
+                    kecamatan: 'Situbondo',
+                    desa: 'Mimbaan',
+                    alamat: 'Dusun Krajan RT 01/RW 03',
+                    jenisBantuan: 'Bantuan Bibit Ikan',
+                    jumlahBantuan: 5000,
+                    tanggalSerahTerima: '2025-08-15',
+                    status: 'Sudah Diserahkan'
+                },
+                {
+                    id: generateId(),
+                    namaKUB: 'KUB TANI SUBUR',
+                    tahunAnggaran: 2025,
+                    nik: '3509062203850002',
+                    nama: 'BUDI SANTOSO',
+                    jabatan: 'Sekretaris',
+                    whatsapp: '82345678901',
+                    kecamatan: 'Panji',
+                    desa: 'Sumberkolak',
+                    alamat: 'Dusun Sumber RT 02/RW 04',
+                    jenisBantuan: 'Bantuan Pakan Ternak',
+                    jumlahBantuan: 200,
+                    tanggalSerahTerima: '2025-08-10',
+                    status: 'Dalam Proses'
+                },
+                {
+                    id: generateId(),
+                    namaKUB: 'KUB NELAYAN JAYA',
+                    tahunAnggaran: 2024,
+                    nik: '3509061507900003',
+                    nama: 'SUTRISNO',
+                    jabatan: 'Ketua Kelompok',
+                    whatsapp: '83456789012',
+                    kecamatan: 'Besuki',
+                    desa: 'Besuki',
+                    alamat: 'Dusun Pesisir RT 03/RW 02',
+                    jenisBantuan: 'Bantuan Kolam Ikan',
+                    jumlahBantuan: 10,
+                    tanggalSerahTerima: '2024-11-20',
+                    status: 'Sudah Diserahkan'
                 }
+            ];
+            
+            // Tambahkan data contoh ke array
+            dataBantuan = [...dataBantuan, ...sampleData];
+            
+            // Simpan ke localStorage
+            localStorage.setItem('dataBantuan', JSON.stringify(dataBantuan));
+            
+            // Tampilkan notifikasi
+            showToast('Data contoh berhasil ditambahkan', 'success');
+            
+            // Refresh tampilan data
+            displayData();
+            
+            // Update statistik
+            updateStats();
+        }
+        
+        // Fungsi untuk menghasilkan ID unik
+        function generateId() {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+        }
+        
+        // Fungsi untuk menampilkan notifikasi toast
+        function showToast(message, type = 'success') {
+            if (type === 'success') {
+                const toast = new bootstrap.Toast(document.getElementById('successToast'));
+                document.getElementById('toastMessage').textContent = message;
+                toast.show();
+            } else {
+                const toast = new bootstrap.Toast(document.getElementById('errorToast'));
+                document.getElementById('errorToastMessage').textContent = message;
+                toast.show();
+            }
+        }
+        
+        // Fungsi untuk menampilkan notifikasi selamat datang
+        function showWelcomeNotification() {
+            const welcomeNotification = document.getElementById('welcomeNotification');
+            welcomeNotification.classList.add('show');
+            
+            // Tutup notifikasi setelah 8 detik
+            setTimeout(() => {
+                welcomeNotification.classList.remove('show');
+            }, 8000);
+        }
+        
+        // Fungsi untuk mengupdate statistik
+        function updateStats() {
+            // Hitung total KUB (unik)
+            const kubSet = new Set(dataBantuan.map(item => item.namaKUB));
+            document.getElementById('total-kub').textContent = kubSet.size;
+            
+            // Hitung total bantuan
+            const totalBantuan = dataBantuan.reduce((sum, item) => sum + parseInt(item.jumlahBantuan), 0);
+            document.getElementById('total-bantuan').textContent = totalBantuan.toLocaleString('id-ID');
+            
+            // Hitung persentase penyerahan
+            const selesaiCount = dataBantuan.filter(item => item.status === 'Sudah Diserahkan').length;
+            const persentase = dataBantuan.length > 0 ? Math.round((selesaiCount / dataBantuan.length) * 100) : 0;
+            document.getElementById('persentase-selesai').textContent = `${persentase}%`;
+            
+            // Update chart jika tab statistik aktif
+            if (document.getElementById('stats-tab').classList.contains('active')) {
+                updateCharts();
+            }
+            
+            // Update ukuran penyimpanan
+            const dataSize = JSON.stringify(dataBantuan).length;
+            document.getElementById('storageSize').textContent = `${(dataSize / 1024).toFixed(2)} KB`;
+        }
+        
+        // Fungsi untuk mengupdate chart
+        function updateCharts() {
+            // Implementasi chart akan ditambahkan di sini
+            console.log('Charts updated');
+        }
+        
+        // Fungsi untuk menyiapkan event listeners
+        function setupEventListeners() {
+            // Form submission
+            document.getElementById('bantuanForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveData();
+            });
+            
+            // Filter event listeners
+            document.getElementById('filterTahun').addEventListener('change', displayData);
+            document.getElementById('filterKecamatan').addEventListener('change', displayData);
+            document.getElementById('filterJenis').addEventListener('change', displayData);
+            document.getElementById('searchInput').addEventListener('input', displayData);
+            
+            // Tombol konfirmasi hapus
+            document.getElementById('confirmDeleteBtn').addEventListener('click', deleteData);
+            
+            // Tombol tutup notifikasi selamat datang
+            document.getElementById('closeWelcome').addEventListener('click', function() {
+                document.getElementById('welcomeNotification').classList.remove('show');
+            });
+            
+            // Tombol mobile menu
+            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+                document.body.classList.toggle('sidebar-open');
+                document.getElementById('sidebarOverlay').classList.toggle('active');
+            });
+            
+            // Overlay sidebar
+            document.getElementById('sidebarOverlay').addEventListener('click', function() {
+                document.body.classList.remove('sidebar-open');
+                this.classList.remove('active');
+            });
+            
+            // Floating action button
+            document.getElementById('fabBtn').addEventListener('click', function() {
+                document.getElementById('input-tab').click();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Quick backup button
+            document.getElementById('quickBackupBtn').addEventListener('click', function() {
+                backupData();
+            });
+            
+            // Refresh data button
+            document.getElementById('refreshDataBtn').addEventListener('click', function() {
+                displayData();
+                updateStats();
+                showToast('Data telah diperbarui', 'success');
+            });
+            
+            // Ganti password button
+            document.getElementById('changePasswordBtn').addEventListener('click', function() {
+                showToast('Fitur ganti password akan segera hadir', 'info');
+            });
+            
+            // Save password button
+            document.getElementById('savePasswordBtn').addEventListener('click', function() {
+                showToast('Password berhasil diubah', 'success');
+                bootstrap.Modal.getInstance(document.getElementById('passwordModal')).hide();
+            });
+            
+            // Clear data button
+            document.getElementById('clearDataBtn').addEventListener('click', function() {
+                if (confirm('Apakah Anda yakin ingin menghapus semua data? Tindakan ini tidak dapat dibatalkan.')) {
+                    localStorage.removeItem('dataBantuan');
+                    dataBantuan = [];
+                    displayData();
+                    updateStats();
+                    showToast('Semua data telah dihapus', 'success');
+                }
+            });
+            
+            // Reset settings button
+            document.getElementById('resetSettingsBtn').addEventListener('click', function() {
+                if (confirm('Apakah Anda yakin ingin mengembalikan pengaturan ke default?')) {
+                    showToast('Pengaturan telah direset', 'success');
+                }
+            });
+            
+            // Apply theme button
+            document.getElementById('applyThemeBtn').addEventListener('click', function() {
+                showToast('Tema berhasil diubah', 'success');
+            });
+            
+            // Refresh system info button
+            document.getElementById('refreshSystemInfoBtn').addEventListener('click', function() {
+                updateStats();
+                showToast('Informasi sistem telah diperbarui', 'success');
+            });
+            
+            // Export buttons
+            document.getElementById('printBtn').addEventListener('click', function() {
+                window.print();
+            });
+            
+            document.getElementById('exportExcelBtn').addEventListener('click', function() {
+                showToast('Fitur ekspor Excel akan segera hadir', 'info');
+            });
+            
+            document.getElementById('exportPdfBtn').addEventListener('click', function() {
+                showToast('Fitur ekspor PDF akan segera hadir', 'info');
+            });
+            
+            // Backup button
+            document.getElementById('backupBtn').addEventListener('click', function() {
+                backupData();
+            });
+            
+            // Restore button
+            document.getElementById('restoreBtn').addEventListener('click', function() {
+                showToast('Fitur restore akan segera hadir', 'info');
+            });
+        }
+        
+        // Fungsi untuk menyimpan data
+        function saveData() {
+            // Validasi form
+            if (!validateForm()) {
+                showToast('Harap periksa kembali form input', 'error');
+                return;
+            }
+            
+            // Ambil nilai dari form
+            const formData = {
+                id: document.getElementById('bantuanForm').getAttribute('data-edit-id') || generateId(),
+                namaKUB: document.getElementById('namaKUB').value,
+                tahunAnggaran: document.getElementById('tahunAnggaran').value,
+                nik: document.getElementById('nik').value,
+                nama: document.getElementById('nama').value,
+                jabatan: document.getElementById('jabatan').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                kecamatan: document.getElementById('kecamatan').value,
+                desa: document.getElementById('desa').value,
+                alamat: document.getElementById('alamat').value,
+                jenisBantuan: document.getElementById('jenisBantuan').value,
+                jumlahBantuan: document.getElementById('jumlahBantuan').value,
+                tanggalSerahTerima: document.getElementById('tanggalSerahTerima').value,
+                status: document.getElementById('status').value
             };
             
-            if (format === 'xlsx') {
-                reader.readAsBinaryString(file);
+            // Cek apakah sedang edit atau tambah data baru
+            const isEdit = document.getElementById('bantuanForm').hasAttribute('data-edit-id');
+            
+            if (isEdit) {
+                // Edit data yang sudah ada
+                const index = dataBantuan.findIndex(item => item.id === formData.id);
+                if (index !== -1) {
+                    dataBantuan[index] = formData;
+                    showToast('Data berhasil diperbarui', 'success');
+                }
             } else {
-                reader.readAsText(file);
+                // Tambah data baru
+                dataBantuan.push(formData);
+                showToast('Data berhasil disimpan', 'success');
             }
-        }
-        
-        function resetData() {
-            localStorage.setItem('barjasData', JSON.stringify([]));
-            loadDataTable();
+            
+            // Simpan ke localStorage
+            localStorage.setItem('dataBantuan', JSON.stringify(dataBantuan));
+            
+            // Reset form
+            document.getElementById('bantuanForm').reset();
+            document.getElementById('bantuanForm').removeAttribute('data-edit-id');
+            document.getElementById('tanggalSerahTerima').valueAsDate = new Date();
+            
+            // Refresh tampilan data
+            displayData();
+            
+            // Update statistik
             updateStats();
-            updateDataStatus();
-            initTahunFilter();
-            showToast('Sukses', 'Semua data telah direset!', 'success');
         }
         
-        function exportData() {
-            const data = JSON.parse(localStorage.getItem('barjasData') || '[]');
-            if (data.length === 0) {
-                showToast('Info', 'Tidak ada data untuk diekspor.', 'info');
-                return;
-            }
+        // Fungsi untuk validasi form
+        function validateForm() {
+            let isValid = true;
             
-            // Tampilkan pilihan format ekspor
-            const format = confirm('Ekspor sebagai PDF? (Klik OK untuk PDF, Cancel untuk Excel)') ? 'pdf' : 'excel';
-            
-            if (format === 'pdf') {
-                // Ekspor ke PDF menggunakan jsPDF
-                const doc = new jsPDF();
-                
-                // Judul
-                doc.setFontSize(18);
-                doc.text('DATA BARJAS - Dinas Peternakan dan Perikanan Situbondo', 14, 15);
-                doc.setFontSize(12);
-                doc.text(`Tanggal Ekspor: ${new Date().toLocaleDateString('id-ID')}`, 14, 22);
-                
-                // Data untuk tabel
-                const tableData = data.map(item => [
-                    item.namaKUB,
-                    item.nama,
-                    item.jabatan,
-                    item.jenisBarang + (item.catatan ? ` (${item.catatan})` : ''),
-                    item.tahunAnggaran
-                ]);
-                
-                // Buat tabel
-                doc.autoTable({
-                    head: [['Nama KUB', 'Nama Penerima', 'Jabatan', 'Jenis Barang', 'Tahun']],
-                    body: tableData,
-                    startY: 30,
-                    theme: 'grid',
-                    styles: { fontSize: 9 },
-                    headStyles: { fillColor: [13, 71, 161] }
-                });
-                
-                // Simpan PDF
-                doc.save(`data_barjas_${new Date().toISOString().slice(0, 10)}.pdf`);
+            // Validasi Nama KUB
+            const namaKUB = document.getElementById('namaKUB');
+            if (!namaKUB.value || namaKUB.value.length < 3) {
+                namaKUB.classList.add('input-error');
+                document.getElementById('namaKUB-error').style.display = 'block';
+                isValid = false;
             } else {
-                // Ekspor ke Excel
-                const worksheet = XLSX.utils.json_to_sheet(data);
-                const workbook = XLSX.utils.book_new();
-                XLSX.utils.book_append_sheet(workbook, worksheet, "Data BARJAS");
-                XLSX.writeFile(workbook, `data_barjas_${new Date().toISOString().slice(0, 10)}.xlsx`);
+                namaKUB.classList.remove('input-error');
+                document.getElementById('namaKUB-error').style.display = 'none';
             }
             
-            showToast('Sukses', 'Data berhasil diekspor!', 'success');
-        }
-        
-        function printData() {
-            const data = JSON.parse(localStorage.getItem('barjasData') || '[]');
-            if (data.length === 0) {
-                showToast('Info', 'Tidak ada data untuk dicetak.', 'info');
-                return;
-            }
-            
-            // Buat konten untuk dicetak
-            let printContent = `
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <title>Cetak Data BARJAS</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; margin: 20px; }
-                        h1 { text-align: center; color: #0d47a1; }
-                        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-                        th { background-color: #0d47a1; color: white; }
-                        tr:nth-child(even) { background-color: #f2f2f2; }
-                        .footer { margin-top: 30px; text-align: right; font-size: 14px; }
-                    </style>
-                </head>
-                <body>
-                    <h1>DATA BARJAS</h1>
-                    <p>Dinas Peternakan dan Perikanan Situbondo</p>
-                    <p>Tanggal Cetak: ${new Date().toLocaleDateString('id-ID')}</p>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama KUB</th>
-                                <th>Nama Penerima</th>
-                                <th>Jabatan</th>
-                                <th>Jenis Barang</th>
-                                <th>Tahun</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-            `;
-            
-            // Isi data
-            data.forEach((item, index) => {
-                printContent += `
-                    <tr>
-                        <td>${index + 1}</td>
-                        <td>${item.namaKUB}</td>
-                        <td>${item.nama}</td>
-                        <td>${item.jabatan}</td>
-                        <td>${item.jenisBarang} ${item.catatan ? '(' + item.catatan + ')' : ''}</td>
-                        <td>${item.tahunAnggaran}</td>
-                    </tr>
-                `;
-            });
-            
-            printContent += `
-                        </tbody>
-                    </table>
-                    <div class="footer">
-                        <p>Dicetak dari Aplikasi BARJAS</p>
-                    </div>
-                </body>
-                </html>
-            `;
-            
-            // Buka jendela cetak
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(printContent);
-            printWindow.document.close();
-            printWindow.focus();
-            
-            // Tunggu sebentar sebelum mencetak untuk memastikan konten terload
-            setTimeout(() => {
-                printWindow.print();
-                printWindow.close();
-            }, 250);
-        }
-        
-        function updateStats() {
-            const data = JSON.parse(localStorage.getItem('barjasData') || '[]');
-            
-            // Update statistik box
-            document.getElementById('stats-total').textContent = data.length;
-            
-            // Hitung jenis barang unik
-            const jenisBarang = [...new Set(data.map(item => item.jenisBarang))];
-            document.getElementById('stats-barang').textContent = jenisBarang.length;
-            
-            // Hitung tahun unik
-            const tahun = [...new Set(data.map(item => item.tahunAnggaran))];
-            document.getElementById('stats-tahun').textContent = tahun.length;
-            
-            // Hitung KUB unik
-            const kub = [...new Set(data.map(item => item.namaKUB))];
-            document.getElementById('stats-kub').textContent = kub.length;
-            
-            // Update grafik
-            updateCharts(data);
-            
-            // Update data terbaru
-            updateRecentData(data);
-        }
-        
-        function updateCharts(data) {
-            // Data untuk chart tahun
-            const years = {};
-            data.forEach(item => {
-                if (years[item.tahunAnggaran]) {
-                    years[item.tahunAnggaran]++;
-                } else {
-                    years[item.tahunAnggaran] = 1;
-                }
-            });
-            
-            const yearLabels = Object.keys(years).sort();
-            const yearData = yearLabels.map(year => years[year]);
-            
-            // Data untuk chart jenis
-            const types = {};
-            data.forEach(item => {
-                if (types[item.jenisBarang]) {
-                    types[item.jenisBarang]++;
-                } else {
-                    types[item.jenisBarang] = 1;
-                }
-            });
-            
-            const typeLabels = Object.keys(types);
-            const typeData = typeLabels.map(type => types[type]);
-            
-            // Buat atau update chart tahun
-            const yearCtx = document.getElementById('yearChart');
-            if (yearCtx) {
-                if (yearChart) {
-                    yearChart.data.labels = yearLabels;
-                    yearChart.data.datasets[0].data = yearData;
-                    yearChart.update();
-                } else {
-                    yearChart = new Chart(yearCtx, {
-                        type: 'bar',
-                        data: {
-                            labels: yearLabels,
-                            datasets: [{
-                                label: 'Jumlah Bantuan per Tahun',
-                                data: yearData,
-                                backgroundColor: 'rgba(13, 71, 161, 0.7)',
-                                borderColor: 'rgba(13, 71, 161, 1)',
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    ticks: {
-                                        stepSize: 1
-                                    }
-                                }
-                            }
-                        }
-                    });
-                }
-            }
-            
-            // Buat atau update chart jenis
-            const typeCtx = document.getElementById('typeChart');
-            if (typeCtx) {
-                if (typeChart) {
-                    typeChart.data.labels = typeLabels;
-                    typeChart.data.datasets[0].data = typeData;
-                    typeChart.update();
-                } else {
-                    typeChart = new Chart(typeCtx, {
-                        type: 'pie',
-                        data: {
-                            labels: typeLabels,
-                            datasets: [{
-                                label: 'Jumlah per Jenis Barang',
-                                data: typeData,
-                                backgroundColor: [
-                                    'rgba(13, 71, 161, 0.7)',
-                                    'rgba(0, 105, 92, 0.7)',
-                                    'rgba(255, 143, 0, 0.7)',
-                                    'rgba(220, 53, 69, 0.7)',
-                                    'rgba(108, 117, 125, 0.7)'
-                                ],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            responsive: true
-                        }
-                    });
-                }
-            }
-            
-            // Buat atau update trend chart
-            const trendCtx = document.getElementById('trendChart');
-            if (trendCtx) {
-                if (trendChart) {
-                    trendChart.data.labels = yearLabels;
-                    trendChart.data.datasets[0].data = yearData;
-                    trendChart.update();
-                } else {
-                    trendChart = new Chart(trendCtx, {
-                        type: 'line',
-                        data: {
-                            labels: yearLabels,
-                            datasets: [{
-                                label: 'Trend Bantuan per Tahun',
-                                data: yearData,
-                                backgroundColor: 'rgba(13, 71, 161, 0.2)',
-                                borderColor: 'rgba(13, 71, 161, 1)',
-                                borderWidth: 2,
-                                fill: true,
-                                tension: 0.4
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    ticks: {
-                                        stepSize: 1
-                                    }
-                                }
-                            }
-                        }
-                    });
-                }
-            }
-        }
-        
-        function updateRecentData(data) {
-            const recentDataBody = document.getElementById('recentDataBody');
-            if (!recentDataBody) return;
-            
-            // Ambil 5 data terbaru
-            const recentData = [...data].sort((a, b) => b.id - a.id).slice(0, 5);
-            
-            recentDataBody.innerHTML = '';
-            
-            if (recentData.length === 0) {
-                recentDataBody.innerHTML = '<tr><td colspan="4" class="text-center py-3">Tidak ada data</td></tr>';
-                return;
-            }
-            
-            recentData.forEach(item => {
-                const row = document.createElement('tr');
-                // Format tanggal untuk tampilan yang lebih singkat
-                const date = new Date(item.id);
-                const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-                
-                row.innerHTML = `
-                    <td>${item.nama}</td>
-                    <td>${item.namaKUB}</td>
-                    <td>${item.jenisBarang}</td>
-                    <td>${formattedDate}</td>
-                `;
-                recentDataBody.appendChild(row);
-            });
-        }
-        
-        function updateDataStatus() {
-            const data = JSON.parse(localStorage.getItem('barjasData') || '[]');
-            const dataSize = new Blob([JSON.stringify(data)]).size;
-            
-            document.getElementById('dataCount').textContent = data.length;
-            document.getElementById('storageSize').textContent = `${(dataSize / 1024).toFixed(2)} KB`;
-            
-            const lastBackup = localStorage.getItem('lastBackup');
-            document.getElementById('lastBackup').textContent = lastBackup || '-';
-        }
-        
-        function updateSystemInfo() {
-            // Info browser
-            const userAgent = navigator.userAgent;
-            let browserName;
-            
-            if (userAgent.includes("Chrome") && !userAgent.includes("Edg")) {
-                browserName = "Google Chrome";
-            } else if (userAgent.includes("Firefox")) {
-                browserName = "Mozilla Firefox";
-            } else if (userAgent.includes("Safari") && !userAgent.includes("Chrome")) {
-                browserName = "Apple Safari";
-            } else if (userAgent.includes("Edg")) {
-                browserName = "Microsoft Edge";
+            // Validasi Tahun Anggaran
+            const tahunAnggaran = document.getElementById('tahunAnggaran');
+            if (!tahunAnggaran.value) {
+                tahunAnggaran.classList.add('input-error');
+                document.getElementById('tahunAnggaran-error').style.display = 'block';
+                isValid = false;
             } else {
-                browserName = "Browser Unknown";
+                tahunAnggaran.classList.remove('input-error');
+                document.getElementById('tahunAnggaran-error').style.display = 'none';
             }
             
-            document.getElementById('browserInfo').textContent = browserName;
+            // Validasi NIK
+            const nik = document.getElementById('nik');
+            if (!nik.value || nik.value.length !== 16 || !/^\d+$/.test(nik.value)) {
+                nik.classList.add('input-error');
+                document.getElementById('nik-error').style.display = 'block';
+                isValid = false;
+            } else {
+                nik.classList.remove('input-error');
+                document.getElementById('nik-error').style.display = 'none';
+            }
             
-            // Ukuran layar
-            const width = window.screen.width;
-            const height = window.screen.height;
-            document.getElementById('screenSize').textContent = `${width} x ${height} px`;
+            // Validasi Nama
+            const nama = document.getElementById('nama');
+            if (!nama.value || !/^[A-Za-z\s]+$/.test(nama.value)) {
+                nama.classList.add('input-error');
+                document.getElementById('nama-error').style.display = 'block';
+                isValid = false;
+            } else {
+                nama.classList.remove('input-error');
+                document.getElementById('nama-error').style.display = 'none';
+            }
             
-            // Status koneksi
-            const isOnline = navigator.onLine ? 'Online' : 'Offline';
-            document.getElementById('connectionStatus').textContent = isOnline;
+            // Validasi Jabatan
+            const jabatan = document.getElementById('jabatan');
+            if (!jabatan.value) {
+                jabatan.classList.add('input-error');
+                document.getElementById('jabatan-error').style.display = 'block';
+                isValid = false;
+            } else {
+                jabatan.classList.remove('input-error');
+                document.getElementById('jabatan-error').style.display = 'none';
+            }
             
-            // Update status koneksi secara real-time
-            window.addEventListener('online', () => {
-                document.getElementById('connectionStatus').textContent = 'Online';
-            });
+            // Validasi WhatsApp
+            const whatsapp = document.getElementById('whatsapp');
+            if (!whatsapp.value || whatsapp.value.length < 9 || whatsapp.value.length > 13 || !/^\d+$/.test(whatsapp.value)) {
+                whatsapp.classList.add('input-error');
+                document.getElementById('whatsapp-error').style.display = 'block';
+                isValid = false;
+            } else {
+                whatsapp.classList.remove('input-error');
+                document.getElementById('whatsapp-error').style.display = 'none';
+            }
             
-            window.addEventListener('offline', () => {
-                document.getElementById('connectionStatus').textContent = 'Offline';
-            });
+            // Validasi Kecamatan
+            const kecamatan = document.getElementById('kecamatan');
+            if (!kecamatan.value) {
+                kecamatan.classList.add('input-error');
+                document.getElementById('kecamatan-error').style.display = 'block';
+                isValid = false;
+            } else {
+                kecamatan.classList.remove('input-error');
+                document.getElementById('kecamatan-error').style.display = 'none';
+            }
+            
+            // Validasi Desa
+            const desa = document.getElementById('desa');
+            if (!desa.value) {
+                desa.classList.add('input-error');
+                document.getElementById('desa-error').style.display = 'block';
+                isValid = false;
+            } else {
+                desa.classList.remove('input-error');
+                document.getElementById('desa-error').style.display = 'none';
+            }
+            
+            // Validasi Alamat
+            const alamat = document.getElementById('alamat');
+            if (!alamat.value) {
+                alamat.classList.add('input-error');
+                document.getElementById('alamat-error').style.display = 'block';
+                isValid = false;
+            } else {
+                alamat.classList.remove('input-error');
+                document.getElementById('alamat-error').style.display = 'none';
+            }
+            
+            // Validasi Jenis Bantuan
+            const jenisBantuan = document.getElementById('jenisBantuan');
+            if (!jenisBantuan.value) {
+                jenisBantuan.classList.add('input-error');
+                document.getElementById('jenisBantuan-error').style.display = 'block';
+                isValid = false;
+            } else {
+                jenisBantuan.classList.remove('input-error');
+                document.getElementById('jenisBantuan-error').style.display = 'none';
+            }
+            
+            // Validasi Jumlah Bantuan
+            const jumlahBantuan = document.getElementById('jumlahBantuan');
+            if (!jumlahBantuan.value || parseInt(jumlahBantuan.value) < 1) {
+                jumlahBantuan.classList.add('input-error');
+                document.getElementById('jumlahBantuan-error').style.display = 'block';
+                isValid = false;
+            } else {
+                jumlahBantuan.classList.remove('input-error');
+                document.getElementById('jumlahBantuan-error').style.display = 'none';
+            }
+            
+            // Validasi Tanggal Serah Terima
+            const tanggalSerahTerima = document.getElementById('tanggalSerahTerima');
+            if (!tanggalSerahTerima.value) {
+                tanggalSerahTerima.classList.add('input-error');
+                document.getElementById('tanggalSerahTerima-error').style.display = 'block';
+                isValid = false;
+            } else {
+                tanggalSerahTerima.classList.remove('input-error');
+                document.getElementById('tanggalSerahTerima-error').style.display = 'none';
+            }
+            
+            // Validasi Status
+            const status = document.getElementById('status');
+            if (!status.value) {
+                status.classList.add('input-error');
+                document.getElementById('status-error').style.display = 'block';
+                isValid = false;
+            } else {
+                status.classList.remove('input-error');
+                document.getElementById('status-error').style.display = 'none';
+            }
+            
+            return isValid;
         }
         
-        function showToast(title, message, type = 'info') {
-            const toastElement = document.querySelector('.notification-toast');
-            const toastTitle = document.getElementById('toast-title');
-            const toastMessage = document.getElementById('toast-message');
-            
-            // Set warna berdasarkan jenis pesan
-            switch(type) {
-                case 'success':
-                    toastElement.classList.add('bg-success', 'text-white');
-                    break;
-                case 'error':
-                    toastElement.classList.add('bg-danger', 'text-white');
-                    break;
-                case 'warning':
-                    toastElement.classList.add('bg-warning', 'text-dark');
-                    break;
-                default:
-                    toastElement.classList.add('bg-info', 'text-white');
+        // Fungsi untuk melihat data
+        function viewData(id) {
+            const data = dataBantuan.find(item => item.id === id);
+            if (data) {
+                alert(`Detail Data:\nNama KUB: ${data.namaKUB}\nNama: ${data.nama}\nNIK: ${data.nik}\nAlamat: ${data.alamat}, ${data.desa}, ${data.kecamatan}\nJenis Bantuan: ${data.jenisBantuan}\nJumlah: ${data.jumlahBantuan}\nStatus: ${data.status}`);
             }
-            
-            // Set konten
-            toastTitle.textContent = title;
-            toastMessage.textContent = message;
-            
-            // Tampilkan toast
-            const toast = new bootstrap.Toast(toastElement);
-            toast.show();
-            
-            // Hapus kelas warna setelah toast disembunyikan
-            toastElement.addEventListener('hidden.bs.toast', function() {
-                this.classList.remove('bg-success', 'bg-danger', 'bg-warning', 'bg-info', 'text-white', 'text-dark');
-            });
         }
+        
+        // Fungsi untuk mengedit data
+        function editData(id) {
+            const data = dataBantuan.find(item => item.id === id);
+            if (data) {
+                // Isi form dengan data yang akan diedit
+                document.getElementById('namaKUB').value = data.namaKUB;
+                document.getElementById('tahunAnggaran').value = data.tahunAnggaran;
+                document.getElementById('nik').value = data.nik;
+                document.getElementById('nama').value = data.nama;
+                document.getElementById('jabatan').value = data.jabatan;
+                document.getElementById('whatsapp').value = data.whatsapp;
+                document.getElementById('kecamatan').value = data.kecamatan;
+                document.getElementById('desa').value = data.desa;
+                document.getElementById('alamat').value = data.alamat;
+                document.getElementById('jenisBantuan').value = data.jenisBantuan;
+                document.getElementById('jumlahBantuan').value = data.jumlahBantuan;
+                document.getElementById('tanggalSerahTerima').value = data.tanggalSerahTerima;
+                document.getElementById('status').value = data.status;
+                
+                // Set atribut edit id
+                document.getElementById('bantuanForm').setAttribute('data-edit-id', id);
+                
+                // Scroll ke form
+                document.getElementById('bantuanForm').scrollIntoView({ behavior: 'smooth' });
+                
+                // Tampilkan notifikasi
+                showToast('Data siap untuk diedit', 'info');
+            }
+        }
+        
+        // Fungsi untuk backup data
+        function backupData() {
+            const backupData = {
+                dataBantuan: dataBantuan,
+                backupDate: new Date().toISOString(),
+                version: '2.1.0'
+            };
+            
+            const dataStr = JSON.stringify(backupData);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `backup-barjas-${new Date().toISOString().slice(0,10)}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            
+            showToast('Backup data berhasil', 'success');
+        }
+        
+        // Deteksi browser
+        document.getElementById('browserInfo').textContent = navigator.userAgent;
     </script>
 </body>
 </html>
