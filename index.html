@@ -1643,11 +1643,84 @@
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Inisialisasi jsPDF
+       // Inisialisasi jsPDF
         window.jsPDF = window.jspdf.jsPDF;
 
         // Variabel global untuk chart
         let yearChart, typeChart, trendChart;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // [Kode inisialisasi lainnya yang sama seperti sebelumnya]
+
+            // Confirm delete handler - PERBAIKAN: Event listener yang benar
+            document.getElementById('confirmDelete').addEventListener('click', function() {
+                const password = document.getElementById('deletePassword').value;
+                const storedPassword = localStorage.getItem('appPassword');
+                const id = parseInt(document.getElementById('deleteId').value);
+                
+                if (password === storedPassword) {
+                    deleteData(id);
+                    $('#deleteModal').modal('hide');
+                    document.getElementById('deletePassword').value = '';
+                } else {
+                    showToast('Error', 'Password salah!', 'error');
+                }
+            });
+
+            // [Kode lainnya yang sama seperti sebelumnya]
+        });
+
+        // [Fungsi lainnya yang sama seperti sebelumnya]
+
+        // PERBAIKAN: Fungsi untuk menampilkan modal hapus
+        function showDeleteModal(id) {
+            document.getElementById('deleteId').value = id;
+            
+            // Reset field password
+            document.getElementById('deletePassword').value = '';
+            
+            // Tampilkan modal
+            const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+            deleteModal.show();
+        }
+
+        // PERBAIKAN: Fungsi untuk menghapus data
+        function deleteData(id, showConfirmation = true) {
+            let data = JSON.parse(localStorage.getItem('barjasData') || '[]');
+            const newData = data.filter(item => item.id !== id);
+            
+            if (newData.length === data.length) {
+                // Data tidak berubah berarti ID tidak ditemukan
+                if (showConfirmation) {
+                    showToast('Error', 'Data tidak ditemukan!', 'error');
+                }
+                return;
+            }
+            
+            localStorage.setItem('barjasData', JSON.stringify(newData));
+            
+            // Reload data table dengan halaman yang sama
+            const currentPage = getCurrentPage();
+            loadDataTable(currentPage);
+            
+            updateStats();
+            updateDataStatus();
+            initTahunFilter();
+            
+            if (showConfirmation) {
+                showToast('Sukses', 'Data berhasil dihapus!', 'success');
+            }
+        }
+
+        // Fungsi bantu untuk mendapatkan halaman saat ini
+        function getCurrentPage() {
+            const activePageItem = document.querySelector('.pagination .page-item.active');
+            if (activePageItem) {
+                const pageLink = activePageItem.querySelector('.page-link');
+                return parseInt(pageLink.textContent);
+            }
+            return 1;
+        }
 
         document.addEventListener('DOMContentLoaded', function() {
             // Inisialisasi partikel background
